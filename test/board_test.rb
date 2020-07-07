@@ -6,16 +6,16 @@ require './lib/board'
 
 
 
-class BSTest < Minitest::Test
+class ShipTest < Minitest::Test
 
     def test_it_exists
-      ship1 = Ship.new('Challenger', 5)
+      board1 = Board.new
 
-      assert_instance_of Ship, ship1
+      assert_instance_of Board, board1
     end
 
     def test_it_has_a_length
-      # skip
+      skip
       ship1 = Ship.new("Challenger", 5)
 
 
@@ -23,14 +23,14 @@ class BSTest < Minitest::Test
     end
 
     def test_it_has_a_name
-      # skip
+      skip
       ship1 = Ship.new("Carrier", 5)
 
       assert_equal ship1.name, "Carrier"
     end
 
     def test_it_has_health
-      # skip
+      skip
       ship1 = Ship.new("Challenger", 5)
 
 
@@ -38,7 +38,7 @@ class BSTest < Minitest::Test
     end
 
     def test_it_can_be_hit
-      # skip
+      skip
       ship1 = Ship.new("Carrier", 5)
 
       ship1.hit
@@ -48,6 +48,7 @@ class BSTest < Minitest::Test
     end
 
     def test_it_can_sink
+      skip
       ship1 = Ship.new("Battleship", 4)
 
       ship1.hit
@@ -59,6 +60,7 @@ class BSTest < Minitest::Test
     end
 
     def test_it_can_make_multiple_ships
+      skip
       ship1 = Ship.new("Battleship", 4)
       ship2 = Ship.new("Cruiser", 3)
 

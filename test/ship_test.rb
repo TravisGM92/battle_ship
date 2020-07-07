@@ -4,7 +4,7 @@ require './lib/ship'
 
 
 
-class BSTest < Minitest::Test
+class ShipTest < Minitest::Test
 
     def test_it_exists
       ship1 = Ship.new('Challenger', 5)
