@@ -1,4 +1,4 @@
-require './lib/BS'
+require './lib/ship'
 
 class Cell
 
