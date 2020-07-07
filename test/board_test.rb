@@ -6,7 +6,7 @@ require './lib/board'
 
 
 
-class ShipTest < Minitest::Test
+class BoardTest < Minitest::Test
 
     def test_it_exists
       board1 = Board.new
@@ -14,12 +14,13 @@ class ShipTest < Minitest::Test
       assert_instance_of Board, board1
     end
 
-    def test_it_has_a_length
-      skip
-      ship1 = Ship.new("Challenger", 5)
+    def test_it_has_16_cells
+      # skip
+      board1 = Board.new
 
 
-      assert_equal ship1.length, 5
+
+      assert_equal board1.cells.length, 16
     end
 
     def test_it_has_a_name
