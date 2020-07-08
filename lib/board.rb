@@ -87,30 +87,56 @@ class Board
     rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
     colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
 
-    # alpha is an array of alphabet, rows_index is the only the letters of the 
+    # Below is the column numbers converted to actual numbers instead of strings
+    colum_numbers = colum_index.collect{ |number| number.to_i}
+
+    # alpha is an array of alphabet, rows_index is only the letters of the
     # coordinates, where colum_index is the numbers of each coordinate
     alpha = ("A".."Z").to_a
-    p rows_index.collect{ |letters| alpha.index(letters)}
+    index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
+    index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
 
 
-
-    # if ship.length <= coordinate.length && split_numbs.each{ |array| array.}
-    #
-    #     }
-    #   true
-    # else
-    #   false
-    # end
+    # Checks if ship length is equal to coordinate length, then checks if numbers in coordinates are consecutive. After, it checks if all letters are identical
+    if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
+      true
+    # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
+      true
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
+      # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
+      true
+    elsif coordinate.length == 0
+      false
+    else
+      false
+    end
 
   end
+
+  def place(ship, coordinate)
+    x = 0
+    while x != coordinate.length
+      cells[coordinate[x]].place_ship(ship)
+      x +=1
+    end
+  end
+
+
 
 
 end
 
 board1 = Board.new
-cruiser = Ship.new("Cruiser", 3)
+ship2 = Ship.new("Cruiser", 3)
 board1.cells
-# board1.valid_placement?("Cruiser", )
+board1.place(ship2, ["A1", "A2", "A3"])
+cell_1 = board1.cells["A1"]
+cell_2 = board1.cells["A2"]
+cell_3 = board1.cells["A3"]
 
 
-board1.valid_placement?(cruiser, ["A2", "D4", "C2"])
+p cell_1.ship == cell_2.ship
+
+
+# require "pry"; binding.pry
