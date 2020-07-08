@@ -4,7 +4,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 
-
+#test to make changes
 class BoardTest < Minitest::Test
 
     def test_it_exists

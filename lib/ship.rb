@@ -11,7 +11,7 @@ class Ship
   end
 
   def hit
-    @hits += 1
+    $hits += 1
   end
 
   def health
