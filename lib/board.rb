@@ -1,9 +1,10 @@
 require './lib/cell'
 require './lib/ship'
 
+
 class Board
 
-  attr_accessor :row_A, :row_B, :row_C, :row_D, :a1, :a2, :a3, :a4, :b1, :b2, :b3, :b4, :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4
+  attr_accessor :row_a, :row_b, :row_b, :row_d, :a1, :a2, :a3, :a4, :b1, :b2, :b3, :b4, :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4
 
   def initialize
     @a1 = Cell.new("A1")
@@ -51,11 +52,16 @@ class Board
   end
 
 
-  def valid_placement?
+  def valid_placement?(ship, coordinate)
     row_a = cells.keys.to_a[0..3]
     row_b = cells.keys.to_a[4..7]
     row_c = cells.keys.to_a[8..11]
     row_d = cells.keys.to_a[12..15]
+    rows = []
+    rows << row_a
+    rows << row_b
+    rows << row_c
+    rows << row_d
     col_1 = []
     col_1 << cells.keys.to_a[0]
     col_1 << cells.keys.to_a[4]
@@ -77,13 +83,26 @@ class Board
     col_4 << cells.keys.to_a[11]
     col_4 << cells.keys.to_a[15]
 
+    split_numbs = coordinate.collect{ |coordinates| coordinates.chars}.flatten
+    p split_numbs
+
+    # if ship.length <= coordinate.length && split_numbs.each{ |array| array.}
+    #
+    #     }
+    #   true
+    # else
+    #   false
+    # end
+
   end
 
 
 end
 
 board1 = Board.new
-challenger = Ship.new("Cruiser", 3)
+cruiser = Ship.new("Cruiser", 3)
 board1.cells
+# board1.valid_placement?("Cruiser", )
 
-board1.valid_placement?
+
+board1.valid_placement?(cruiser, ["A2", "C2", "D4"])
