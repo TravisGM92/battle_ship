@@ -28,43 +28,93 @@ class BoardTest < Minitest::Test
       assert_equal board1.valid_coordinate?("A2"), true
     end
 
-    def test_it_can_tell_valid_placement
-      skip
+    def test_it_can_show_valid_placement_with_row_and_length
+      # skip
       board1 = Board.new
-      ship1 = Ship.new("Challenger", 5)
+      ship1 = Ship.new("Submarine", 2)
+      ship2 = Ship.new("Cruiser", 3)
 
-      assert_equal board1.valid_placement?(challenger, ["A1, A2"]), false
+      assert_equal true, board1.valid_placement?(ship1, ["A1", "A2"])
+      assert_equal true, board1.valid_placement?(ship2, ["A1", "B1", "C1"])
     end
 
-    # def test_it_can_be_hit
-    #   skip
-    #   ship1 = Ship.new("Carrier", 5)
-    #
-    #   ship1.hit
-    #
-    #
-    #   assert_equal 4, ship1.health
-    # end
-    #
-    # def test_it_can_sink
-    #   skip
-    #   ship1 = Ship.new("Battleship", 4)
-    #
-    #   ship1.hit
-    #   ship1.hit
-    #   ship1.hit
-    #   ship1.hit
-    #
-    #   assert_equal true, ship1.sunk?
-    # end
-    #
-    # def test_it_can_make_multiple_ships
-    #   skip
-    #   ship1 = Ship.new("Battleship", 4)
-    #   ship2 = Ship.new("Cruiser", 3)
-    #
-    #   assert_equal "Battleship", ship1.name
-    #   assert_equal "Cruiser", ship2.name
-    # end
+    def test_it_can_show_invalid_placement_due_to_length
+      # skip
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1", "A2"])
+    end
+
+    def test_it_can_show_valid_placement_with_column_and_length
+      # skip
+      board1 = Board.new
+      ship1 = Ship.new("Submarine", 2)
+
+      assert_equal true, board1.valid_placement?(ship1, ["A1", "B1"])
+    end
+
+    def test_it_can_show_invalid_placement_due_to_column_placement
+      # skip
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1", "C1", "D1"])
+    end
+
+    def test_other_invalid_placements
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1", "B1", "C2"])
+    end
+
+    def test_other_invalid_placement_with_one_coordinate
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1"])
+    end
+
+    def test_coordinates_cant_be_diagonal
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1", "B2", "C3"])
+    end
+
+    def test_it_cell_is_empty
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+      cell1 = board1.cells["A1"]
+
+      assert_equal true, cell1.cell.empty?
+    end
+
+    def test_if_ship_can_be_placed
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+      cell1 = board1.cells["A1"]
+      board1.place(ship1, ["A1", "A2", "A3"])
+
+      assert_equal 3, cell1.ship.health
+    end
+
+    def test_ship_is_placed_in_multiple_cells
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+      cell1 = board1.cells["A1"]
+      cell2 = board1.cells["A2"]
+      board1.place(ship1, ["A1", "A2", "A3"])
+
+      assert_equal true, cell1.ship == cell2.ship
+    end
+
+
 
   end
