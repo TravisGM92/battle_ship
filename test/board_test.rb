@@ -54,17 +54,16 @@ class BoardTest < Minitest::Test
       board1 = Board.new
       ship1 = Ship.new("Submarine", 2)
 
-
       assert_equal true, board1.valid_placement?(ship1, ["A1", "B1"])
     end
 
-    def test_it_can_make_multiple_ships
-      skip
-      ship1 = Ship.new("Battleship", 4)
-      ship2 = Ship.new("Cruiser", 3)
+    def test_it_can_show_invalid_placement_due_to_column_placement
+      # skip
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
 
-      assert_equal "Battleship", ship1.name
-      assert_equal "Cruiser", ship2.name
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1", "C1", "D1"])
     end
 
   end

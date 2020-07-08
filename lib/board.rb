@@ -87,17 +87,19 @@ class Board
     rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
     colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
 
+    # Below is the column numbers converted to actual numbers instead of strings
+    colum_numbers = colum_index.collect{ |number| number.to_i}
+
     # alpha is an array of alphabet, rows_index is only the letters of the
     # coordinates, where colum_index is the numbers of each coordinate
     alpha = ("A".."Z").to_a
     index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
-    # index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
+    index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
+    # colum_numbers.collect{ |numbs| colum_numbers[0] == numbs}
 
-
-
-    if ship.length <= coordinate.length && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
+    if ship.length <= coordinate.length &&   index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1]
       true
-    elsif ship.length <= coordinate.length && colum_index.all?{ |number| colum_index[0] == number}
+    elsif ship.length <= coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
       true
     else
       false
@@ -109,9 +111,9 @@ class Board
 end
 
 board1 = Board.new
-cruiser = Ship.new("Cruiser", 3)
+cruiser = Ship.new("Cruiser", 2)
 board1.cells
 
 
 
-p board1.valid_placement?(cruiser, ["A2", "B2", "C2"])
+p board1.valid_placement?(cruiser, ["A2", "B2"])
