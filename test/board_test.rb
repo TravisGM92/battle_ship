@@ -32,12 +32,12 @@ class BoardTest < Minitest::Test
     end
 
     def test_it_can_show_valid_coordinates
-      skip
+      # skip
       board1 = Board.new
-      ship1 = Ship.new("Challenger", 5)
+      ship1 = Ship.new("Submarine", 2)
 
 
-      assert_equal board1.valid_placement?(challenger, ["A1, A2"]), false
+      assert_equal true, board1.valid_placement?(ship1, ["A1", "A2"])
     end
 
     def test_it_can_be_hit

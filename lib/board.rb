@@ -87,30 +87,28 @@ class Board
     rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
     colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
 
-    # alpha is an array of alphabet, rows_index is the only the letters of the 
+    # alpha is an array of alphabet, rows_index is only the letters of the
     # coordinates, where colum_index is the numbers of each coordinate
     alpha = ("A".."Z").to_a
-    p rows_index.collect{ |letters| alpha.index(letters)}
+    index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
 
 
 
-    # if ship.length <= coordinate.length && split_numbs.each{ |array| array.}
-    #
-    #     }
-    #   true
-    # else
-    #   false
-    # end
+    if ship.length <= coordinate.length && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
+      true
+    else
+      false
+    end
 
   end
 
 
 end
 
-board1 = Board.new
-cruiser = Ship.new("Cruiser", 3)
-board1.cells
+# board1 = Board.new
+# cruiser = Ship.new("Cruiser", 3)
+# board1.cells
 # board1.valid_placement?("Cruiser", )
 
 
-board1.valid_placement?(cruiser, ["A2", "D4", "C2"])
+# p board1.valid_placement?(cruiser, ["A2", "D4", "C2"])
