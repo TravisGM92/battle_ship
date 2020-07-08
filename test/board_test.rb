@@ -5,7 +5,6 @@ require './lib/cell'
 require './lib/board'
 
 
-
 class BoardTest < Minitest::Test
 
     def test_it_exists
@@ -17,8 +16,6 @@ class BoardTest < Minitest::Test
     def test_it_has_16_cells
       # skip
       board1 = Board.new
-
-
 
       assert_equal board1.cells.length, 16
     end
@@ -36,7 +33,6 @@ class BoardTest < Minitest::Test
       board1 = Board.new
       ship1 = Ship.new("Submarine", 2)
       ship2 = Ship.new("Cruiser", 3)
-
 
       assert_equal true, board1.valid_placement?(ship1, ["A1", "A2"])
       assert_equal true, board1.valid_placement?(ship2, ["A1", "B1", "C1"])
