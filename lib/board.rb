@@ -87,8 +87,9 @@ class Board
     rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
     colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
 
+    # alpha is an array of alphabet, rows_index is the only the letters of the 
+    # coordinates, where colum_index is the numbers of each coordinate
     alpha = ("A".."Z").to_a
-    numbers = colum_index.each{|numb| numb.to_i}
     p rows_index.collect{ |letters| alpha.index(letters)}
 
 
