@@ -31,7 +31,7 @@ class BoardTest < Minitest::Test
       assert_equal board1.valid_coordinate?("A2"), true
     end
 
-    def test_it_can_show_valid_placement
+    def test_it_can_show_valid_placement_with_row_and_length
       # skip
       board1 = Board.new
       ship1 = Ship.new("Submarine", 2)
@@ -40,7 +40,7 @@ class BoardTest < Minitest::Test
       assert_equal true, board1.valid_placement?(ship1, ["A1", "A2"])
     end
 
-    def test_it_can_show_invalid_placement
+    def test_it_can_show_invalid_placement_due_to_length
       # skip
       board1 = Board.new
       ship1 = Ship.new("Cruiser", 3)
@@ -49,16 +49,13 @@ class BoardTest < Minitest::Test
       assert_equal false, board1.valid_placement?(ship1, ["A1", "A2"])
     end
 
-    def test_it_can_sink
-      skip
-      ship1 = Ship.new("Battleship", 4)
+    def test_it_can_show_valid_placement_with_column_and_length
+      # skip
+      board1 = Board.new
+      ship1 = Ship.new("Submarine", 2)
 
-      ship1.hit
-      ship1.hit
-      ship1.hit
-      ship1.hit
 
-      assert_equal true, ship1.sunk?
+      assert_equal true, board1.valid_placement?(ship1, ["A1", "B1"])
     end
 
     def test_it_can_make_multiple_ships

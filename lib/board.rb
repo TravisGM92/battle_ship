@@ -91,10 +91,13 @@ class Board
     # coordinates, where colum_index is the numbers of each coordinate
     alpha = ("A".."Z").to_a
     index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
+    # index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
 
 
 
     if ship.length <= coordinate.length && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
+      true
+    elsif ship.length <= coordinate.length && colum_index.all?{ |number| colum_index[0] == number}
       true
     else
       false
@@ -105,10 +108,10 @@ class Board
 
 end
 
-# board1 = Board.new
-# cruiser = Ship.new("Cruiser", 3)
-# board1.cells
-# board1.valid_placement?("Cruiser", )
+board1 = Board.new
+cruiser = Ship.new("Cruiser", 3)
+board1.cells
 
 
-# p board1.valid_placement?(cruiser, ["A2", "D4", "C2"])
+
+p board1.valid_placement?(cruiser, ["A2", "B2", "C2"])
