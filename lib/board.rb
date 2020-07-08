@@ -55,16 +55,28 @@ class Board
     row_a = cells.keys.to_a[0..3]
     row_b = cells.keys.to_a[4..7]
     row_c = cells.keys.to_a[8..11]
-    row_d = cells.keys.to_a[12..16]
+    row_d = cells.keys.to_a[12..15]
     col_1 = []
     col_1 << cells.keys.to_a[0]
     col_1 << cells.keys.to_a[4]
     col_1 << cells.keys.to_a[8]
     col_1 << cells.keys.to_a[12]
+    col_2 = []
+    col_2 << cells.keys.to_a[1]
+    col_2 << cells.keys.to_a[5]
+    col_2 << cells.keys.to_a[9]
+    col_2 << cells.keys.to_a[13]
+    col_3 = []
+    col_3 << cells.keys.to_a[2]
+    col_3 << cells.keys.to_a[6]
+    col_3 << cells.keys.to_a[10]
+    col_3 << cells.keys.to_a[14]
+    col_4 = []
+    col_4 << cells.keys.to_a[3]
+    col_4 << cells.keys.to_a[7]
+    col_4 << cells.keys.to_a[11]
+    col_4 << cells.keys.to_a[15]
 
-
-
-    p col_1
   end
 
 
