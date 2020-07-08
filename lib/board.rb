@@ -96,15 +96,15 @@ class Board
     index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
     index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
 
-    # We should do a loop with this, make it cleaner
 
-    if ship.length <= coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2
+    # Checks if ship length is equal to coordinate length, then checks if numbers in coordinates are consecutive. After, it checks if all letters are identical
+    if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
       true
-    elsif ship.length <= coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
+    # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2
       true
-    elsif ship.length <= coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 2
-      true
-    elsif ship.length <= coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && index_of_letters_of_coordinates[2] + 1 == index_of_letters_of_coordinates[3] && coordinate.length == 3
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3
+      # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
       true
     elsif coordinate.length == 0
       false
@@ -115,12 +115,16 @@ class Board
   end
 
 
+
+
 end
 
-board1 = Board.new
-cruiser = Ship.new("Cruiser", 2)
-board1.cells
+# board1 = Board.new
+# ship2 = Ship.new("Cruiser", 2)
+# board1.cells
+#
+#
+#
+# p board1.valid_placement?(ship2, ["D1", "C2"])
 
-
-
-p board1.valid_placement?(cruiser, ["A2"])
+# require "pry"; binding.pry

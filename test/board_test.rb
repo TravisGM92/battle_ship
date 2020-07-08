@@ -35,9 +35,11 @@ class BoardTest < Minitest::Test
       # skip
       board1 = Board.new
       ship1 = Ship.new("Submarine", 2)
+      ship2 = Ship.new("Cruiser", 3)
 
 
       assert_equal true, board1.valid_placement?(ship1, ["A1", "A2"])
+      assert_equal true, board1.valid_placement?(ship2, ["A1", "B1", "C1"])
     end
 
     def test_it_can_show_invalid_placement_due_to_length
@@ -73,5 +75,23 @@ class BoardTest < Minitest::Test
 
       assert_equal false, board1.valid_placement?(ship1, ["A1", "B1", "C2"])
     end
+
+    def test_other_invalid_placement_with_one_coordinate
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1"])
+    end
+
+    def test_coordinates_cant_be_diagonal
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+
+
+      assert_equal false, board1.valid_placement?(ship1, ["A1", "B2", "C3"])
+    end
+
+
 
   end
