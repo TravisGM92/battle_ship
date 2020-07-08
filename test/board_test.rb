@@ -92,6 +92,33 @@ class BoardTest < Minitest::Test
       assert_equal false, board1.valid_placement?(ship1, ["A1", "B2", "C3"])
     end
 
+    def test_it_cell_is_empty
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+      cell1 = board1.cells["A1"]
+
+      assert_equal true, cell1.cell.empty?
+    end
+
+    def test_if_ship_can_be_placed
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+      cell1 = board1.cells["A1"]
+      board1.place(ship1, ["A1", "A2", "A3"])
+
+      assert_equal 3, cell1.ship.health
+    end
+
+    def test_ship_is_placed_in_multiple_cells
+      board1 = Board.new
+      ship1 = Ship.new("Cruiser", 3)
+      cell1 = board1.cells["A1"]
+      cell2 = board1.cells["A2"]
+      board1.place(ship1, ["A1", "A2", "A3"])
+
+      assert_equal true, cell1.ship == cell2.ship
+    end
+
 
 
   end

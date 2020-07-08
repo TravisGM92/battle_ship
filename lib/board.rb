@@ -101,9 +101,9 @@ class Board
     if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
       true
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
-    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
       true
-    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
       # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
       true
     elsif coordinate.length == 0
@@ -114,17 +114,29 @@ class Board
 
   end
 
+  def place(ship, coordinate)
+    x = 0
+    while x != coordinate.length
+      cells[coordinate[x]].place_ship(ship)
+      x +=1
+    end
+  end
+
 
 
 
 end
 
-# board1 = Board.new
-# ship2 = Ship.new("Cruiser", 2)
-# board1.cells
-#
-#
-#
-# p board1.valid_placement?(ship2, ["D1", "C2"])
+board1 = Board.new
+ship2 = Ship.new("Cruiser", 3)
+board1.cells
+board1.place(ship2, ["A1", "A2", "A3"])
+cell_1 = board1.cells["A1"]
+cell_2 = board1.cells["A2"]
+cell_3 = board1.cells["A3"]
+
+
+p cell_1.ship == cell_2.ship
+
 
 # require "pry"; binding.pry
