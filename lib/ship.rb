@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 class Ship
 
   attr_reader :name
@@ -13,7 +11,7 @@ class Ship
   end
 
   def hit
-    $hits += 1
+    @hits += 1
   end
 
   def health
@@ -29,4 +27,3 @@ class Ship
   end
 
 end
->>>>>>> ea2de0845ad199cbd3c2bf965f081c3c0ee2acac
