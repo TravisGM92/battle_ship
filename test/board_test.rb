@@ -23,19 +23,21 @@ class BoardTest < Minitest::Test
       assert_equal board1.cells.length, 16
     end
 
-    def test_it_has_a_name
-      skip
-      ship1 = Ship.new("Carrier", 5)
+    def test_it_can_validate_coordinates
+      # skip
+      board1 = Board.new
+      board1.cells
 
-      assert_equal ship1.name, "Carrier"
+      assert_equal board1.valid_coordinate?("A2"), true
     end
 
-    def test_it_has_health
+    def test_it_can_show_valid_coordinates
       skip
+      board1 = Board.new
       ship1 = Ship.new("Challenger", 5)
 
 
-      assert_equal ship1.health, 5
+      assert_equal board1.valid_placement?(challenger, ["A1, A2"]), false
     end
 
     def test_it_can_be_hit

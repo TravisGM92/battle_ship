@@ -1,30 +1,46 @@
 require './lib/cell'
+require './lib/ship'
 
 class Board
 
+  attr_accessor :row_A, :row_B, :row_C, :row_D, :a1, :a2, :a3, :a4, :b1, :b2, :b3, :b4, :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4
 
   def initialize
-
-
+    @a1 = Cell.new("A1")
+      @a2 = Cell.new("A2")
+      @a3 = Cell.new("A3")
+      @a4 = Cell.new("A4")
+      @b1 = Cell.new("B1")
+      @b2 = Cell.new("B2")
+      @b3 = Cell.new("B3")
+      @b4 = Cell.new("B4")
+      @c1 = Cell.new("C1")
+      @c2 = Cell.new("C2")
+      @c3 = Cell.new("C3")
+      @c4 = Cell.new("C4")
+      @d1 = Cell.new("D1")
+      @d2 = Cell.new("D2")
+      @d3 = Cell.new("D3")
+      @d4 = Cell.new("D4")
   end
 
   def cells
-    {"A1" => Cell.new("A1"),
-      "A2" => Cell.new("A2"),
-      "A3" => Cell.new("A3"),
-      "A4" => Cell.new("A4"),
-      "B1" => Cell.new("B1"),
-      "B2" => Cell.new("B2"),
-      "B3" => Cell.new("B3"),
-      "B4" => Cell.new("B4"),
-      "C1" => Cell.new("C1"),
-      "C2" => Cell.new("C2"),
-      "C3" => Cell.new("C3"),
-      "C4" => Cell.new("C4"),
-      "D1" => Cell.new("D1"),
-      "D2" => Cell.new("D2"),
-      "D3" => Cell.new("D3"),
-      "D4" => Cell.new("D4"),
+    {"A1" => a1,
+      "A2" => a2,
+      "A3" => a3,
+      "A4" => a4,
+      "B1" => b1,
+      "B2" => b2,
+      "B3" => b3,
+      "B4" => b4,
+      "C1" => c1,
+      "C2" => c2,
+      "C3" => c3,
+      "C4" => c4,
+      "D1" => d1,
+      "D2" => d2,
+      "D3" => d3,
+      "D4" => d4
     }
 
   end
@@ -34,8 +50,28 @@ class Board
     cells.include? coordinate
   end
 
+
+  def valid_placement?
+    row_a = cells.keys.to_a[0..3]
+    row_b = cells.keys.to_a[4..7]
+    row_c = cells.keys.to_a[8..11]
+    row_d = cells.keys.to_a[12..16]
+    col_1 = []
+    col_1 << cells.keys.to_a[0]
+    col_1 << cells.keys.to_a[4]
+    col_1 << cells.keys.to_a[8]
+    col_1 << cells.keys.to_a[12]
+
+
+
+    p col_1
+  end
+
+
 end
 
-board = Board.new
+board1 = Board.new
+challenger = Ship.new("Cruiser", 3)
+board1.cells
 
-p board.valid_coordinate?("A1")
+board1.valid_placement?
