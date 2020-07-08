@@ -84,7 +84,14 @@ class Board
     col_4 << cells.keys.to_a[15]
 
     split_numbs = coordinate.collect{ |coordinates| coordinates.chars}.flatten
-    p split_numbs
+    rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
+    colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
+
+    alpha = ("A".."Z").to_a
+    numbers = colum_index.each{|numb| numb.to_i}
+    p rows_index.collect{ |letters| alpha.index(letters)}
+
+
 
     # if ship.length <= coordinate.length && split_numbs.each{ |array| array.}
     #
@@ -105,4 +112,4 @@ board1.cells
 # board1.valid_placement?("Cruiser", )
 
 
-board1.valid_placement?(cruiser, ["A2", "C2", "D4"])
+board1.valid_placement?(cruiser, ["A2", "D4", "C2"])
