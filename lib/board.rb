@@ -95,12 +95,19 @@ class Board
     alpha = ("A".."Z").to_a
     index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
     index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
-    # colum_numbers.collect{ |numbs| colum_numbers[0] == numbs}
 
-    if ship.length <= coordinate.length &&   index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1]
+    # We should do a loop with this, make it cleaner
+
+    if ship.length <= coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2
       true
     elsif ship.length <= coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]}
       true
+    elsif ship.length <= coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 2
+      true
+    elsif ship.length <= coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && index_of_letters_of_coordinates[2] + 1 == index_of_letters_of_coordinates[3] && coordinate.length == 3
+      true
+    elsif coordinate.length == 0
+      false
     else
       false
     end
@@ -116,4 +123,4 @@ board1.cells
 
 
 
-p board1.valid_placement?(cruiser, ["A2", "B2"])
+p board1.valid_placement?(cruiser, ["A2"])
