@@ -122,5 +122,5 @@ class CellTest < Minitest::Test
 
       assert_instance_of Cell, cell2
     end
-    
+
 end
