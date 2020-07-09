@@ -34,7 +34,9 @@ class Cell
   end
 
   def fire_upon
-    $hits += 1
+    if cell.empty? == false
+      $hits += 1
+    end
     @fired += 1
   end
 

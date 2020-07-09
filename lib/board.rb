@@ -4,7 +4,10 @@ require './lib/ship'
 
 class Board
 
-  attr_accessor :row_a, :row_b, :row_b, :row_d, :a1, :a2, :a3, :a4, :b1, :b2, :b3, :b4, :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4
+  attr_accessor :row_a, :row_b, :row_c,:row_d,
+                :a1, :a2, :a3, :a4,
+                :b1, :b2, :b3, :b4,
+                :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4
 
   def initialize
     @a1 = Cell.new("A1")
@@ -159,21 +162,16 @@ ship2 = Ship.new("Cruiser", 3)
 board1.cells
 board1.place(ship2, ["A1", "A2", "A3"])
 
-board1.place(ship1, ["A3", "A4"])
+board1.place(ship1, ["B4", "C4"])
 cell_1 = board1.cells["A1"]
 cell_2 = board1.cells["A2"]
 cell_3 = board1.cells["A3"]
 cell_4 = board1.cells["A4"]
+# board1.cells["D4"].fire_upon
+board1.cells["C4"].fire_upon
+board1.cells["D1"].fire_upon
+board1.cells["D2"].fire_upon
+
+
+
 board1.render
-
-
-
-# p board1.valid_placement?(ship2, ["A1", "A2", "A3"])
-# p board1.valid_placement?(ship1, ["A1", "B2"])
-# p ship1
-# p ["A1", "A2", "A3"].any?{ |pair| not board1.cells[pair].empty?}
-
-
-# row_a = board1.cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
-# p "  1 2 3 4 \n"
-# p "A #{row_a.map { |cell| cell.render}.join(" ")} \n"
