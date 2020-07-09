@@ -131,24 +131,28 @@ class Board
     end
   end
 
-  def render(show=false)
+  def render(show=false, second=false)
     row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
     row_b = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "B"}
     row_c = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "C"}
     row_d = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "D"}
 
     p "  1 2 3 4 \n"
-    if show == false
+    if show == false && second == false
       p "A #{row_a.map { |cell| cell.render}.join(" ")} \n"
       p "B #{row_b.map { |cell| cell.render}.join(" ")} \n"
       p "C #{row_c.map { |cell| cell.render}.join(" ")} \n"
       p "D #{row_d.map { |cell| cell.render}.join(" ")} \n"
-    else show != true
+    elsif show == true && second != true
       p "A #{row_a.map { |cell| cell.render(true)}.join(" ")} \n"
       p "B #{row_b.map { |cell| cell.render(true)}.join(" ")} \n"
       p "C #{row_c.map { |cell| cell.render(true)}.join(" ")} \n"
       p "D #{row_d.map { |cell| cell.render(true)}.join(" ")} \n"
-
+    elsif show == true && second == true
+      p "A #{row_a.map { |cell| cell.render(true, true)}.join(" ")} \n"
+      p "B #{row_b.map { |cell| cell.render(true, true)}.join(" ")} \n"
+      p "C #{row_c.map { |cell| cell.render(true, true)}.join(" ")} \n"
+      p "D #{row_d.map { |cell| cell.render(true, true)}.join(" ")} \n"
     end
   end
 
@@ -171,6 +175,8 @@ cell_4 = board1.cells["A4"]
 board1.cells["C4"].fire_upon
 board1.cells["D1"].fire_upon
 board1.cells["D2"].fire_upon
+board1.cells["B4"].fire_upon
+
 
 
 
