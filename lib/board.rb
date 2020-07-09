@@ -8,21 +8,21 @@ class Board
 
   def initialize
     @a1 = Cell.new("A1")
-      @a2 = Cell.new("A2")
-      @a3 = Cell.new("A3")
-      @a4 = Cell.new("A4")
-      @b1 = Cell.new("B1")
-      @b2 = Cell.new("B2")
-      @b3 = Cell.new("B3")
-      @b4 = Cell.new("B4")
-      @c1 = Cell.new("C1")
-      @c2 = Cell.new("C2")
-      @c3 = Cell.new("C3")
-      @c4 = Cell.new("C4")
-      @d1 = Cell.new("D1")
-      @d2 = Cell.new("D2")
-      @d3 = Cell.new("D3")
-      @d4 = Cell.new("D4")
+    @a2 = Cell.new("A2")
+    @a3 = Cell.new("A3")
+    @a4 = Cell.new("A4")
+    @b1 = Cell.new("B1")
+    @b2 = Cell.new("B2")
+    @b3 = Cell.new("B3")
+    @b4 = Cell.new("B4")
+    @c1 = Cell.new("C1")
+    @c2 = Cell.new("C2")
+    @c3 = Cell.new("C3")
+    @c4 = Cell.new("C4")
+    @d1 = Cell.new("D1")
+    @d2 = Cell.new("D2")
+    @d3 = Cell.new("D3")
+    @d4 = Cell.new("D4")
   end
 
   def cells
@@ -103,10 +103,12 @@ class Board
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
       true
+    # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
-      # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
       true
     elsif coordinate.length == 0
+      false
+    elsif coordinate.any?{ |pair| not cells[pair].empty?}
       false
     else
       false
@@ -116,9 +118,13 @@ class Board
 
   def place(ship, coordinate)
     x = 0
-    while x != coordinate.length
-      cells[coordinate[x]].place_ship(ship)
-      x +=1
+    if valid_placement?(ship, coordinate)
+      while x != coordinate.length
+        cells[coordinate[x]].place_ship(ship)
+        x +=1
+      end
+    else
+      "Coordinate is invalid.  Coordinates need to be consecutive, not overlapping another ship, and not diagonal."
     end
   end
 
@@ -148,6 +154,7 @@ class Board
 end
 
 board1 = Board.new
+ship1 = Ship.new("Cruier", 2)
 ship2 = Ship.new("Cruiser", 3)
 board1.cells
 board1.place(ship2, ["A1", "A2", "A3"])
@@ -156,8 +163,16 @@ cell_2 = board1.cells["A2"]
 cell_3 = board1.cells["A3"]
 cell_4 = board1.cells["A4"]
 
+<<<<<<< HEAD
 board1.render
 
+=======
+p board1.render
+# p board1.valid_placement?(ship2, ["A1", "A2", "A3"])
+# p board1.valid_placement?(ship1, ["A1", "B2"])
+# p ship1
+# p ["A1", "A2", "A3"].any?{ |pair| not board1.cells[pair].empty?}
+>>>>>>> 255a1e721a5dd67fe3c55bf1277dca3a451c6485
 
 # row_a = board1.cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
 # p "  1 2 3 4 \n"
