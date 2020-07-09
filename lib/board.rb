@@ -128,15 +128,15 @@ class Board
     end
   end
 
-  def render
-    if not cells["A1"].cell.empty?
-    puts "  1 2 3 4 "
-    puts "A . . . . "
-    puts "B . . . . "
-    puts "C . . . . "
-    puts "D . . . . "
-    end
-  end
+  # def render
+  #   if not cells["A1"].cell.empty?
+  #   puts "  1 2 3 4 "
+  #   puts "A . . . . "
+  #   puts "B . . . . "
+  #   puts "C . . . . "
+  #   puts "D . . . . "
+  #   end
+  # end
 
 
 
