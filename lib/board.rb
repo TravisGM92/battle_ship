@@ -122,6 +122,26 @@ class Board
     end
   end
 
+  def render(show=false)
+    row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
+    row_b = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "B"}
+    row_c = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "C"}
+    row_d = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "D"}
+
+    p "  1 2 3 4 \n"
+    if show == false
+      p "A #{row_a.map { |cell| cell.render}.join(" ")} \n"
+      p "B #{row_b.map { |cell| cell.render}.join(" ")} \n"
+      p "C #{row_c.map { |cell| cell.render}.join(" ")} \n"
+      p "D #{row_d.map { |cell| cell.render}.join(" ")} \n"
+    else show != true
+      p "A #{row_a.map { |cell| cell.render(true)}.join(" ")} \n"
+      p "B #{row_b.map { |cell| cell.render(true)}.join(" ")} \n"
+      p "C #{row_c.map { |cell| cell.render(true)}.join(" ")} \n"
+      p "D #{row_d.map { |cell| cell.render(true)}.join(" ")} \n"
+
+    end
+  end
 
 
 
@@ -134,9 +154,11 @@ board1.place(ship2, ["A1", "A2", "A3"])
 cell_1 = board1.cells["A1"]
 cell_2 = board1.cells["A2"]
 cell_3 = board1.cells["A3"]
+cell_4 = board1.cells["A4"]
+
+board1.render
 
 
-p cell_1.ship == cell_2.ship
-
-
-# require "pry"; binding.pry
+# row_a = board1.cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
+# p "  1 2 3 4 \n"
+# p "A #{row_a.map { |cell| cell.render}.join(" ")} \n"
