@@ -160,24 +160,24 @@ class Board
 
 end
 
-board1 = Board.new
-ship1 = Ship.new("Submarine", 2)
-ship2 = Ship.new("Cruiser", 3)
-board1.cells
-board1.place(ship2, ["A1", "A2", "A3"])
-
-board1.place(ship1, ["B4", "C4"])
-cell_1 = board1.cells["A1"]
-cell_2 = board1.cells["A2"]
-cell_3 = board1.cells["A3"]
-cell_4 = board1.cells["A4"]
-# board1.cells["D4"].fire_upon
-board1.cells["C4"].fire_upon
-board1.cells["D1"].fire_upon
-board1.cells["D2"].fire_upon
-board1.cells["B4"].fire_upon
-
-
-
-
-board1.render
+# board1 = Board.new
+# ship1 = Ship.new("Submarine", 2)
+# ship2 = Ship.new("Cruiser", 3)
+# board1.cells
+# board1.place(ship2, ["A1", "A2", "A3"])
+#
+# board1.place(ship1, ["B4", "C4"])
+# cell_1 = board1.cells["A1"]
+# cell_2 = board1.cells["A2"]
+# cell_3 = board1.cells["A3"]
+# cell_4 = board1.cells["A4"]
+# # board1.cells["D4"].fire_upon
+# board1.cells["C4"].fire_upon
+# board1.cells["D1"].fire_upon
+# board1.cells["D2"].fire_upon
+# board1.cells["B4"].fire_upon
+#
+#
+#
+#
+# board1.render
