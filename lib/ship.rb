@@ -1,3 +1,5 @@
+require './lib/cell'
+
 class Ship
 
   attr_reader :name
