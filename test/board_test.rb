@@ -127,5 +127,9 @@ class BoardTest < Minitest::Test
 
       assert_equal false, board1.valid_placement?(ship1, ["A1", "B2"])
     end
-  
+
+# add maybe 4-5 tests for valid placement
+# true and false ..... plus the 100 other things that could go wrong
+# have tests for all the things that we ourselves did
+
   end

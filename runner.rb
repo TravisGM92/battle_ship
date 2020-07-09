@@ -28,7 +28,7 @@ class Game
 # 8) Would you like to play again?
 #
 #
-#
+# instantiate an object and run that.  Rewrite runner
 
 
 end
