@@ -163,16 +163,14 @@ cell_2 = board1.cells["A2"]
 cell_3 = board1.cells["A3"]
 cell_4 = board1.cells["A4"]
 
-<<<<<<< HEAD
 board1.render
 
-=======
-p board1.render
+
 # p board1.valid_placement?(ship2, ["A1", "A2", "A3"])
 # p board1.valid_placement?(ship1, ["A1", "B2"])
 # p ship1
 # p ["A1", "A2", "A3"].any?{ |pair| not board1.cells[pair].empty?}
->>>>>>> 255a1e721a5dd67fe3c55bf1277dca3a451c6485
+
 
 # row_a = board1.cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
 # p "  1 2 3 4 \n"
