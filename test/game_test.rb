@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
-require './runner'
+require './lib/game'
 
 class GameTest < Minitest::Test
 
@@ -19,8 +19,12 @@ class GameTest < Minitest::Test
     assert_equal "Enter p to play. Enter q to quit.", game.start
   end
 
-  def test_
-  end
+  # def test_inputs
+  #   game = Game.new
+  #   gets.chomp!
+  #
+  #   assert_equal "Great", game.start()
+  # end
 
 
 end
