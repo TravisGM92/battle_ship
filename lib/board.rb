@@ -4,7 +4,7 @@ require './lib/ship'
 
 class Board
 
-  attr_accessor :row_a, :row_b, :row_b, :row_d, :a1, :a2, :a3, :a4, :b1, :b2, :b3, :b4, :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4
+  attr_accessor :row_a, :row_b, :row_b, :row_d, :a1, :a2, :a3, :a4, :b1, :b2, :b3, :b4, :c1, :c2, :c3, :c4, :d1, :d2, :d3, :d4,
 
   def initialize
     @a1 = Cell.new("A1")
@@ -103,10 +103,12 @@ class Board
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
       true
+    # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs}
-      # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
       true
     elsif coordinate.length == 0
+      false
+    elsif coordinate.any?{ |pair| not cells[pair].empty?}
       false
     else
       false
@@ -116,27 +118,50 @@ class Board
 
   def place(ship, coordinate)
     x = 0
-    while x != coordinate.length
-      cells[coordinate[x]].place_ship(ship)
-      x +=1
+    if valid_placement?(ship, coordinate)
+      while x != coordinate.length
+        cells[coordinate[x]].place_ship(ship)
+        x +=1
+      end
+    else
+      "Coordinate is invalid.  Coordinates need to be consecutive, not overlapping another ship, and not diagonal."
     end
   end
 
-
+  # def render(show=false)
+  #   if cell.fired > 0 && cell.cell.empty? && show == false
+  #     "M"
+  #   elsif cell.fired > 0 && cell.cell.empty? == false && show == false && cell.ship.health > 0
+  #     "H"
+  #   elsif cell.fired == 0 && cell.cell.empty? && show == false
+  #     "."
+  #   elsif cell.fired == 0 && cell.cell.empty? == false && show == true
+  #     "S"
+  #   elsif cell.cell.empty? == false && cell.ship.health == 0 && show == false
+  #     "X"
+  #   elsif show == true
+  #     "S"
+  #   end
+  # end
 
 
 end
 
 board1 = Board.new
+ship1 = Ship.new("Cruier", 2)
 ship2 = Ship.new("Cruiser", 3)
 board1.cells
 board1.place(ship2, ["A1", "A2", "A3"])
 cell_1 = board1.cells["A1"]
 cell_2 = board1.cells["A2"]
 cell_3 = board1.cells["A3"]
+#
 
-
-p cell_1.ship == cell_2.ship
-
+# p board1.render
+#
+# p board1.valid_placement?(ship2, ["A1", "A2", "A3"])
+p board1.valid_placement?(ship1, ["A1", "B2"])
+p ship1
+# p ["A1", "A2", "A3"].any?{ |pair| not board1.cells[pair].empty?}
 
 # require "pry"; binding.pry
