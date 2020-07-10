@@ -104,6 +104,22 @@ class BoardTest < Minitest::Test
     assert_equal true, cell1.ship == cell2.ship
   end
 
+  def test_to_see_it_needs_more_than_one_coordinate
+    board1 = Board.new
+    ship1 = Ship.new("Submarine", 2)
+    board1.cells
+
+    assert_equal false, board1.valid_placement?(ship1, ["A1"])
+  end
+
+  def test_to_see_it_needs_the_correct_amount_of_coordinates
+    board1 = Board.new
+    ship1 = Ship.new("Submarine", 2)
+    board1.cells
+
+    assert_equal false, board1.valid_placement?(ship1, ["A1", "A2", "A3"])
+  end
+
   def test_if_ships_cant_overlap
     board1 = Board.new
     ship1 = Ship.new("Submarine", 2)
