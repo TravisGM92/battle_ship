@@ -2,8 +2,6 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 
-#If we have time we should ask for the player to put in their own name, so that at the end, it says "Congratulations #{name}!  You sunk our battleships!"
-
 class Game
 
   attr_accessor :user_name, :computer_board, :user_board
@@ -22,12 +20,12 @@ class Game
     p "------------------------------------"
     p "*** #{@user_name} ***"
     user_board.render
-    end
+  end
 
   def start()
     p "*****************  Welcome to BATTLESHIP  *****************"
     p "Enter p to Play."
-    p "Enter i to read The Rules."
+    p "Enter r to Read The Rules."
     p "Enter q to Quit."
     user_index = gets.chomp!.downcase
     if user_index == "p"
@@ -94,7 +92,7 @@ class Game
       # Ended here!!!!
     elsif user_index == "q"
       p "Goodbye!"
-    elsif user_index == "i"
+    elsif user_index == "r"
       p "So you've decided to play BATTLESHIP."
       p "Congratulations!"
       p "You're on your way to becoming a"
@@ -357,27 +355,7 @@ class Game
       p "So, now that you've learned how to play, are you game?"
       p "Can you sink our BATTLESHIPS?"
       p "------------------------------------"
-      p "*****************  Welcome to BATTLESHIP  *****************"
-      p "Enter p to Play."
-      p "Enter i to read The Rules."
-      p "Enter q to Quit."
-        user_index = gets.chomp!.downcase
-        if user_index == "p"
-            #somehow loops back to the play option above
-        elsif user_index == "i"
-            #somehow loops back to the rules option again
-        elsif user_index == "q"
-          p "Goodbye!"
-        else
-          p ""
-          p ""
-          p "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-          p "Invalid entry.  Please try again!"
-          p "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-          p ""
-          p ""
-          self.start
-        end
+      self.start
     else
       p ""
       p ""
