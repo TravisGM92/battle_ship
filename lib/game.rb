@@ -2,7 +2,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 
-#If we have time we should ask for the player to put in their own name, so that at the end, it says "Congratulations #{name}!  You sunk our battleships!"
+#If we have time we should at the end "Congratulations #{name}!  You sunk our battleships!"
 
 class Game
 
@@ -14,14 +14,14 @@ class Game
     @user_board = Board.new
   end
 
-  def make_board_with_players
+  def make_board_with_players(show=false)
     p "Ok, here's the board..."
     sleep(1.5)
     p "*** George ***"
     computer_board.render
-    p "------------------------------------"
+    p "---------------------"
     p "*** #{@user_name} ***"
-    user_board.render
+    user_board.render(show)
     end
 
   def start()
@@ -31,7 +31,7 @@ class Game
     p "Enter q to Quit."
     user_index = gets.chomp!.downcase
     if user_index == "p"
-      print "You have choosen wisely"
+      print "                    You have choosen wisely"
       ".....".each_char do |char|
          print char
          $stdout.flush
@@ -42,10 +42,12 @@ class Game
       puts "You will go head-to-head in a vicious"
       p "game of battleship against the world's"
       p "most formidable opponent... "
-      sleep(5.5)
-      p "GEORGE!!!"
-      sleep(2)
-      p "------------------------------------"
+      # sleep(6.5)
+      p ""
+      p ""
+      p "-------- GEORGE!!! --------"
+      sleep(3)
+      p "====================================="
       p "Let's start with your name."
       p "What do your homies call you?"
       @user_name = gets.chomp!
@@ -58,29 +60,22 @@ class Game
          $stdout.flush
          sleep 0.75
        end
-       p ""
+      p ""
       puts "1) The Cruiser, known for it's"
-      p "impeccable speed, with 3 spaces"
-      p "and"
+      puts "impeccable speed, with 3 spaces"
+      puts "      and   "
       puts "2) the Submarine, known for it's"
-      p "subness, with 2 spaces"
+      puts "subness, with 2 spaces"
       sleep(8.5)
-      p "------------------------------------"
-      p "Where would you like to place your"
-      p "Cruiser? It's got 3 spaces."
-      p "We'll first decide where the front"
-      p "of the ship will be."
-      sleep(4)
-      p "Please give me the coordinates of"
-      p "where you'd like your the ship to be"
-      p "(for example, A1, A2, A3): "
-      print "Sweetness! Now, where would you like the back to be? Remember"
+      puts "------------------------------------"
+      print "Now, where would you like your ship to go? Remember"
       "......".each_char do |char|
          print char
          $stdout.flush
          sleep 1
        end
-      puts ""
+      user_board.cells
+      p ""
       puts "1) The ship can't be diagonal"
       puts "2) The ship can't overlap any other ship"
       puts "3) You've gotta make sure it spans the"
@@ -88,9 +83,58 @@ class Game
       p "------------------------------------"
       puts "So, where's it gonna go? "
       cruiser = Ship.new("Cruiser", 3)
-      ship_coordiantes1 = []
-      user_numbers1 =  gets.chomp!
-      p user_numbers1.split(", ")
+      user_numbers_first =  gets.chomp!.upcase
+      user_numbers_array = user_numbers_first.split(", ").to_a
+      while user_numbers_array.length != 3
+        puts "Oops! Remember, your coordaintes must be"
+        puts "3 spaces long. Please give me coordinates"
+        puts "such as a1, a2, a3."
+        puts "Let's try again: "
+        user_numbers_first =  gets.chomp!.upcase
+        user_numbers_array = user_numbers_first.split(", ").to_a
+      end
+
+      while user_board.valid_placement?(cruiser, user_numbers_array) == false
+        p "====================="
+        puts "Oops! Looks like you put in an invalid placement."
+        puts "Try again, except this time make sure the"
+        puts "coordinates are one after the other,"
+        puts "don't, overlap other ships, aren't diagonal,"
+        puts "and don't pass the edge"
+        puts "of the board...: "
+        user_numbers_first =  gets.chomp!.upcase
+        user_numbers_array = user_numbers_first.split(", ").to_a
+        if user_board.valid_placement?(cruiser, user_numbers_array) == true
+          break
+        end
+      end
+
+      p "==================================="
+      puts "Ok, here is where your Cruiser has been placed"
+      user_board.cells
+      user_board.place(cruiser, user_numbers_array)
+      p "-------------------------------"
+      user_board.render(true)
+      sleep(5)
+      puts "Now we've gotta let George place his Cruiser."
+      print "George is old. It may take him a minute"
+      "........".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 1
+       end
+       p "==================================="
+       puts "Here's the board with your cruiser on there"
+       puts "Obviously we won't show you George's ship..."
+       puts "It's not gonna be that easy."
+       self.make_board_with_players(true)
+       sleep(5)
+
+
+
+
+
+
       # Ended here!!!!
     elsif user_index == "q"
       p "Goodbye!"
@@ -396,8 +440,8 @@ class Game
 # turns
 # way to input Coordinates
 #
-#
-# 1) press play, instantly see the board.
+# TODO
+# 1) press play, instantly see the board. (DONE)
 # 2) player places ships
 # 3) computer places ships
 # 4) game determines who goes first
