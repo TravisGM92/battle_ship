@@ -210,7 +210,7 @@ class Game
       p "But first, you're going to need to"
       p "learn the ropes (yes, our modern"
       p "warships still use ropes!)."
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------2------------------"
@@ -220,7 +220,7 @@ class Game
       p "you can't see where their ships are!"
       p "Luckily, they can't see where yours"
       p "are either!"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------3------------------"
@@ -245,7 +245,7 @@ class Game
       p "D . . . . "
       p "          "
       p "--------------example---------------"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------4------------------"
@@ -259,7 +259,7 @@ class Game
       p "be sneaky, you should know you are"
       p "also unable to place your ships"
       p "diagonally or off the grid!"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------5------------------"
@@ -283,7 +283,7 @@ class Game
       p "So, where's it gonna go?"
       p "   "
       p "--------------example---------------"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       user_board.continue_rules
       p "------------------6------------------"
       p "Next, we'll show you how the board"
@@ -306,7 +306,7 @@ class Game
       p "where the '.' used to be! That means"
       p "your ship is now sitting in that"
       p "position! You've done it!"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------7------------------"
@@ -346,7 +346,7 @@ class Game
       p "So, where's it gonna go?"
       p "   "
       p "--------------example---------------"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------8------------------"
@@ -375,7 +375,7 @@ class Game
       p "entered now have the letter 'S' where"
       p "the '.' used to be! Your Submarine"
       p "has been placed! You've done it again!"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------9------------------"
@@ -390,7 +390,7 @@ class Game
       p "that, we will show you a print out of"
       p "your ships, and the coordinates"
       p "you've already 'fired' upon."
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------10------------------"
@@ -417,7 +417,7 @@ class Game
       p "Where do you want to shoot?"
       p "     "
       p "--------------example---------------"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------11------------------"
@@ -433,7 +433,7 @@ class Game
       p "You'll see this same pattern on your"
       p "board as the computer attempts to"
       p "sink your ships."
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------12------------------"
@@ -455,7 +455,7 @@ class Game
       p "C S . M . "
       p "D S . . . "
       p "--------------example---------------"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       user_board.continue_rules
       p "------------------13------------------"
@@ -465,13 +465,13 @@ class Game
       p "whether or not you've truly learned"
       p "the ropes, or if you maybe need to"
       p "try your luck, and try again."
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       sleep(5)
       p "------------------------------------"
       p "So, now that you've learned how to play, are you game?"
       p "Can you sink our BATTLESHIPS?"
       p "------------------------------------"
-      p "------------------------------------"
+      p "--*---*---*---*---*---*---*---*---*--"
       self.start
     else
       p ""
@@ -487,22 +487,15 @@ class Game
 
   end
 
-# things we need:
-# turns
-# way to input Coordinates
-# 
+
 # TODO
-# 1) press play, instantly see the board. (DONE)
-# 2) player places ships (First ship, done)
-# 3) computer places ships
 # 4) game determines who goes first
 # 5) player (either before or after computer) inputs first shot fired coord.
 # 6) play continues [UNTIL LOOP] until one player's ships are sunk
 # 7) Announces winner
 # 8) Would you like to play again?
-#
-#
-# instantiate an object and run that.  Rewrite runner
+
+
 end
 
 
