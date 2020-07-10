@@ -50,8 +50,9 @@ class Board
   end
   # require "pry"; binding.pry
 
+
   def valid_coordinate?(coordinate)
-    cells.include? coordinate
+    coordinate.all?{ |numbers| cells.include? numbers}
   end
 
 
@@ -100,14 +101,23 @@ class Board
     index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
 
 
-    # Checks if ship length is equal to coordinate length, then checks if numbers in coordinates are consecutive. After, it checks if all letters are identical
-    if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]} && coordinate.all?{ |pair| cells[pair].empty?}
-      true
+    # Checks if ship length is equal to coordinate length, then checks if numbers in coordinates are consecutive. After, it checks if all letters are identical.
+    # This method underneath was throwing things off, so I commented it out and got it to work
+
+    # if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]} && coordinate.all?{ |pair| cells[pair].empty?}
+    #   "true1"
+    if self.valid_coordinate?(coordinate) == false
+      false
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
       true
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
+      true
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] == index_of_letters_of_coordinates[2] && coordinate.length == 3
+      true
+      # This one below checks if the coordinates are 2 long, with same letters, different numbers
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers[0] != colum_numbers[1]
       true
     elsif coordinate.length == 0
       false
@@ -157,13 +167,13 @@ class Board
   end
 
 
-
 end
 
 # board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
 # ship2 = Ship.new("Cruiser", 3)
 # board1.cells
+# p board1.valid_placement?(ship1, ["A1", "A3", "A4"])
 # board1.place(ship2, ["A1", "A2", "A3"])
 #
 # board1.place(ship1, ["B4", "C4"])
@@ -171,7 +181,7 @@ end
 # cell_2 = board1.cells["A2"]
 # cell_3 = board1.cells["A3"]
 # cell_4 = board1.cells["A4"]
-# # board1.cells["D4"].fire_upon
+# board1.cells["D4"].fire_upon
 # board1.cells["C4"].fire_upon
 # board1.cells["D1"].fire_upon
 # board1.cells["D2"].fire_upon
@@ -180,4 +190,4 @@ end
 #
 #
 #
-# board1.render
+# p board1.valid_placement?(ship1, ["A5", "A6"])
