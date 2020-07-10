@@ -490,7 +490,7 @@ class Game
 # things we need:
 # turns
 # way to input Coordinates
-#
+# 
 # TODO
 # 1) press play, instantly see the board. (DONE)
 # 2) player places ships (First ship, done)
