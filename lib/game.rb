@@ -4,7 +4,10 @@ require './lib/board'
 
 class Game
 
-  attr_accessor :user_name, :computer_board, :user_board, :comp_cruiser,
+  attr_accessor :user_name,
+                :computer_board,
+                :user_board,
+                :comp_cruiser,
                 :comp_sub
 
   def initialize
@@ -18,6 +21,7 @@ class Game
   end
 
   def make_board_with_players(show=false)
+    p "------------------------------------"
     p "Ok, here's the board..."
     # sleep(1.5)
     p "*** George ***"
@@ -31,7 +35,7 @@ class Game
     p "*****************  Welcome to BATTLESHIP  *****************"
     p ""
     p "                   Enter p to Play."
-    p "                   Enter i to read The Rules."
+    p "                   Enter r to Read The Rules."
     p "                   Enter q to Quit."
     user_index = gets.chomp!.downcase
     if user_index == "p"
@@ -67,7 +71,7 @@ class Game
       p ""
       puts "1) The Cruiser, known for it's"
       puts "impeccable speed, with 3 spaces"
-      puts "      and   "
+      puts "              and   "
       puts "2) the Submarine, known for it's"
       puts "subness, with 2 spaces"
       # sleep(8.5)
@@ -84,10 +88,11 @@ class Game
       puts "2) The ship can't overlap any other ship"
       puts "3) You've gotta make sure it spans the"
       puts "length of the ship, no more, no less."
+      puts "ex: a1, a2, a3"
       p "------------------------------------"
       puts "So, where's it gonna go? "
       cruiser = Ship.new("Cruiser", 3)
-      user_numbers_first =  gets.chomp!.upcase
+      user_numbers_first =  gets.chomp!.upcase  # I was able to place it on A3, A4, and A1 unfortunately
       user_numbers_array = user_numbers_first.split(", ").to_a
       while user_numbers_array.length != 3
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
@@ -125,7 +130,7 @@ class Game
       user_board.render(true)
       # sleep(5)
       puts "Now we've gotta let George place his Cruiser."
-      print "George is old. It may take him a minute"
+      print "George is careful. It may take him a minute"
       # "........".each_char do |char|
       #    print char
       #    $stdout.flush
@@ -133,8 +138,9 @@ class Game
       #  end
        p ""
        puts "==================================="
+       sleep(5)
        puts "Here's the board with your cruiser on there"
-       puts "Obviously we won't show you George's ship..."
+       puts "Obviously we won't show you George's ship..." #Uh oh! Looks like George's ships are shown here.
        puts "It's not gonna be that easy."
        self.make_board_with_players(true)
        # sleep(6)
@@ -143,13 +149,13 @@ class Game
        puts "Remember, it only has 2 spaces"
        puts "So, where's it gonna go? "
        user_sub = Ship.new("Submarine", 2)
-       user_numbers_second =  gets.chomp!.upcase
+       user_numbers_second =  gets.chomp!.upcase  # I was able to place it on B1, and B4 unfortunately
        user_numbers2_array = user_numbers_second.split(", ").to_a
        while user_numbers2_array.length != 2
          puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
          puts "Oops! Remember, your coordaintes must be"
-         puts "3 spaces long. Please give me coordinates"
-         puts "such as a1, a2, a3."
+         puts "2 spaces long. Please give me coordinates"
+         puts "such as b1, b2."
          puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
          puts "Let's try again: "
          user_numbers_second =  gets.chomp!.upcase
@@ -195,6 +201,7 @@ class Game
     elsif user_index == "q"
       p "Goodbye!"
     elsif user_index == "r"
+      p "------------------1------------------"
       p "So you've decided to play BATTLESHIP."
       p "Congratulations!"
       p "You're on your way to becoming a"
@@ -205,9 +212,8 @@ class Game
       p "warships still use ropes!)."
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      # some sort of something to act on the above `user_index2 = gets.chomp!` ?
-      p "------------------------------------"
+      user_board.continue_rules
+      p "------------------2------------------"
       p "Battleship consists of two players"
       p "each taking turns attempting to sink"
       p "the other's ship. The problem is,"
@@ -216,14 +222,21 @@ class Game
       p "are either!"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------3------------------"
       p "After being asked your name you will"
       p "be presented with your board."
       p "It looks just like this:"
       p "------------------------------------"
       p "--------------example---------------"
+      p "*COMPUTER*"
+      p "  1 2 3 4 "
+      p "A . . . . "
+      p "B . . . . "
+      p "C . . . . "
+      p "D . . . . "
+      p "          "
+      p "-----------"
       p "**PLAYER**"
       p "  1 2 3 4 "
       p "A . . . . "
@@ -234,9 +247,8 @@ class Game
       p "--------------example---------------"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------4------------------"
       p "You are in command of two ships, the"
       p "valiant Cruiser, and the nobel Submarine."
       p "The Cruiser takes up three(3) spaces,"
@@ -249,48 +261,41 @@ class Game
       p "diagonally or off the grid!"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
-      p "When you start the game, we're going"
-      p "to show you the board again, and ask"
-      p "you to place your Cruiser (we named"
-      p "our's 'Tom'. Think up a fun name for"
-      p "yours!). Don't forget! Your Cruiser"
-      p "is three(3) spaces long, so you'll"
-      p "need three *consecutive* coordinates!"
+      user_board.continue_rules
+      p "------------------5------------------"
+      p "After you've started the game and seen"
+      p "the board, we're going to ask you to"
+      p "place your Cruiser (we named our's 'Tom'."
+      p "Think up a fun name for yours!)."
+      p "Don't forget! Your Cruiser is three(3)"
+      p "spaces long, so you'll need three"
+      p "*consecutive* coordinates!"
       p "That will look like this:"
       p "------------------------------------"
       p "--------------example---------------"
-      p "          "
-      p "  1 2 3 4 "
-      p "A . . . . "
-      p "B . . . . "
-      p "C . . . . "
-      p "D . . . . "
-      p "          "
-      p "Where would you like to place your"
-      p "Cruiser? It's got 3 spaces. We'll"
-      p "first decide where the front of the"
-      p "ship will be."
-      p "Please give me the coordinates of"
-      p "where you'd like your the ship to be"
-      p "(for example, B2, B3, B4): "
-      # SOME SORT OF GETS
+      p "Now, where would you like your ship to go? Remember"
+      p "1) The ship can't be diagonal"
+      p "2) The ship can't overlap any other ship"
+      p "3) You've gotta make sure it spans the"
+      p "length of the ship, no more, no less."
+      p "ex: a1, a2, a3"
+      p "------------------------------------"
+      p "So, where's it gonna go?"
+      p "   "
       p "--------------example---------------"
       p "------------------------------------"
-      sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------6------------------"
       p "Next, we'll show you how the board"
       p "looks now that you've placed your Cruiser:"
       p "------------------------------------"
       p "--------------example---------------"
+      p "Ok, here is where your Cruiser has been placed"
+      p "-------------------------------"
       p "**PLAYER**"
       p "  1 2 3 4 "
-      p "A . . . . "
-      p "B . S S S "
+      p "A S S S . "
+      p "B . . . . "
       p "C . . . . "
       p "D . . . . "
       p "          "
@@ -303,9 +308,8 @@ class Game
       p "position! You've done it!"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------7------------------"
       p "Next, we'll ask you to place your"
       p "Submarine (which we personally call"
       p "'Renée', but you can think up your"
@@ -318,39 +322,53 @@ class Game
       p "Submarine will look like this:"
       p "------------------------------------"
       p "--------------example---------------"
+      p "Here's the board with your cruiser on there"
+      p "Obviously we won't show you COMPUTER's ship..."
+      p "It's not gonna be that easy."
+      p "------------------------------------"
+      p "Ok, here's the board..."
+      p "*COMPUTER*"
+      p "  1 2 3 4 |"
+      p "A . . . . |"
+      p "B . . . . |"
+      p "C . . . . |"
+      p "D . . . . |"
+      p "-----------------"
       p "**PLAYER**"
-      p "  1 2 3 4 "
-      p "A . . . . "
-      p "B . S S S "
-      p "C . . . . "
-      p "D . . . . "
-      p "          "
-      p "Where would you like to place your"
-      p "Submarine? It's got 2 spaces. We'll"
-      p "first decide where the front of the"
-      p "ship will be."
-      p "Please give me the coordinates of"
-      p "where you'd like your the ship to be"
-      p "(for example, C1, D1): "
-      # *** We'll put whatever your queries look like Here too
+      p "  1 2 3 4 |"
+      p "A S S S . |"
+      p "B . . . . |"
+      p "C . . . . |"
+      p "D . . . . |"
+      p "Now let's add your Submarine!"
+      p "where would you like that to go?"
+      p "Remember, it only has 2 spaces"
+      p "So, where's it gonna go?"
+      p "   "
       p "--------------example---------------"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------8------------------"
       p "Next, we'll show you how the board"
       p "looks now that you've placed your"
       p "Submarine:"
       p "------------------------------------"
       p "--------------example---------------"
+      p "Ok, here's the board..."
+      p "*COMPUTER*"
+      p "  1 2 3 4 |"
+      p "A . . . . |"
+      p "B . . . . |"
+      p "C . . . . |"
+      p "D . . . . |"
+      p "-----------------"
       p "**PLAYER**"
-      p "  1 2 3 4 "
-      p "A . . . . "
-      p "B . S S S "
-      p "C S . . . "
-      p "D S . . . "
-      p "          "
+      p "  1 2 3 4 |"
+      p "A S S S . |"
+      p "B . . . . |"
+      p "C . . . S |"
+      p "D . . . S |"
       p "--------------example---------------"
       p "------------------------------------"
       p "Once again, the coordinates that you"
@@ -359,9 +377,8 @@ class Game
       p "has been placed! You've done it again!"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------9------------------"
       p "Now the fun begins. It is randomly"
       p "determined who goes first, either you"
       p "or the computer, but when it is your"
@@ -375,9 +392,8 @@ class Game
       p "you've already 'fired' upon."
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------10------------------"
       p "Before any shots are fired, that will"
       p "look like this:"
       p "------------------------------------"
@@ -397,13 +413,14 @@ class Game
       p "C S . . . "
       p "D S . . . "
       p "          "
-      #p "Whatever you've put here that prompts the user to put in their first/next shot"
+      p "Don't throw away your shot!"
+      p "Where do you want to shoot?"
+      p "     "
       p "--------------example---------------"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------11------------------"
       p "When you've hit one of the computer's"
       p "ships, the '.' on their board will"
       p "turn into an 'H', for 'Hit!'."
@@ -418,9 +435,8 @@ class Game
       p "sink your ships."
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------12------------------"
       p "Here is what a game 4 turns in"
       p "could look like:"
       p "------------------------------------"
@@ -438,13 +454,11 @@ class Game
       p "B . S H S "
       p "C S . M . "
       p "D S . . . "
-      #p "Whatever you've put here that prompts the user to put in their first/next shot"
       p "--------------example---------------"
       p "------------------------------------"
       sleep(5)
-      p "Hit 'Enter' when you're ready to continue"
-      p "------------------------------------"
-      # same thing as above
+      user_board.continue_rules
+      p "------------------13------------------"
       p "The game will continue on like this"
       p "until one side's ships have both been"
       p "sunk. When that occurs, you'll know"
@@ -457,12 +471,13 @@ class Game
       p "So, now that you've learned how to play, are you game?"
       p "Can you sink our BATTLESHIPS?"
       p "------------------------------------"
+      p "------------------------------------"
       self.start
     else
       p ""
       p ""
       p "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-      p "Invalid entry.  Please try again!"
+      p "|Invalid entry.   Please try again!|"
       p "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
       p ""
       p ""
