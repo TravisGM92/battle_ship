@@ -17,7 +17,7 @@ class Game
   def make_board_with_players
     p "Ok, here's the board..."
     sleep(1.5)
-    p "*** George ***"  #what if, instead, "Hafgufa" ;)
+    p "*** George ***"
     computer_board.render
     p "------------------------------------"
     p "*** #{@user_name} ***"
