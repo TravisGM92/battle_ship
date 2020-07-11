@@ -1,7 +1,7 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
-require './lib/tutorial'
+# require './lib/tutorial'
 
 class Game
 
@@ -10,7 +10,7 @@ class Game
                 :user_board,
                 :comp_cruiser,
                 :comp_sub
-                :tutorial
+                # :tutorial
 
   def initialize
     @user_name = user_name
@@ -18,7 +18,7 @@ class Game
     @user_board = Board.new
     @comp_cruiser = Ship.new("Cruiser", 3)
     @comp_sub = Ship.new("Submarine", 2)
-    @tutorial = Tutorial.new
+    # @tutorial = Tutorial.new("rules")
     computer_board.place(comp_cruiser, ["D2", "D3", "D4"])
     computer_board.place(comp_sub, ["C1", "C2"])
   end
@@ -204,7 +204,7 @@ class Game
     elsif user_index == "q"
       p "Goodbye!"
     elsif user_index == "r"
-      tutorial.start_tutorial
+      # tutorial.start_tutorial
       self.start
     else
       p ""
@@ -239,5 +239,5 @@ class Game
 end
 
 #
-# game = Game.new
-# game.start
+game = Game.new
+game.start
