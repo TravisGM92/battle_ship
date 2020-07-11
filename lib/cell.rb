@@ -35,7 +35,7 @@ class Cell
 
   def fire_upon
     if cell.empty? == false
-      $hits += 1
+      ship.hits += 1
     end
     @fired += 1
   end
@@ -46,8 +46,6 @@ class Cell
       "M"
     elsif fired > 0 && cell.empty? == false && show == false && ship.health > 0
       "H"
-    # elsif fired == 0 && cell.empty? && show == false
-    #   "." Seems like we don't need this
     elsif cell.empty? == false && show == true && second != true
       "S"
     elsif cell.empty? == false && show == true && second == true && fired == 0
@@ -58,6 +56,10 @@ class Cell
       "H"
     elsif fired == 0 && cell.empty? && show == true && second == true
       "."
+    elsif cell.empty? == false && show == false && second == true && ship.health > 0
+      "."
+    elsif cell.empty? == false && show == false && second == true && ship.health == 0
+      "X"
     elsif cell.empty? == false && ship.health == 0
       "X"
     else
