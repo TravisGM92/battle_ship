@@ -32,7 +32,8 @@ class Game
                 :second,
                 :show,
                 :winner,
-                :loser
+                :loser,
+                :user_fires
 
   def initialize
     @user_name = user_name
@@ -50,6 +51,7 @@ class Game
     @second = second
     @winner = winner
     @loser = loser
+    @user_fires = user_fires
   end
 
   def make_board_with_players(show=false, second=false)
@@ -227,7 +229,7 @@ class Game
       #   end
       #  sleep(2)
       # p ""
-      @last_turn = "George"
+      @last_turn = user_name
       # The lines above this and below it go together. I just
       # changed it for now to test things out
       # [user_name, "George"]
@@ -235,50 +237,69 @@ class Game
       p "Looks like #{@last_turn} will be going first!"
       p ""
       sleep(3)
+      computer_options = user_board.cells.keys.shuffle
 
     until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
-
       if last_turn == "George" && turn_number != 0
         self.make_board_with_players(true, true)
-        puts "Where would you like to fire?"
+        puts "1Where would you like to fire?"
         puts "Remember, plese give us a coordinate in this"
         puts "in this format: 'A2' OR 'D3'"
-        user_fires = gets.chomp!.upcase
-
-        # board1.cells["B4"].fire_upon
-        computer_board.cells[user_fires].fire_upon
-        self.make_board_with_players(true, true)
-        @last_turn = user_name
-        @turn_number += 1
-      elsif last_turn == "George" && turn_number == 0
-        puts "Georgy's turn"
-        computer_options = user_board.cells.keys.shuffle
-        user_board.cells[computer_options.shift].fire_upon
+        @user_fires = gets.chomp!.upcase
+          until user_board.valid_coordinate?([user_fires]) == true
+            puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+            puts "Oops! Your coordinate must be"
+            puts "1 space long. Please give me coordinates"
+            puts "such as 'a1' or 'c3'."
+            puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+            puts "Let's try again: "
+            @user_fires = gets.chomp!.upcase
+            p user_board.valid_coordinate?([user_fires])
+          end
+            # board1.cells["B4"].fire_upon
+            computer_board.cells[user_fires].fire_upon
+            self.make_board_with_players(true, true)
+            @last_turn = user_name
+            @turn_number += 1
+        elsif last_turn == "George" && turn_number == 0
+        puts "2Georgy's turn"
+        p computer_options
+        user_board.cells[computer_options.pop].fire_upon
         self.make_board_with_players(true, true)
         @last_turn = "George"
         sleep(5)
         @turn_number += 1
       elsif last_turn == user_name && turn_number != 0
-        puts "Georgy's turn"
-        computer_options = user_board.cells.keys.shuffle
-        user_board.cells[computer_options.shift].fire_upon
+        puts "1Georgy's turn"
+        p computer_options
+        user_board.cells[computer_options.pop].fire_upon
         self.make_board_with_players(true, true)
         @last_turn = "George"
         sleep(5)
         @turn_number += 1
       elsif last_turn == user_name && turn_number == 0
         self.make_board_with_players(true, true)
-        puts "Where would you like to fire?"
+        puts "2Where would you like to fire?"
         puts "Remember, plese give us a coordinate in this"
         puts "in this format: 'A2' OR 'D3'"
-        user_fires = gets.chomp!.upcase
+        @user_fires = gets.chomp!.upcase
+        if user_board.valid_coordinate?([user_fires]) == false
+          until user_board.valid_coordinate?([user_fires]) == true
+            puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+            puts "Oops! Your coordinate must be"
+            puts "1 space long. Please give me coordinates"
+            puts "such as 'a1' or 'c3'."
+            puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+            puts "Let's try again: "
+            @user_fires = gets.chomp!.upcase
+            end
+          end
         # board1.cells["B4"].fire_upon
         computer_board.cells[user_fires].fire_upon
-        self.make_board_with_players
+        self.make_board_with_players(true, true)
         @last_turn = user_name
         @turn_number += 1
       end
-
     end
 
 
