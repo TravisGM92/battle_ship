@@ -107,24 +107,24 @@ class Board
     # if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]} && coordinate.all?{ |pair| cells[pair].empty?}
     #   "true1"
     if self.valid_coordinate?(coordinate) == false
-      "false1"
+      false
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
-      "true1"
+      true
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
-      "true2"
+      true
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] == index_of_letters_of_coordinates[2] && coordinate.length == 3
-      "true3"
+      true
       # This one below checks if the coordinates are 2 long, with same letters, different numbers
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && colum_numbers[0] == colum_numbers[0] + 1 && coordinate.length == 2 && coordinate.all?{ |pair| cells[pair].empty?}
-      "true4"
+      true
     elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1
       true
     elsif coordinate.length == 0
-      "false2"
+      false
     elsif coordinate.any?{ |pair| not cells[pair].empty?}
-      "false3"
+      false
     else
       false
     end
@@ -165,6 +165,11 @@ class Board
       p "B #{row_b.map { |cell| cell.render(true, true)}.join(" ")} |"
       p "C #{row_c.map { |cell| cell.render(true, true)}.join(" ")} |"
       p "D #{row_d.map { |cell| cell.render(true, true)}.join(" ")} |"
+    elsif show == false && second == true
+      p "A #{row_a.map { |cell| cell.render(false, true)}.join(" ")} |"
+      p "B #{row_b.map { |cell| cell.render(false, true)}.join(" ")} |"
+      p "C #{row_c.map { |cell| cell.render(false, true)}.join(" ")} |"
+      p "D #{row_d.map { |cell| cell.render(false, true)}.join(" ")} |"
     end
   end
 
