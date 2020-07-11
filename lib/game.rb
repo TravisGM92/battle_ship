@@ -1,4 +1,3 @@
-require './lib/turn'
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
@@ -18,8 +17,6 @@ class Game
                 :turn_number,
                 :second,
                 :show,
-                :winner,
-                :loser,
                 :user_fires
 
   def initialize
@@ -36,15 +33,13 @@ class Game
     @turn_number = 0
     @show = show
     @second = second
-    @winner = winner
-    @loser = loser
     @user_fires = user_fires
   end
 
   def make_board_with_players(show=false, second=false)
     puts "--------------------"
     puts "Here's the board..."
-      sleep(1.5)
+    sleep(1.5)
     puts "*** George ***"
     computer_board.render(show=false, second)
     puts "-------------"
@@ -60,12 +55,12 @@ class Game
     puts "                   Enter q to Quit."
     user_index = gets.chomp!.downcase
     if user_index == "p"
-      puts "                    You have choosen wisely"
-      ".....".each_char do |char|
-         print char
-         $stdout.flush
-         sleep 0.8
-        end
+      puts "                   You have choosen wisely"
+      "......".each_char do |char|
+        print char
+        $stdout.flush
+        sleep(1)
+      end
       puts ""
       puts "------------------------------------"
       puts "You will go head-to-head in a vicious"
@@ -85,10 +80,10 @@ class Game
       puts ""
       puts "Let's place your ships. You've got 2 ships"
       "......".each_char do |char|
-         print char
-         $stdout.flush
-         sleep 0.75
-       end
+        print char
+        $stdout.flush
+        sleep(1)
+      end
       puts ""
       puts "1) The Cruiser, known for it's"
       puts "impeccable speed, with 3 spaces"
@@ -99,10 +94,10 @@ class Game
       puts "------------------------------------"
       puts "Now, where would you like your ship to go? Remember"
       "......".each_char do |char|
-         print char
-         $stdout.flush
-         sleep 1
-       end
+        print char
+        $stdout.flush
+        sleep(1)
+      end
       user_board.cells
       puts ""
       puts "1) The ship can't be diagonal"
@@ -154,10 +149,10 @@ class Game
       puts "Now we've gotta let George place his Cruiser."
       puts "George is careful. It may take him a minute"
       "........".each_char do |char|
-         print char
-         $stdout.flush
-         sleep 1
-       end
+        print char
+        $stdout.flush
+        sleep(1)
+      end
       puts ""
       puts "==================================="
       sleep(3)
@@ -184,38 +179,38 @@ class Game
         user_numbers2_array = user_numbers_second.split(", ").to_a
       end
 
-       while user_board.valid_placement?(user_sub, user_numbers2_array) == false
-         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-         puts "Oops! Looks like you put in an invalid placement."
-         puts "Try again, except this time make sure the"
-         puts "coordinates are one after the other,"
-         puts "don't, overlap other ships, aren't diagonal,"
-         puts "and don't pass the edge"
-         puts "of the board... "
-         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-         puts "Let's try again: "
-         user_sub = Ship.new("Submarine", 2)
-         user_numbers_second =  gets.chomp!.upcase
-         user_numbers2_array = user_numbers_second.split(", ").to_a
-         if user_board.valid_placement?(user_sub, user_numbers2_array) == true
-           break
-         end
-       end
-       user_board.cells
-       user_board.place(user_sub, user_numbers2_array)
-       self.make_board_with_players(true)
-       puts "How's it look?"
-       p ""
-       puts "Now we've gotta let George place his Sub,"
-       puts "decide who'll go first,"
-       print "and we'll be ready to play!"
-      #  "........".each_char do |char|
-      #     print char
-      #     $stdout.flush
-      #     sleep 1
-      #   end
-      #  sleep(2)
-      # p ""
+      while user_board.valid_placement?(user_sub, user_numbers2_array) == false
+        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+        puts "Oops! Looks like you put in an invalid placement."
+        puts "Try again, except this time make sure the"
+        puts "coordinates are one after the other,"
+        puts "don't overlap other ships, aren't diagonal,"
+        puts "and don't pass the edge"
+        puts "of the board... "
+        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+        puts "Let's try again: "
+        user_sub = Ship.new("Submarine", 2)
+        user_numbers_second =  gets.chomp!.upcase
+        user_numbers2_array = user_numbers_second.split(", ").to_a
+        if user_board.valid_placement?(user_sub, user_numbers2_array) == true
+          break
+        end
+      end
+      user_board.cells
+      user_board.place(user_sub, user_numbers2_array)
+      self.make_board_with_players(true)
+      puts "How's it look?"
+      puts ""
+      puts "Now we've gotta let George place his Sub,"
+      puts "decide who'll go first,"
+      puts "and we'll be ready to play!"
+      "........".each_char do |char|
+        print char
+        $stdout.flush
+        sleep(1)
+      end
+      sleep(2)
+      puts ""
       @last_turn = user_name
       # The lines above this and below it go together. I just
       # changed it for now to test things out
@@ -308,19 +303,15 @@ class Game
 
 # TODO
 
-# 1) Announces winner
-# 8) Would you like to play again?
+# 1) Fix things in Luke Notes down below
 
 
 # WISHLIST
 
-# 1) Have a Turn file called inside game.rb to separate the two
-# 2) Tutorial file to be called inside game.rb
-# 3) Iterate over cells instead of initializing a new cell for 16 cells,
-# to make it more dynamic
-# 4) Get rid of the " " around the sentences
-# 2) Be able to name the computer?
+# 1) Have computer's ships randomly place themselves
+# 2) Have a Turn file called inside game.rb to separate the two
 # 3) Iterate over cells instead of initializing a new cell for 16 cells, to make it more dynamic
+# 4) Be able to name the computer?
 
 
 # LUKE NOTES
@@ -342,11 +333,15 @@ class Game
 # -----------
 # - and afterwards I was able to place the sub on a1, a2.
 # - It also let me do a1, a2, a4
-# - firing on a coord not on the board breaks the game with this error:
+# - firing on a coord not on the board bre aks the game with this error:
 # 1: from /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:351:in `<top (required)>'
 # /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:249:in `start': undefined method `fire_upon' for nil:NilClass (NoMethodError
 # I can't seem to play to the point where computer player_loses
 # If you don't put in a coordinate to fire upon and just hit enter, it breaks the Game
+
+
+# NEW Luke Notes
+# the Hits aren't showing for player, but misses and sinkings are
 
 end
 
