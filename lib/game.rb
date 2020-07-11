@@ -149,7 +149,7 @@ class Game
        user_numbers2_array = user_numbers_second.split(", ").to_a
        while user_numbers2_array.length != 2
          puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-         puts "Oops! Remember, your coordaintes must be"
+         puts "Oops! Remember, your coordinates must be"
          puts "3 spaces long. Please give me coordinates"
          puts "such as a1, a2, a3."
          puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
