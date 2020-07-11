@@ -107,22 +107,24 @@ class Board
     # if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]} && coordinate.all?{ |pair| cells[pair].empty?}
     #   "true1"
     if self.valid_coordinate?(coordinate) == false
-      false
+      "false1"
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
-      true
+      "true1"
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
-      true
+      "true2"
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] == index_of_letters_of_coordinates[2] && coordinate.length == 3
-      true
+      "true3"
       # This one below checks if the coordinates are 2 long, with same letters, different numbers
-    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers[0] != colum_numbers[1]
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && colum_numbers[0] == colum_numbers[0] + 1 && coordinate.length == 2 && coordinate.all?{ |pair| cells[pair].empty?}
+      "true4"
+    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1
       true
     elsif coordinate.length == 0
-      false
+      "false2"
     elsif coordinate.any?{ |pair| not cells[pair].empty?}
-      false
+      "false3"
     else
       false
     end
@@ -176,7 +178,7 @@ end
 # ship1 = Ship.new("Submarine", 2)
 # ship2 = Ship.new("Cruiser", 3)
 # board1.cells
-# p board1.valid_placement?(ship1, ["A1", "A3", "A4"])
+# p board1.valid_placement?(ship1, ["C1", "D1"])
 # board1.place(ship2, ["A1", "A2", "A3"])
 #
 # board1.place(ship1, ["B4", "C4"])
@@ -193,4 +195,4 @@ end
 #
 #
 #
-# p board1.valid_placement?(ship1, ["A5", "A6"])
+# p board1.valid_placement?(ship1, ["C3", "C4"])
