@@ -166,10 +166,7 @@ class Board
     end
   end
 
-  def continue_rules
-    p "Hit 'Enter' or 'Return' once to continue, when you're ready"
-    gets
-  end
+
 end
 
 # board1 = Board.new
