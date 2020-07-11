@@ -38,7 +38,7 @@ class Game
   def make_board_with_players(show=false, second=false)
     puts "--------------------"
     puts "Here's the board..."
-      # sleep(1.5)
+      sleep(1.5)
     puts "*** George ***"
     computer_board.render(show=false, second)
     puts "-------------"
@@ -55,55 +55,55 @@ class Game
     user_index = gets.chomp!.downcase
     if user_index == "p"
       puts "                    You have choosen wisely"
-      # ".....".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 0.8
-      #   end
+      ".....".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 0.8
+        end
       puts ""
       puts "------------------------------------"
       puts "You will go head-to-head in a vicious"
       puts "game of battleship against the world's"
       puts "most formidable opponent... "
-      # sleep(6.5)
+      sleep(6.5)
       puts ""
       puts ""
       puts "-------- GEORGE!!! --------"
-      # sleep(4)
+      sleep(4)
       puts "====================================="
       puts "Let's start with your name."
       puts "What do your homies call you?"
       @user_name = gets.chomp!
       self.make_board_with_players
-      # sleep(6)
+      sleep(6)
       puts ""
       puts "Let's place your ships. You've got 2 ships"
-      # "......".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 0.75
-      #  end
+      "......".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 0.75
+       end
       puts ""
       puts "1) The Cruiser, known for it's"
       puts "impeccable speed, with 3 spaces"
       puts "              and   "
       puts "2) the Submarine, known for it's"
       puts "subness, with 2 spaces"
-      # sleep(8.5)
+      sleep(8.5)
       puts "------------------------------------"
       puts "Now, where would you like your ship to go? Remember"
-      # "......".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 1
-      #  end
+      "......".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 1
+       end
       user_board.cells
       puts ""
       puts "1) The ship can't be diagonal"
       puts "2) The ship can't overlap any other ship"
       puts "3) You've gotta make sure it spans the"
       puts "length of the ship, no more, no less."
-      puts "ex: a1, a2, a3"
+      puts "Example: a1, a2, a3"
       puts "------------------------------------"
       puts "So, where's it gonna go? "
       user_cruiser = Ship.new("Cruiser", 3)
@@ -144,22 +144,22 @@ class Game
       user_board.place(user_cruiser, user_numbers_array)
       puts "------------------------"
       user_board.render(true, true)
-      # sleep(5)
+      sleep(5)
       puts "Now we've gotta let George place his Cruiser."
       puts "George is careful. It may take him a minute"
-      # "........".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 1
-      #  end
+      "........".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 1
+       end
       puts ""
       puts "==================================="
-      # sleep(3)
+      sleep(3)
       puts "Here's the board with your cruiser on there"
       puts "Obviously we won't show you George's ship..."
       puts "It's not gonna be that easy."
       self.make_board_with_players(true)
-      # sleep(6)
+      sleep(6)
       puts "Now let's add your Submarine!"
       puts "where would you like that to go?"
       puts "Remember, it only has 2 spaces"
@@ -171,7 +171,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Oops! Remember, your coordinates must be"
         puts "2 spaces long. Please give me coordinates"
-        puts "such as a1, a2."
+        puts "such as c4, d4."
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_second =  gets.chomp!.upcase
@@ -203,13 +203,13 @@ class Game
       puts "Now we've gotta let George place his Sub,"
       puts "decide who'll go first,"
       puts "and we'll be ready to play!"
-      #  "........".each_char do |char|
-      #     print char
-      #     $stdout.flush
-      #     sleep 1
-      #   end
-      #  sleep(2)
-      # p ""
+       "........".each_char do |char|
+          print char
+          $stdout.flush
+          sleep 1
+        end
+       sleep(2)
+      p ""
       @last_turn = "George"
       # #'d The lines above this and below it go together. I just
       # changed it for now to test things out
@@ -339,6 +339,7 @@ class Game
 # 1: from /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:351:in `<top (required)>'
 # /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:249:in `start': undefined method `fire_upon' for nil:NilClass (NoMethodError
 # I can't seem to play to the point where computer player_loses
+# If you don't put in a coordinate to fire upon and just hit enter, it breaks the Game
 
 end
 

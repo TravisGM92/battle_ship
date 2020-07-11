@@ -24,7 +24,6 @@ class Tutorial
     sleep(5)
     continue_rules
     puts " "
-    puts " "
     puts "------------------2------------------"
     puts "Battleship consists of two players"
     puts "each taking turns attempting to sink"
@@ -300,7 +299,7 @@ class Tutorial
     puts "Can you sink our BATTLESHIPS?"
     puts "------------------------------------"
     puts "--*---*---*---*---*---*---*---*---*--"
-
+    continue_rules
   end
 end
 
