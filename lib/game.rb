@@ -231,9 +231,8 @@ class Game
 
 # WISHLIST
 # 1) Have a Turn file called inside game.rb to separate the two
-# 2) Tutorial file to be called inside game.rb
-# 3) Iterate over cells instead of initializing a new cell for 16 cells,
-# to make it more dynamic
+# 2) Be able to name the computer?
+# 3) Iterate over cells instead of initializing a new cell for 16 cells, to make it more dynamic
 
 
 end
