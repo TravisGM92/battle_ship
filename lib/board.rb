@@ -98,7 +98,7 @@ class Board
     # coordinates, where colum_index is the numbers of each coordinate
     alpha = ("A".."Z").to_a
     index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
-    index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}
+    index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}   # This one is saying "assigned but unused variable"
 
 
     # Checks if ship length is equal to coordinate length, then checks if numbers in coordinates are consecutive. After, it checks if all letters are identical.
@@ -107,6 +107,10 @@ class Board
     # if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]} && coordinate.all?{ |pair| cells[pair].empty?}
     #   "true1"
     if self.valid_coordinate?(coordinate) == false
+      false
+    elsif coordinate.length == 0
+      false
+    elsif coordinate.any?{ |pair| not cells[pair].empty?}
       false
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 2 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && coordinate.length == 2 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
@@ -119,12 +123,8 @@ class Board
       # This one below checks if the coordinates are 2 long, with same letters, different numbers
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && colum_numbers[0] == colum_numbers[0] + 1 && coordinate.length == 2 && coordinate.all?{ |pair| cells[pair].empty?}
       true
-    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1
+    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1  # My linter thingy in atom is saying " `-' after local variable or literal is interpreted as binary operator even though it seems like a unary operator"
       true
-    elsif coordinate.length == 0
-      false
-    elsif coordinate.any?{ |pair| not cells[pair].empty?}
-      false
     else
       false
     end
@@ -149,27 +149,27 @@ class Board
     row_c = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "C"}
     row_d = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "D"}
 
-    p "  1 2 3 4 |"
+    puts "  1 2 3 4 |"
     if show == false && second == false
-      p "A #{row_a.map { |cell| cell.render}.join(" ")} |"
-      p "B #{row_b.map { |cell| cell.render}.join(" ")} |"
-      p "C #{row_c.map { |cell| cell.render}.join(" ")} |"
-      p "D #{row_d.map { |cell| cell.render}.join(" ")} |"
+      puts "A #{row_a.map { |cell| cell.render}.join(" ")} |"
+      puts "B #{row_b.map { |cell| cell.render}.join(" ")} |"
+      puts "C #{row_c.map { |cell| cell.render}.join(" ")} |"
+      puts "D #{row_d.map { |cell| cell.render}.join(" ")} |"
     elsif show == true && second != true
-      p "A #{row_a.map { |cell| cell.render(true)}.join(" ")} |"
-      p "B #{row_b.map { |cell| cell.render(true)}.join(" ")} |"
-      p "C #{row_c.map { |cell| cell.render(true)}.join(" ")} |"
-      p "D #{row_d.map { |cell| cell.render(true)}.join(" ")} |"
+      puts "A #{row_a.map { |cell| cell.render(true)}.join(" ")} |"
+      puts "B #{row_b.map { |cell| cell.render(true)}.join(" ")} |"
+      puts "C #{row_c.map { |cell| cell.render(true)}.join(" ")} |"
+      puts "D #{row_d.map { |cell| cell.render(true)}.join(" ")} |"
     elsif show == true && second == true
-      p "A #{row_a.map { |cell| cell.render(true, true)}.join(" ")} |"
-      p "B #{row_b.map { |cell| cell.render(true, true)}.join(" ")} |"
-      p "C #{row_c.map { |cell| cell.render(true, true)}.join(" ")} |"
-      p "D #{row_d.map { |cell| cell.render(true, true)}.join(" ")} |"
+      puts "A #{row_a.map { |cell| cell.render(true, true)}.join(" ")} |"
+      puts "B #{row_b.map { |cell| cell.render(true, true)}.join(" ")} |"
+      puts "C #{row_c.map { |cell| cell.render(true, true)}.join(" ")} |"
+      puts "D #{row_d.map { |cell| cell.render(true, true)}.join(" ")} |"
     elsif show == false && second == true
-      p "A #{row_a.map { |cell| cell.render(false, true)}.join(" ")} |"
-      p "B #{row_b.map { |cell| cell.render(false, true)}.join(" ")} |"
-      p "C #{row_c.map { |cell| cell.render(false, true)}.join(" ")} |"
-      p "D #{row_d.map { |cell| cell.render(false, true)}.join(" ")} |"
+      puts "A #{row_a.map { |cell| cell.render(false, true)}.join(" ")} |"
+      puts "B #{row_b.map { |cell| cell.render(false, true)}.join(" ")} |"
+      puts "C #{row_c.map { |cell| cell.render(false, true)}.join(" ")} |"
+      puts "D #{row_d.map { |cell| cell.render(false, true)}.join(" ")} |"
     end
   end
 
