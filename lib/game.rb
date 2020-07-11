@@ -17,7 +17,10 @@ class Game
                 :last_turn,
                 :turn_number,
                 :second,
-                :show
+                :show,
+                :winner,
+                :loser,
+                :user_fires
 
   def initialize
     @user_name = user_name
@@ -33,6 +36,9 @@ class Game
     @turn_number = 0
     @show = show
     @second = second
+    @winner = winner
+    @loser = loser
+    @user_fires = user_fires
   end
 
   def make_board_with_players(show=false, second=false)
@@ -178,46 +184,47 @@ class Game
         user_numbers2_array = user_numbers_second.split(", ").to_a
       end
 
-      while user_board.valid_placement?(user_sub, user_numbers2_array) == false
-        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-        puts "Oops! Looks like you put in an invalid placement."
-        puts "Try again, except this time make sure the"
-        puts "coordinates are one after the other,"
-        puts "don't overlap other ships, aren't diagonal,"
-        puts "and don't pass the edge"
-        puts "of the board... "
-        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-        puts "Let's try again: "
-        user_sub = Ship.new("Submarine", 2)
-        user_numbers_second =  gets.chomp!.upcase
-        user_numbers2_array = user_numbers_second.split(", ").to_a
-        if user_board.valid_placement?(user_sub, user_numbers2_array) == true
-          break
-        end
-      end
-      user_board.cells
-      user_board.place(user_sub, user_numbers2_array)
-      self.make_board_with_players(true)
-      puts "How's it look?"
-      puts ""
-      puts "Now we've gotta let George place his Sub,"
-      puts "decide who'll go first,"
-      puts "and we'll be ready to play!"
-       "........".each_char do |char|
-          print char
-          $stdout.flush
-          sleep 1
-        end
-       sleep(2)
-      p ""
-      @last_turn = "George"
-      # #'d The lines above this and below it go together. I just
+       while user_board.valid_placement?(user_sub, user_numbers2_array) == false
+         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+         puts "Oops! Looks like you put in an invalid placement."
+         puts "Try again, except this time make sure the"
+         puts "coordinates are one after the other,"
+         puts "don't, overlap other ships, aren't diagonal,"
+         puts "and don't pass the edge"
+         puts "of the board... "
+         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+         puts "Let's try again: "
+         user_sub = Ship.new("Submarine", 2)
+         user_numbers_second =  gets.chomp!.upcase
+         user_numbers2_array = user_numbers_second.split(", ").to_a
+         if user_board.valid_placement?(user_sub, user_numbers2_array) == true
+           break
+         end
+       end
+       user_board.cells
+       user_board.place(user_sub, user_numbers2_array)
+       self.make_board_with_players(true)
+       puts "How's it look?"
+       p ""
+       puts "Now we've gotta let George place his Sub,"
+       puts "decide who'll go first,"
+       print "and we'll be ready to play!"
+      #  "........".each_char do |char|
+      #     print char
+      #     $stdout.flush
+      #     sleep 1
+      #   end
+      #  sleep(2)
+      # p ""
+      @last_turn = user_name
+      # The lines above this and below it go together. I just
       # changed it for now to test things out
       # [user_name, "George"]
       puts ""
       puts "Looks like #{@last_turn} will be going first!"
       puts ""
       sleep(3)
+      computer_options = user_board.cells.keys.shuffle
 
       until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
 
