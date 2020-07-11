@@ -19,6 +19,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_validate_coordinates
+    # skip # Well why is this not working now?
     board1 = Board.new
     board1.cells
 
@@ -126,9 +127,6 @@ class BoardTest < Minitest::Test
     ship2 = Ship.new("Cruiser", 3)
     board1.cells
     board1.place(ship2, ["A1", "A2", "A3"])
-    # cell_1 = board1.cells["A1"]
-    # cell_2 = board1.cells["A2"]  It doesn't look like these are needed
-    # cell_3 = board1.cells["A3"]
 
     assert_equal false, board1.valid_placement?(ship1, ["A1", "B1"])
   end
@@ -150,7 +148,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_cant_have_nonconsecutive_row_cells
-    skip # this one just shouldn't be coming back true
+    # skip # this one just shouldn't be coming back true
     board1 = Board.new
     ship1 = Ship.new("Submarine", 2)
     board1.cells
@@ -159,7 +157,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_cant_be_in_the_same_place_twice
-    skip   # This 'false' if the below is not commented out because it overlaps, but this shouldn'tas work at all no matter what
     board1 = Board.new
     ship1 = Ship.new("Submarine", 2)
     # ship2 = Ship.new("Cruiser", 3)
@@ -171,7 +168,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_cant_have_nonexistant_row
-    skip  # this one appears to break the whole thing
     board1 = Board.new
     ship1 = Ship.new("Submarine", 2)
     board1.cells
@@ -180,7 +176,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_cant_have_nonexistant_column
-    skip # this one also breaks the whole thing it seems
     board1 = Board.new
     ship1 = Ship.new("Submarine", 2)
     board1.cells
@@ -189,7 +184,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_cant_have_nonexistant_row_and_column
-    skip # this one also also breaks the whole thing
     board1 = Board.new
     ship1 = Ship.new("Submarine", 2)
     board1.cells
