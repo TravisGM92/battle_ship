@@ -2,6 +2,21 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/tutorial'
+require './lib/endgame'
+
+
+# somewhere in there will be something like:
+#
+# if (something something Player wins)
+#   @endgame.player_wins
+#   self.start
+# elsif (something something player loses)
+#   @endgame.player_loses
+#   self.start
+# else
+#   p "Well this is embarassing. We're frankly not sure what happened here.  Maybe Rhinana from the award winning film Battleship (2012) somehow hacked into the Gibson and sunk everyone's ships?"
+#   p "Do ... do you wanna see if it happens again?"
+# end
 
 class Game
 
@@ -10,7 +25,6 @@ class Game
                 :user_board,
                 :comp_cruiser,
                 :comp_sub
-                :rules
 
   def initialize
     @user_name = user_name
@@ -19,6 +33,7 @@ class Game
     @comp_cruiser = Ship.new("Cruiser", 3)
     @comp_sub = Ship.new("Submarine", 2)
     @rules = Tutorial.new("The Rules")
+    @endgame = Endgame.new("The End")
     computer_board.place(comp_cruiser, ["D2", "D3", "D4"])
     computer_board.place(comp_sub, ["C1", "C2"])
   end

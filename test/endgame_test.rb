@@ -13,12 +13,12 @@ class EndgameTest < Minitest::Test
   def test_player_win_message
     the_end = Endgame.new("Yay")
 
-    assert_equal "You Did It!", the_end.player_wins
+    assert_equal "love to play again. Would you?", the_end.player_wins
   end
 
   def test_player_win_message
     the_end = Endgame.new("Yay")
 
-    assert_equal "Aww shoot, ya lost.", the_end.player_loses
+    assert_equal "One more game?", the_end.player_loses
   end
 end
