@@ -16,7 +16,6 @@ class ShipTest < Minitest::Test
     # skip
     ship1 = Ship.new("Challenger", 5)
 
-
     assert_equal ship1.length, 5
   end
 
@@ -31,16 +30,13 @@ class ShipTest < Minitest::Test
     # skip
     ship1 = Ship.new("Challenger", 5)
 
-
     assert_equal ship1.health, 5
   end
 
   def test_it_can_be_hit
     # skip
     ship1 = Ship.new("Carrier", 5)
-
     ship1.hit
-
 
     assert_equal 4, ship1.health
   end

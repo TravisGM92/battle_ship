@@ -11,7 +11,7 @@ class TutorialTest < Minitest::Test
   end
 
   def test_it_prints
-    # skip #if you run this and have everything in the tutorial uncommented, it'll just run the whole dang tutorial on loop forever right now, so you can test this works by commenting everything except the first line.  You can check to see it's really working by changing the string, and seeing that it expects the string.
+    skip #if you run this and have everything in the tutorial uncommented, it'll just run the whole dang tutorial on loop forever right now, so you can test this works by commenting everything except the first line.  You can check to see it's really working by changing the string, and seeing that it expects the string.
     rules = Tutorial.new("Some Rules")
 
     assert_equal rules.start_tutorial, "------------------1------------------"
