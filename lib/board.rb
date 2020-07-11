@@ -53,7 +53,15 @@ class Board
 
 
   def valid_coordinate?(coordinate)
-    coordinate.all?{ |numbers| cells.include? numbers}
+    if coordinate.class == String
+      false
+    elsif
+      if coordinate.all?{ |numbers| cells.include? numbers} && coordinate.all?{ |numbers| cells[numbers].fired == 0}
+        true
+      else
+        false
+      end
+    end
   end
 
 
@@ -198,4 +206,4 @@ end
 #
 #
 #
-# p board1.valid_placement?(ship1, ["C3", "C4"])
+# p board1.valid_coordinate?(["D4", "C3"])

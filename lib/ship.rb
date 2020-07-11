@@ -20,8 +20,9 @@ class Ship
      @length.to_i - @hits.to_i
   end
 
+
   def sunk?
-    if @health == @hits
+    if self.health == 0
       true
     else
       false
