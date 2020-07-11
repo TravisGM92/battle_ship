@@ -294,6 +294,6 @@ class Tutorial
   end
 end
 
-rules = Tutorial.new("go")
-rules.start_tutorial
+# rules = Tutorial.new("go")
+# rules.start_tutorial
 #
