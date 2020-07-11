@@ -254,7 +254,6 @@ class Game
             puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
             puts "Let's try again: "
             @user_fires = gets.chomp!.upcase
-            p user_board.valid_coordinate?([user_fires])
           end
             # board1.cells["B4"].fire_upon
             computer_board.cells[user_fires].fire_upon
@@ -263,7 +262,6 @@ class Game
             @turn_number += 1
         elsif last_turn == "George" && turn_number == 0
         puts "2Georgy's turn"
-        p computer_options
         user_board.cells[computer_options.pop].fire_upon
         self.make_board_with_players(true, true)
         @last_turn = "George"
@@ -271,7 +269,6 @@ class Game
         @turn_number += 1
       elsif last_turn == user_name && turn_number != 0
         puts "1Georgy's turn"
-        p computer_options
         user_board.cells[computer_options.pop].fire_upon
         self.make_board_with_players(true, true)
         @last_turn = "George"
@@ -288,7 +285,8 @@ class Game
             puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
             puts "Oops! Your coordinate must be"
             puts "1 space long. Please give me coordinates"
-            puts "such as 'a1' or 'c3'."
+            puts "such as 'a1' or 'c3', and you can't fired on a"
+            puts "you've already fired on."
             puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
             puts "Let's try again: "
             @user_fires = gets.chomp!.upcase

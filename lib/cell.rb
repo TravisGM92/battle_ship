@@ -36,8 +36,9 @@ class Cell
   def fire_upon
     if cell.empty? == false
       ship.hits += 1
+    else
+      @fired += 1
     end
-    @fired += 1
   end
 
   def render(show=false, second=false)
@@ -65,7 +66,7 @@ class Cell
     elsif cell.empty? == false && ship.health == 0
       "X"
     else
-      "O"
+      "."
     end
   end
 
