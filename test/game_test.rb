@@ -19,7 +19,7 @@ class GameTest < Minitest::Test
     assert_equal "Enter p to play. Enter q to quit.", game.start
   end
 
-  # def test_inputs
+  # def test_choose_random_player
   #   game = Game.new
   #   gets.chomp!
   #
