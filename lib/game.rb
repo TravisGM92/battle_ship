@@ -30,7 +30,9 @@ class Game
                 :last_turn,
                 :turn_number,
                 :second,
-                :show
+                :show,
+                :winner,
+                :loser
 
   def initialize
     @user_name = user_name
@@ -46,6 +48,8 @@ class Game
     @turn_number = 0
     @show = show
     @second = second
+    @winner = winner
+    @loser = loser
   end
 
   def make_board_with_players(show=false, second=false)
@@ -306,10 +310,7 @@ class Game
 
 # TODO
 
-# 4) game determines who goes first
-# 5) player (either before or after computer) inputs first shot fired coord.
-# 6) play continues [UNTIL LOOP] until one player's ships are sunk
-# 7) Announces winner
+# 1) Announces winner
 # 8) Would you like to play again?
 
 
