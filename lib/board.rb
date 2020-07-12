@@ -19,7 +19,7 @@ class Board
     # @cells1 = coordinates_list.map{ |coord| coord = Cell.new(coord)}
     # @my_hash = {}
     # p cells1
-
+ 
     @a1 = Cell.new("A1")
     @a2 = Cell.new("A2")
     @a3 = Cell.new("A3")
