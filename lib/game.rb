@@ -333,7 +333,8 @@ class Game
 
 # TODO
 
-# 1) Fix things in Luke Notes down below
+# 2) Display results of each coordinate (with computer AND user)
+# 3) After one invalid coordinate for the cruiser, be able to input a valid coordinate
 
 
 # WISHLIST
@@ -343,22 +344,6 @@ class Game
 # 3) Iterate over cells instead of initializing a new cell for 16 cells, to make it more dynamic
 # 4) Be able to name the computer?
 
-
-# LUKE NOTES
-# When I put in q to quit, I have to do it twice for some reason...
-
-# -----------
-# - firing on a coord not on the board bre aks the game with this error:
-
-# 1: from /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:351:in `<top (required)>'
-# /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:249:in `start': undefined method `fire_upon' for nil:NilClass (NoMethodError
-# I can't seem to play to the point where computer player_loses
-# If you don't put in a coordinate to fire upon and just hit enter, it breaks the Game
-
-
-# NEW Luke Notes
-# the Hits aren't showing for player, but misses and sinkings are.  I still can't seem get a loss for the player, as it seems like George's shots stop registering after a while.  He also hasn't hit me in 5 games now.
-# Turns that don't register Geoge's moves: 1, 4, 6, 7, 8, 11, 12, 13
 
 end
 
