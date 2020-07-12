@@ -27,8 +27,6 @@ class Game
     @comp_sub = Ship.new("Submarine", 2)
     @rules = Tutorial.new("The Rules")
     @endgame = Endgame.new("The End")
-    computer_board.place(comp_cruiser, ["D2", "D3", "D4"])
-    computer_board.place(comp_sub, ["C1", "C2"])
     @last_turn = last_turn
     @turn_number = 0
     @show = show
@@ -49,6 +47,11 @@ class Game
   end
 
   def start()
+    sub_cord = computer_board.valid_placement_for_sub(comp_sub)
+    computer_board.place(comp_sub, sub_cord)
+    cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
+    computer_board.place(comp_cruiser, cruise_cord)
+
     puts "*****************  Welcome to BATTLESHIP  *****************"
     puts ""
     puts "                   Enter p to Play."
@@ -268,7 +271,7 @@ class Game
           @turn_number += 1
 
         elsif last_turn == "George" && turn_number == 0
-          puts "Georgy's turn"
+          print "Georgy's turn"
           "........".each_char do |char|
              print char
              $stdout.flush

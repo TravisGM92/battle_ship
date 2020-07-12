@@ -53,7 +53,7 @@ class CellTest < Minitest::Test
     cell1.place_ship(cruiser)
     cell1.fire_upon
 
-    assert_equal cell1.render, "H"
+    assert_equal cell1.render(true), "H"
   end
 
   def test_it_can_show_ship
@@ -62,7 +62,7 @@ class CellTest < Minitest::Test
       cell1.place_ship(cruiser)
       cell1.fire_upon
 
-      assert_equal cell1.render(true), "S"
+      assert_equal cell1.render(true), "H"
   end
 
   def test_it_can_render_a_dot
