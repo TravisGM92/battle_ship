@@ -6,7 +6,8 @@ require './lib/endgame'
 require './lib/game'
 
 class Turn
-  attr_accessor :user_name, :computer
+  attr_accessor :user_name,
+                :computer
 
   $turn_number = 0
   def initialize(user_name, computer)
@@ -14,7 +15,7 @@ class Turn
     @computer = computer
   end
 
-def play_game
+  def play_game
     while game.user_board.render(true).include? "S"
       if first_move == user_name
         self.make_board_with_players(true)

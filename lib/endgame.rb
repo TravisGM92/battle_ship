@@ -10,7 +10,7 @@ class Endgame
     puts "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     puts "YOU. SUNK. OUR. BATTLESHIPS!"
     puts "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Congratulation"
+    puts "Congratulation #{@user_name}"
     puts "You've bested our best commander,"
     puts "And for that, we're awarding you our"
     puts "biggest trophy! Are you readyyy?"
