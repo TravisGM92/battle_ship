@@ -106,7 +106,7 @@ class Game
       puts "1) The ship can't be diagonal"
       puts "2) The ship can't overlap any other ship"
       puts "3) You've gotta make sure it spans the"
-      puts "length of the ship, no more, no less."
+      puts "   length of the ship, no more, no less."
       puts "Example: a1, a2, a3"
       puts "------------------------------------"
       puts "So, where's it gonna go? "
@@ -209,7 +209,6 @@ class Game
        puts "Now we've gotta let George place his Sub,"
        puts "decide who'll go first,"
        print "and we'll be ready to play!"
-<<<<<<< HEAD
        # "........".each_char do |char|
        #    print char
        #    $stdout.flush
@@ -218,7 +217,6 @@ class Game
        # sleep(2)
       puts ""
       @last_turn = user_name
-=======
        "........".each_char do |char|
           print char
           $stdout.flush
@@ -227,7 +225,6 @@ class Game
        sleep(2)
       p ""
       @last_turn = [user_name, "George"].sample
->>>>>>> c3f8f84b507659bb5826dee60851b20fc30ee120
       # The lines above this and below it go together. I just
       # changed it for now to test things out
       puts ""
@@ -325,7 +322,7 @@ class Game
                 break
               end
 
-          end
+            end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
             puts "You hit a ship!"
@@ -340,10 +337,10 @@ class Game
 
         if (comp_sub.health == 0 && comp_cruiser.health == 0)
           @endgame.player_wins
-          self.start
+          load './lib/game.rb'
         elsif (user_sub.health == 0 && user_cruiser.health == 0)
           @endgame.player_loses
-          self.start
+          load './lib/game.rb'
         end
 
       end
