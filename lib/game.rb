@@ -70,7 +70,7 @@ class Game
       sleep(6.5)
       puts ""
       puts ""
-      puts "--------        GEORGE!!!        --------"
+      puts "-------->        GEORGE!!!        <--------"
       sleep(4)
       puts "====================================="
       puts "Let's start with your name."
@@ -113,7 +113,7 @@ class Game
       user_cruiser = Ship.new("Cruiser", 3)
 
       user_numbers_first =  gets.chomp!.upcase
-      user_numbers_array = user_numbers_first.split(", ").to_a
+      user_numbers_array = user_numbers_first.split(", ").to_a.sort!
       while user_numbers_array.length != 3
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Oops! Remember, your coordaintes must be"
@@ -122,7 +122,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_first =  gets.chomp!.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a
+        user_numbers_array = user_numbers_first.split(", ").to_a.sort!
       end
 
       while user_board.valid_placement?(user_cruiser, user_numbers_array) == false
@@ -136,7 +136,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_first =  gets.chomp!.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a
+        user_numbers_array = user_numbers_first.split(", ").to_a.sort!
         if user_board.valid_placement?(user_cruiser, user_numbers_array) == true
           break
         end
@@ -171,7 +171,7 @@ class Game
       puts "So, where's it gonna go? "
       user_sub = Ship.new("Submarine", 2)
       user_numbers_second =  gets.chomp!.upcase
-      user_numbers2_array = user_numbers_second.split(", ").to_a
+      user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       while user_numbers2_array.length != 2
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Oops! Remember, your coordinates must be"
@@ -180,7 +180,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_second =  gets.chomp!.upcase
-        user_numbers2_array = user_numbers_second.split(", ").to_a
+        user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       end
 
        while user_board.valid_placement?(user_sub, user_numbers2_array) == false
@@ -195,7 +195,7 @@ class Game
          puts "Let's try again: "
          user_sub = Ship.new("Submarine", 2)
          user_numbers_second =  gets.chomp!.upcase
-         user_numbers2_array = user_numbers_second.split(", ").to_a
+         user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
          if user_board.valid_placement?(user_sub, user_numbers2_array) == true
            break
          end
