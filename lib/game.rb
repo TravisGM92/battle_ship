@@ -338,7 +338,7 @@ class Game
 
 # TODO
 
-# 1) Announces winner
+# 1) Announces winner (it can announce when the computer wins)
 # 8) Would you like to play again?
 
 
