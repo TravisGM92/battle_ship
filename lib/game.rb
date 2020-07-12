@@ -212,7 +212,7 @@ class Game
        #    sleep 1
        #  end
        # sleep(2)
-      p ""
+      puts ""
       @last_turn = user_name
       # The lines above this and below it go together. I just
       # changed it for now to test things out
@@ -286,6 +286,7 @@ class Game
               if computer_board.valid_coordinate?([@user_fires]) == true
                 break
               end
+
           end
           # board1.cells["B4"].fire_upon
           computer_board.cells[@user_fires].fire_upon
