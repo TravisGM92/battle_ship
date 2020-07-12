@@ -209,6 +209,16 @@ class Game
        puts "Now we've gotta let George place his Sub,"
        puts "decide who'll go first,"
        print "and we'll be ready to play!"
+<<<<<<< HEAD
+       # "........".each_char do |char|
+       #    print char
+       #    $stdout.flush
+       #    sleep 1
+       #  end
+       # sleep(2)
+      puts ""
+      @last_turn = user_name
+=======
        "........".each_char do |char|
           print char
           $stdout.flush
@@ -217,6 +227,7 @@ class Game
        sleep(2)
       p ""
       @last_turn = [user_name, "George"].sample
+>>>>>>> c3f8f84b507659bb5826dee60851b20fc30ee120
       # The lines above this and below it go together. I just
       # changed it for now to test things out
       puts ""
@@ -313,6 +324,7 @@ class Game
               if computer_board.valid_coordinate?([@user_fires]) == true
                 break
               end
+
           end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
