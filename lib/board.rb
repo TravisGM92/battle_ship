@@ -193,10 +193,10 @@ class Board
 
 end
 
-board1 = Board.new
+# board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
 # ship2 = Ship.new("Cruiser", 3)
-p board1.cells
+# p board1.cells
 # p board1.valid_placement?(ship1, ["C1", "D1"])
 # board1.place(ship2, ["A1", "A2", "A3"])
 #

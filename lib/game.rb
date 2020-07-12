@@ -215,7 +215,6 @@ class Game
        #    sleep 1
        #  end
        # sleep(2)
-      puts ""
       @last_turn = user_name
        "........".each_char do |char|
           print char
@@ -223,6 +222,7 @@ class Game
           sleep 1
         end
        sleep(2)
+      puts ""
       p ""
       @last_turn = [user_name, "George"].sample
       # The lines above this and below it go together. I just
@@ -256,9 +256,11 @@ class Game
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
             puts "You hit a ship!"
+            puts ""
             sleep(2)
           else
             puts "Ahh man, you missed."
+            puts ""
             sleep(2)
           end
           # self.make_board_with_players(true, true)
@@ -275,9 +277,11 @@ class Game
           sleep(1)
           if user_board.cells[computer_options.first].empty? == false
             puts "George hit a ship!"
+            puts ""
             sleep(1)
           else
             puts "Lucky... George missed"
+            puts ""
             sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
@@ -287,12 +291,15 @@ class Game
           @turn_number += 1
 
         elsif last_turn == user_name && turn_number != 0
+          puts ""
           puts "Georgy's turn"
           if user_board.cells[computer_options.first].empty? == false
             puts "George hit a ship!"
+            puts ""
             sleep(1)
           else
             puts "Lucky... George missed"
+            puts ""
             sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
