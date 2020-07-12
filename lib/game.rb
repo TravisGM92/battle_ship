@@ -70,7 +70,7 @@ class Game
       sleep(6.5)
       puts ""
       puts ""
-      puts "-------- GEORGE!!! --------"
+      puts "-------->        GEORGE!!!        <--------"
       sleep(4)
       puts "====================================="
       puts "Let's start with your name."
@@ -102,6 +102,7 @@ class Game
        end
       user_board.cells
       puts ""
+      puts ""
       puts "1) The ship can't be diagonal"
       puts "2) The ship can't overlap any other ship"
       puts "3) You've gotta make sure it spans the"
@@ -112,7 +113,7 @@ class Game
       user_cruiser = Ship.new("Cruiser", 3)
 
       user_numbers_first =  gets.chomp!.upcase
-      user_numbers_array = user_numbers_first.split(", ").to_a
+      user_numbers_array = user_numbers_first.split(", ").to_a.sort!
       while user_numbers_array.length != 3
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Oops! Remember, your coordaintes must be"
@@ -121,7 +122,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_first =  gets.chomp!.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a
+        user_numbers_array = user_numbers_first.split(", ").to_a.sort!
       end
 
       while user_board.valid_placement?(user_cruiser, user_numbers_array) == false
@@ -135,7 +136,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_first =  gets.chomp!.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a
+        user_numbers_array = user_numbers_first.split(", ").to_a.sort!
         if user_board.valid_placement?(user_cruiser, user_numbers_array) == true
           break
         end
@@ -146,7 +147,7 @@ class Game
       user_board.cells
       computer_board.cells
       user_board.place(user_cruiser, user_numbers_array)
-      puts "------------------------"
+      puts "----------------------------"
       user_board.render(true, true)
       sleep(5)
       puts "Now we've gotta let George place his Cruiser."
@@ -170,7 +171,7 @@ class Game
       puts "So, where's it gonna go? "
       user_sub = Ship.new("Submarine", 2)
       user_numbers_second =  gets.chomp!.upcase
-      user_numbers2_array = user_numbers_second.split(", ").to_a
+      user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       while user_numbers2_array.length != 2
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Oops! Remember, your coordinates must be"
@@ -179,7 +180,7 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_second =  gets.chomp!.upcase
-        user_numbers2_array = user_numbers_second.split(", ").to_a
+        user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       end
 
        while user_board.valid_placement?(user_sub, user_numbers2_array) == false
@@ -194,7 +195,7 @@ class Game
          puts "Let's try again: "
          user_sub = Ship.new("Submarine", 2)
          user_numbers_second =  gets.chomp!.upcase
-         user_numbers2_array = user_numbers_second.split(", ").to_a
+         user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
          if user_board.valid_placement?(user_sub, user_numbers2_array) == true
            break
          end
@@ -258,33 +259,38 @@ class Game
 
         elsif last_turn == "George" && turn_number == 0
           puts "Georgy's turn"
-          sleep(2)
+          "........".each_char do |char|
+             print char
+             $stdout.flush
+             sleep 1
+           end
+          sleep(1)
           if user_board.cells[computer_options.first].empty? == false
             puts "George hit a ship!"
-            sleep(2)
+            sleep(1)
           else
             puts "Lucky... George missed"
-            sleep(2)
+            sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
           # self.make_board_with_players(true, true)
           @last_turn = "George"
-          sleep(5)
+          sleep(2)
           @turn_number += 1
 
         elsif last_turn == user_name && turn_number != 0
           puts "Georgy's turn"
           if user_board.cells[computer_options.first].empty? == false
             puts "George hit a ship!"
-            sleep(2)
+            sleep(1)
           else
             puts "Lucky... George missed"
-            sleep(2)
+            sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
           # self.make_board_with_players(true, true)
           @last_turn = "George"
-          sleep(5)
+          sleep(2)
           @turn_number += 1
 
         elsif last_turn == user_name && turn_number == 0
