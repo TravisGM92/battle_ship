@@ -39,7 +39,7 @@ class Game
   def make_board_with_players(show=false, second=false)
     puts "--------------------"
     puts "Here's the board..."
-    sleep(1.5)
+    # sleep(1.5)
     puts "*** George ***"
     computer_board.render(show=false, second)
     puts "-------------"
@@ -56,48 +56,48 @@ class Game
     user_index = gets.chomp!.downcase
     if user_index == "p"
       puts "                   You have choosen wisely"
-      "......".each_char do |char|
-        print char
-        $stdout.flush
-        sleep(1)
-      end
+      # "......".each_char do |char|
+      #   print char
+      #   $stdout.flush
+      #   sleep(1)
+      # end
       puts ""
       puts "------------------------------------"
       puts "You will go head-to-head in a vicious"
       puts "game of battleship against the world's"
       puts "most formidable opponent... "
-      sleep(6.5)
+      # sleep(6.5)
       puts ""
       puts ""
       puts "-------- GEORGE!!! --------"
-      sleep(4)
+      # sleep(4)
       puts "====================================="
       puts "Let's start with your name."
       puts "What do your homies call you?"
       @user_name = gets.chomp!
       self.make_board_with_players
-      sleep(6)
+      # sleep(6)
       puts ""
       puts "Let's place your ships. You've got 2 ships"
-      "......".each_char do |char|
-        print char
-        $stdout.flush
-        sleep(1)
-      end
+      # "......".each_char do |char|
+      #   print char
+      #   $stdout.flush
+      #   sleep(1)
+      # end
       puts ""
       puts "1) The Cruiser, known for it's"
       puts "impeccable speed, with 3 spaces"
       puts "              and   "
       puts "2) the Submarine, known for it's"
       puts "subness, with 2 spaces"
-      sleep(8.5)
+      # sleep(8.5)
       puts "------------------------------------"
       puts "Now, where would you like your ship to go? Remember"
-      "......".each_char do |char|
-        print char
-        $stdout.flush
-        sleep(1)
-      end
+      # "......".each_char do |char|
+      #   print char
+      #   $stdout.flush
+      #   sleep(1)
+      # end
       user_board.cells
       puts ""
       puts "1) The ship can't be diagonal"
@@ -145,22 +145,22 @@ class Game
       user_board.place(user_cruiser, user_numbers_array)
       puts "------------------------"
       user_board.render(true, true)
-      sleep(5)
+      # sleep(5)
       puts "Now we've gotta let George place his Cruiser."
       puts "George is careful. It may take him a minute"
-      "........".each_char do |char|
-        print char
-        $stdout.flush
-        sleep(1)
-      end
+      # "........".each_char do |char|
+      #   print char
+      #   $stdout.flush
+      #   sleep(1)
+      # end
       puts ""
       puts "==================================="
-      sleep(3)
+      # sleep(3)
       puts "Here's the board with your cruiser on there"
       puts "Obviously we won't show you George's ship..."
       puts "It's not gonna be that easy."
       self.make_board_with_players(true)
-      sleep(6)
+      # sleep(6)
       puts "Now let's add your Submarine!"
       puts "where would you like that to go?"
       puts "Remember, it only has 2 spaces"
@@ -204,13 +204,13 @@ class Game
       puts "Now we've gotta let George place his Sub,"
       puts "decide who'll go first,"
       puts "and we'll be ready to play!"
-      "........".each_char do |char|
-        print char
-        $stdout.flush
-        sleep(1)
-      end
-      sleep(2)
-      puts ""
+      # "........".each_char do |char|
+      #   print char
+      #   $stdout.flush
+      #   sleep(1)
+      # end
+      # sleep(2)
+      # puts ""
       @last_turn = user_name
       # The lines above this and below it go together. I just
       # changed it for now to test things out
@@ -218,7 +218,7 @@ class Game
       puts ""
       puts "Looks like #{@last_turn} will be going first!"
       puts ""
-      sleep(3)
+      # sleep(3)
       computer_options = user_board.cells.keys.shuffle
 
       until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
@@ -341,7 +341,8 @@ class Game
 
 
 # NEW Luke Notes
-# the Hits aren't showing for player, but misses and sinkings are
+# the Hits aren't showing for player, but misses and sinkings are.  I still can't seem get a loss for the player, as it seems like George's shots stop registering after a while.  He also hasn't hit me in 5 games now.
+# Turns that don't register Geoge's moves: 1, 4, 6, 7, 8, 11, 12, 13
 
 end
 
