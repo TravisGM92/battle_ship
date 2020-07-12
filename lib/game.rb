@@ -70,7 +70,7 @@ class Game
       sleep(6.5)
       puts ""
       puts ""
-      puts "-------- GEORGE!!! --------"
+      puts "--------        GEORGE!!!        --------"
       sleep(4)
       puts "====================================="
       puts "Let's start with your name."
@@ -101,6 +101,7 @@ class Game
          sleep 1
        end
       user_board.cells
+      puts ""
       puts ""
       puts "1) The ship can't be diagonal"
       puts "2) The ship can't overlap any other ship"
@@ -146,7 +147,7 @@ class Game
       user_board.cells
       computer_board.cells
       user_board.place(user_cruiser, user_numbers_array)
-      puts "------------------------"
+      puts "----------------------------"
       user_board.render(true, true)
       sleep(5)
       puts "Now we've gotta let George place his Cruiser."
@@ -258,33 +259,38 @@ class Game
 
         elsif last_turn == "George" && turn_number == 0
           puts "Georgy's turn"
-          sleep(2)
+          "........".each_char do |char|
+             print char
+             $stdout.flush
+             sleep 1
+           end
+          sleep(1)
           if user_board.cells[computer_options.first].empty? == false
             puts "George hit a ship!"
-            sleep(2)
+            sleep(1)
           else
             puts "Lucky... George missed"
-            sleep(2)
+            sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
           # self.make_board_with_players(true, true)
           @last_turn = "George"
-          sleep(5)
+          sleep(2)
           @turn_number += 1
 
         elsif last_turn == user_name && turn_number != 0
           puts "Georgy's turn"
           if user_board.cells[computer_options.first].empty? == false
             puts "George hit a ship!"
-            sleep(2)
+            sleep(1)
           else
             puts "Lucky... George missed"
-            sleep(2)
+            sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
           # self.make_board_with_players(true, true)
           @last_turn = "George"
-          sleep(5)
+          sleep(2)
           @turn_number += 1
 
         elsif last_turn == user_name && turn_number == 0
