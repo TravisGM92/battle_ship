@@ -14,12 +14,12 @@ class Board
   attr_reader :cells1, :coordinates_list
 
   def initialize
-    # @coordinates_list = ('a'..'d').collect{ |letter| (1..6).map{ |number| "#{letter.upcase}#{number}"}}.flatten
-    # @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
-    # @cells1 = coordinates_list.map{ |coord| coord = Cell.new(coord)}
-    # @my_hash = {}
-    # p cells1
- 
+    @coordinates_list = ('a'..'d').collect{ |letter| (1..6).map{ |number| "#{letter.upcase}#{number}"}}.flatten
+    @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
+    @cells1 = coordinates_list.map{ |coord| coord = Cell.new(coord)}
+    @my_hash = {}
+    p cells1
+
     @a1 = Cell.new("A1")
     @a2 = Cell.new("A2")
     @a3 = Cell.new("A3")
@@ -42,6 +42,12 @@ class Board
 
       # coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.select{ |numb| numb.coordinate == numbs}}
   end
+
+
+  # It's not that the hash of cells need to have something iterated on the inside of it, it's that an iteration outside of it will put things inside of the hash  with <<
+  # the idea would be to ask the user how many rows, and turn that into how many iterations of the first character of the key and value, and then ask for how many columns, and that would turn into the second character of the key and value.
+  # The number given would have to be an integer, and would have to give an "invalid entry" if anything except an interger is given.
+  #
 
   def cells
     {"A1" => a1,
@@ -223,10 +229,10 @@ class Board
 
 end
 
-board1 = Board.new
-ship1 = Ship.new("Submarine", 2)
-ship2 = Ship.new("Cruiser", 3)
-board1.valid_placement_for_cruiser(ship2)
+# board1 = Board.new
+# ship1 = Ship.new("Submarine", 2)
+# ship2 = Ship.new("Cruiser", 3)
+# board1.valid_placement_for_cruiser(ship2)
 # p board1.valid_coordinate?(["A3"])
 
 #
