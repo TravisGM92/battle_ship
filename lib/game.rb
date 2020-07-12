@@ -203,6 +203,7 @@ class Game
        user_board.place(user_sub, user_numbers2_array)
        self.make_board_with_players(true)
        puts "How's it look?"
+       sleep(3)
        puts ""
        puts "Now we've gotta let George place his Sub,"
        puts "decide who'll go first,"
@@ -257,16 +258,31 @@ class Game
 
         elsif last_turn == "George" && turn_number == 0
           puts "Georgy's turn"
+          sleep(2)
+          if user_board.cells[computer_options.first].empty? == false
+            puts "George hit a ship!"
+            sleep(2)
+          else
+            puts "Lucky... George missed"
+            sleep(2)
+          end
           user_board.cells[computer_options.shift].fire_upon
-          self.make_board_with_players(true, true)
+          # self.make_board_with_players(true, true)
           @last_turn = "George"
           sleep(5)
           @turn_number += 1
 
         elsif last_turn == user_name && turn_number != 0
           puts "Georgy's turn"
+          if user_board.cells[computer_options.first].empty? == false
+            puts "George hit a ship!"
+            sleep(2)
+          else
+            puts "Lucky... George missed"
+            sleep(2)
+          end
           user_board.cells[computer_options.shift].fire_upon
-          self.make_board_with_players(true, true)
+          # self.make_board_with_players(true, true)
           @last_turn = "George"
           sleep(5)
           @turn_number += 1
