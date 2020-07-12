@@ -8,9 +8,16 @@ class Board
                 :a1, :a2, :a3, :a4,
                 :b1, :b2, :b3, :b4,
                 :c1, :c2, :c3, :c4,
-                :d1, :d2, :d3, :d4
+                :d1, :d2, :d3, :d4, :my_hash
+  attr_reader :cells1, :coordinates_list
 
   def initialize
+    # @coordinates_list = ('a'..'d').collect{ |letter| (1..6).map{ |number| "#{letter.upcase}#{number}"}}.flatten
+    # @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
+    # @cells1 = coordinates_list.map{ |coord| coord = Cell.new(coord)}
+    # @my_hash = {}
+    # p cells1
+
     @a1 = Cell.new("A1")
     @a2 = Cell.new("A2")
     @a3 = Cell.new("A3")
@@ -27,6 +34,8 @@ class Board
     @d2 = Cell.new("D2")
     @d3 = Cell.new("D3")
     @d4 = Cell.new("D4")
+
+      # coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.select{ |numb| numb.coordinate == numbs}}
   end
 
   def cells
@@ -47,7 +56,7 @@ class Board
       "D3" => d3,
       "D4" => d4
     }
-
+    # my_hash
   end
 
 
@@ -176,14 +185,18 @@ class Board
       puts "D #{row_d.map { |cell| cell.render(false, true)}.join(" ")} |"
     end
   end
+  # def test
+  #   my_hash = {}
+  #   coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.select{ |numb| numb.coordinate == numbs}}
+  # end
 
 
 end
 
-# board1 = Board.new
+board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
 # ship2 = Ship.new("Cruiser", 3)
-# board1.cells
+p board1.cells
 # p board1.valid_placement?(ship1, ["C1", "D1"])
 # board1.place(ship2, ["A1", "A2", "A3"])
 #
@@ -200,5 +213,11 @@ end
 #
 #
 #
-#
+# board1.test
 # p board1.valid_placement?(ship2, ["B", "c"])
+
+#[#<Cell:0x00007fe39204f6c8 @coordinate="A1", @cell=[], @fired=0>]
+
+# Currently trying to iterate to make a hash so the code is a little cleaner.
+# Struggling with having the values of the hash printed as an array, rather
+# than just the Cell.new
