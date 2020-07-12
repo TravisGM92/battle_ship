@@ -8,7 +8,9 @@ class Board
                 :a1, :a2, :a3, :a4,
                 :b1, :b2, :b3, :b4,
                 :c1, :c2, :c3, :c4,
-                :d1, :d2, :d3, :d4, :my_hash
+                :d1, :d2, :d3, :d4, :my_hash,
+                :cord_one, :cord_two, :cord_three
+
   attr_reader :cells1, :coordinates_list
 
   def initialize
@@ -34,6 +36,9 @@ class Board
     @d2 = Cell.new("D2")
     @d3 = Cell.new("D3")
     @d4 = Cell.new("D4")
+    @cord_one = cord_one
+    @cord_two = cord_two
+    @cord_three = cord_three
 
       # coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.select{ |numb| numb.coordinate == numbs}}
   end
@@ -63,7 +68,7 @@ class Board
   def valid_coordinate?(coordinate)
     if coordinate.all?{ |numbers| cells.include? numbers} && coordinate.all?{ |numbers| cells[numbers].fired == 0}
       true
-    elsif cells[coordinate]
+    else
       false
     end
   end
@@ -136,7 +141,7 @@ class Board
       # This one below checks if the coordinates are 2 long, with same letters, different numbers
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && colum_numbers[0] == colum_numbers[0] + 1 && coordinate.length == 2 && coordinate.all?{ |pair| cells[pair].empty?}
       true
-    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1 && ship.length == 2
+    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1 && ship.length == 2 && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1]
       true
     else
       false
@@ -154,6 +159,31 @@ class Board
     else
       puts "Coordinate is invalid.  Coordinates need to be consecutive, not overlapping another ship, and not diagonal."
     end
+  end
+
+  def valid_placement_for_sub(ship)
+    @cord_one = cells.keys.last
+    @cord_two = cells.keys.last
+    until self.valid_placement?(ship, [@cord_one, @cord_two]) == true
+      @cord_one = cells.keys.shuffle.last
+      @cord_two = cells.keys.shuffle.last
+      coordaintes2 = [@cord_one, @cord_two]
+    end
+    coordaintes2
+  end
+
+  def valid_placement_for_cruiser(ship)
+    @cord_one = cells.keys.last
+    @cord_two = cells.keys.last
+    @cord_three = cells.keys.last
+    until self.valid_placement?(ship, [@cord_one, @cord_two, @cord_three]) == true
+      @cord_one = cells.keys.shuffle.last
+      @cord_two = cells.keys.shuffle.last
+      @cord_three = cells.keys.shuffle.last
+
+      coordaintes3 = [@cord_one, @cord_two, @cord_three]
+    end
+    coordaintes3
   end
 
   def render(show=false, second=false)
@@ -193,12 +223,12 @@ class Board
 
 end
 
-# board1 = Board.new
-# ship1 = Ship.new("Submarine", 2)
-# ship2 = Ship.new("Cruiser", 3)
-# p board1.cells
-# p board1.valid_placement?(ship1, ["C1", "D1"])
-# board1.place(ship2, ["A1", "A2", "A3"])
+board1 = Board.new
+ship1 = Ship.new("Submarine", 2)
+ship2 = Ship.new("Cruiser", 3)
+board1.valid_placement_for_cruiser(ship2)
+# p board1.valid_coordinate?(["A3"])
+
 #
 # board1.place(ship1, ["B4", "C4"])
 # cell_1 = board1.cells["A1"]
