@@ -49,7 +49,6 @@ class Board
     }
 
   end
-  # require "pry"; binding.pry
 
 
   def valid_coordinate?(coordinate)
