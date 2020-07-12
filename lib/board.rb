@@ -52,14 +52,10 @@ class Board
 
 
   def valid_coordinate?(coordinate)
-    if coordinate.class == String
+    if coordinate.all?{ |numbers| cells.include? numbers} && coordinate.all?{ |numbers| cells[numbers].fired == 0}
+      true
+    elsif cells[coordinate]
       false
-    elsif
-      if coordinate.all?{ |numbers| cells.include? numbers} && coordinate.all?{ |numbers| cells[numbers].fired == 0}
-        true
-      else
-        false
-      end
     end
   end
 
@@ -126,12 +122,12 @@ class Board
     # Checks if ship length is equal to coordinate length, then checks if the letters of the coordinates are consecutive, lastly checks if coordinates have 3 elements
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] + 1 == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] + 1 == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers.all?{ |numbs| colum_numbers[0] == numbs} && coordinate.all?{ |pair| cells[pair].empty?}
       true
-    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] == index_of_letters_of_coordinates[2] && coordinate.length == 3
+    elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && index_of_letters_of_coordinates[1] == index_of_letters_of_coordinates[2] && coordinate.length == 3 && colum_numbers[1] == colum_numbers[0] + 1 && colum_numbers[2] == colum_numbers[1] + 1
       true
       # This one below checks if the coordinates are 2 long, with same letters, different numbers
     elsif ship.length == coordinate.length && index_of_letters_of_coordinates[0] == index_of_letters_of_coordinates[1] && colum_numbers[0] == colum_numbers[0] + 1 && coordinate.length == 2 && coordinate.all?{ |pair| cells[pair].empty?}
       true
-    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1  # My linter thingy in atom is saying " `-' after local variable or literal is interpreted as binary operator even though it seems like a unary operator"
+    elsif ship.length == coordinate.length && colum_numbers[0] == colum_numbers[1] -1 && ship.length == 2
       true
     else
       false
@@ -205,4 +201,4 @@ end
 #
 #
 #
-# p board1.valid_coordinate?(["D4", "C3"])
+# p board1.valid_placement?(ship2, ["B", "c"])

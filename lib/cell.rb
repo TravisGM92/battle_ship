@@ -36,6 +36,9 @@ class Cell
   def fire_upon
     if cell.empty? == false
       ship.hits += 1
+      @fired += 1
+    elsif self.empty? && self.fired_upon?
+      false
     else
       @fired += 1
     end
