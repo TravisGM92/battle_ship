@@ -1,4 +1,3 @@
-require './lib/turn'
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
@@ -18,8 +17,6 @@ class Game
                 :turn_number,
                 :second,
                 :show,
-                :winner,
-                :loser,
                 :user_fires
 
   def initialize
@@ -36,15 +33,13 @@ class Game
     @turn_number = 0
     @show = show
     @second = second
-    @winner = winner
-    @loser = loser
     @user_fires = user_fires
   end
 
   def make_board_with_players(show=false, second=false)
     puts "--------------------"
     puts "Here's the board..."
-      # sleep(1.5)
+    # sleep(1.5)
     puts "*** George ***"
     computer_board.render(show=false, second)
     puts "-------------"
@@ -338,30 +333,32 @@ class Game
 
 # TODO
 
-# 1) Announces winner (it can announce when the computer wins)
-# 8) Would you like to play again?
+# 1) Fix things in Luke Notes down below
 
 
 # WISHLIST
 
-# 1) Have a Turn file called inside game.rb to separate the two
-# 2) Tutorial file to be called inside game.rb
-# 3) Iterate over cells instead of initializing a new cell for 16 cells,
-# to make it more dynamic
-# 4) Get rid of the " " around the sentences
-# 2) Be able to name the computer?
+# 1) Have computer's ships randomly place themselves
+# 2) Have a Turn file called inside game.rb to separate the two
 # 3) Iterate over cells instead of initializing a new cell for 16 cells, to make it more dynamic
+# 4) Be able to name the computer?
 
 
 # LUKE NOTES
 # When I put in q to quit, I have to do it twice for some reason...
 
 # -----------
-# - firing on a coord not on the board breaks the game with this error:
+# - firing on a coord not on the board bre aks the game with this error:
+
 # 1: from /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:351:in `<top (required)>'
 # /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:249:in `start': undefined method `fire_upon' for nil:NilClass (NoMethodError
 # I can't seem to play to the point where computer player_loses
 # If you don't put in a coordinate to fire upon and just hit enter, it breaks the Game
+
+
+# NEW Luke Notes
+# the Hits aren't showing for player, but misses and sinkings are.  I still can't seem get a loss for the player, as it seems like George's shots stop registering after a while.  He also hasn't hit me in 5 games now.
+# Turns that don't register Geoge's moves: 1, 4, 6, 7, 8, 11, 12, 13
 
 end
 
