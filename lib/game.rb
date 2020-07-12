@@ -268,7 +268,7 @@ class Game
           @turn_number += 1
 
         elsif last_turn == "George" && turn_number == 0
-          puts "Georgy's turn"
+          print "Georgy's turn"
           "........".each_char do |char|
              print char
              $stdout.flush

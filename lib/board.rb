@@ -63,7 +63,7 @@ class Board
   def valid_coordinate?(coordinate)
     if coordinate.all?{ |numbers| cells.include? numbers} && coordinate.all?{ |numbers| cells[numbers].fired == 0}
       true
-    elsif cells[coordinate]
+    else
       false
     end
   end
@@ -197,7 +197,7 @@ end
 # ship1 = Ship.new("Submarine", 2)
 # ship2 = Ship.new("Cruiser", 3)
 # p board1.cells
-# p board1.valid_placement?(ship1, ["C1", "D1"])
+# p board1.valid_coordinate?(["A3"])
 # board1.place(ship2, ["A1", "A2", "A3"])
 #
 # board1.place(ship1, ["B4", "C4"])
