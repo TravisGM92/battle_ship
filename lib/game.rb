@@ -39,7 +39,8 @@ class Game
   def make_board_with_players(show=false, second=false)
     puts "--------------------"
     puts "Here's the board..."
-    # sleep(1.5)
+    sleep(1.5)
+    puts ""
     puts "*** George ***"
     computer_board.render(show=false, second)
     puts "-------------"
@@ -55,35 +56,35 @@ class Game
     puts "                   Enter q to Quit."
     user_index = gets.chomp!.downcase
     if user_index == "p"
-      print "                    You have choosen wisely"
-      # ".....".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 0.8
-      #   end
+      print "                   You have choosen wisely"
+      ".....".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 0.8
+        end
       puts ""
       puts "------------------------------------"
       puts "You will go head-to-head in a vicious"
       puts "game of battleship against the world's"
       puts "most formidable opponent... "
-      # sleep(6.5)
+      sleep(6.5)
       puts ""
       puts ""
       puts "-------- GEORGE!!! --------"
-      # sleep(4)
+      sleep(4)
       puts "====================================="
       puts "Let's start with your name."
       puts "What do your homies call you?"
       @user_name = gets.chomp!
       self.make_board_with_players
-      # sleep(6)
+      sleep(6)
       puts ""
       print "Let's place your ships. You've got 2 ships"
-      # "......".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 0.75
-      #  end
+      "......".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 0.75
+       end
       puts ""
       puts ""
       puts "1) The Cruiser, known for it's"
@@ -91,14 +92,14 @@ class Game
       puts "              and   "
       puts "2) the Submarine, known for it's"
       puts "subness, with 2 spaces"
-      # sleep(9.5)
+      sleep(9.5)
       puts "------------------------------------"
       print "Now, where would you like your cruiser to go? Remember"
-      # "......".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 1
-      #  end
+      "......".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 1
+       end
       user_board.cells
       puts ""
       puts "1) The ship can't be diagonal"
@@ -147,22 +148,22 @@ class Game
       user_board.place(user_cruiser, user_numbers_array)
       puts "------------------------"
       user_board.render(true, true)
-      # sleep(5)
+      sleep(5)
       puts "Now we've gotta let George place his Cruiser."
       print "George is careful. It may take him a minute"
-      # "........".each_char do |char|
-      #    print char
-      #    $stdout.flush
-      #    sleep 1
-      #  end
+      "........".each_char do |char|
+         print char
+         $stdout.flush
+         sleep 1
+       end
       puts ""
       puts "==================================="
-      # sleep(3)
+      sleep(2)
       puts "Here's the board with your cruiser on there"
       puts "Obviously we won't show you George's ship..."
       puts "It's not gonna be that easy."
       self.make_board_with_players(true)
-      # sleep(6)
+      sleep(6)
       puts "Now let's add your Submarine!"
       puts "where would you like that to go?"
       puts "Remember, it only has 2 spaces"
@@ -206,21 +207,20 @@ class Game
        puts "Now we've gotta let George place his Sub,"
        puts "decide who'll go first,"
        print "and we'll be ready to play!"
-       # "........".each_char do |char|
-       #    print char
-       #    $stdout.flush
-       #    sleep 1
-       #  end
-       # sleep(2)
+       "........".each_char do |char|
+          print char
+          $stdout.flush
+          sleep 1
+        end
+       sleep(2)
       p ""
-      @last_turn = user_name
+      @last_turn = [user_name, "George"].sample
       # The lines above this and below it go together. I just
       # changed it for now to test things out
-      # [user_name, "George"]
       puts ""
       puts "Looks like #{@last_turn} will be going first!"
       puts ""
-      # sleep(3)
+      sleep(3)
       computer_options = user_board.cells.keys.shuffle
 
       until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
@@ -242,16 +242,19 @@ class Game
               puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
               puts "Let's try again: "
               @user_fires = gets.chomp!.upcase
-              # p @user_fires
-              # if computer_board.valid_coordinate?([@user_fires]) == true
-              #   break
-              # end
             end
-          # board1.cells["B4"].fire_upon
           computer_board.cells[@user_fires].fire_upon
-          self.make_board_with_players(true, true)
+          if computer_board.cells[@user_fires].empty? == false
+            puts "You hit a ship!"
+            sleep(2)
+          else
+            puts "Ahh man, you missed."
+            sleep(2)
+          end
+          # self.make_board_with_players(true, true)
           @last_turn = user_name
           @turn_number += 1
+
         elsif last_turn == "George" && turn_number == 0
           puts "Georgy's turn"
           user_board.cells[computer_options.shift].fire_upon
@@ -259,6 +262,7 @@ class Game
           @last_turn = "George"
           sleep(5)
           @turn_number += 1
+
         elsif last_turn == user_name && turn_number != 0
           puts "Georgy's turn"
           user_board.cells[computer_options.shift].fire_upon
@@ -266,6 +270,7 @@ class Game
           @last_turn = "George"
           sleep(5)
           @turn_number += 1
+
         elsif last_turn == user_name && turn_number == 0
           self.make_board_with_players(true, true)
           puts "Where would you like to fire?"
@@ -287,9 +292,14 @@ class Game
                 break
               end
           end
-          # board1.cells["B4"].fire_upon
           computer_board.cells[@user_fires].fire_upon
-          self.make_board_with_players
+          if computer_board.cells[@user_fires].empty? == false
+            puts "You hit a ship!"
+            sleep(2)
+          else
+            puts "Dang, you missed."
+            sleep(2)
+          end
           @last_turn = user_name
           @turn_number += 1
         end
@@ -329,21 +339,6 @@ class Game
 
 
   end
-
-
-# TODO
-
-# 2) Display results of each coordinate (with computer AND user)
-# 3) After one invalid coordinate for the cruiser, be able to input a valid coordinate
-
-
-# WISHLIST
-
-# 1) Have computer's ships randomly place themselves
-# 2) Have a Turn file called inside game.rb to separate the two
-# 3) Iterate over cells instead of initializing a new cell for 16 cells, to make it more dynamic
-# 4) Be able to name the computer?
-
 
 end
 
