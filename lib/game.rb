@@ -55,12 +55,12 @@ class Game
     puts "                   Enter q to Quit."
     user_index = gets.chomp!.downcase
     if user_index == "p"
-      puts "                   You have choosen wisely"
-      # "......".each_char do |char|
-      #   print char
-      #   $stdout.flush
-      #   sleep(1)
-      # end
+      print "                    You have choosen wisely"
+      # ".....".each_char do |char|
+      #    print char
+      #    $stdout.flush
+      #    sleep 0.8
+      #   end
       puts ""
       puts "------------------------------------"
       puts "You will go head-to-head in a vicious"
@@ -78,26 +78,27 @@ class Game
       self.make_board_with_players
       # sleep(6)
       puts ""
-      puts "Let's place your ships. You've got 2 ships"
+      print "Let's place your ships. You've got 2 ships"
       # "......".each_char do |char|
-      #   print char
-      #   $stdout.flush
-      #   sleep(1)
-      # end
+      #    print char
+      #    $stdout.flush
+      #    sleep 0.75
+      #  end
+      puts ""
       puts ""
       puts "1) The Cruiser, known for it's"
       puts "impeccable speed, with 3 spaces"
       puts "              and   "
       puts "2) the Submarine, known for it's"
       puts "subness, with 2 spaces"
-      # sleep(8.5)
+      # sleep(9.5)
       puts "------------------------------------"
-      puts "Now, where would you like your ship to go? Remember"
+      print "Now, where would you like your cruiser to go? Remember"
       # "......".each_char do |char|
-      #   print char
-      #   $stdout.flush
-      #   sleep(1)
-      # end
+      #    print char
+      #    $stdout.flush
+      #    sleep 1
+      #  end
       user_board.cells
       puts ""
       puts "1) The ship can't be diagonal"
@@ -108,6 +109,7 @@ class Game
       puts "------------------------------------"
       puts "So, where's it gonna go? "
       user_cruiser = Ship.new("Cruiser", 3)
+
       user_numbers_first =  gets.chomp!.upcase
       user_numbers_array = user_numbers_first.split(", ").to_a
       while user_numbers_array.length != 3
@@ -147,12 +149,12 @@ class Game
       user_board.render(true, true)
       # sleep(5)
       puts "Now we've gotta let George place his Cruiser."
-      puts "George is careful. It may take him a minute"
+      print "George is careful. It may take him a minute"
       # "........".each_char do |char|
-      #   print char
-      #   $stdout.flush
-      #   sleep(1)
-      # end
+      #    print char
+      #    $stdout.flush
+      #    sleep 1
+      #  end
       puts ""
       puts "==================================="
       # sleep(3)
@@ -172,45 +174,45 @@ class Game
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Oops! Remember, your coordinates must be"
         puts "2 spaces long. Please give me coordinates"
-        puts "such as c4, d4."
+        puts "such as c4, d4. The space is important."
         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
         puts "Let's try again: "
         user_numbers_second =  gets.chomp!.upcase
         user_numbers2_array = user_numbers_second.split(", ").to_a
       end
 
-      while user_board.valid_placement?(user_sub, user_numbers2_array) == false
-        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-        puts "Oops! Looks like you put in an invalid placement."
-        puts "Try again, except this time make sure the"
-        puts "coordinates are one after the other,"
-        puts "don't overlap other ships, aren't diagonal,"
-        puts "and don't pass the edge"
-        puts "of the board... "
-        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-        puts "Let's try again: "
-        user_sub = Ship.new("Submarine", 2)
-        user_numbers_second =  gets.chomp!.upcase
-        user_numbers2_array = user_numbers_second.split(", ").to_a
-        if user_board.valid_placement?(user_sub, user_numbers2_array) == true
-          break
-        end
-      end
-      user_board.cells
-      user_board.place(user_sub, user_numbers2_array)
-      self.make_board_with_players(true)
-      puts "How's it look?"
-      puts ""
-      puts "Now we've gotta let George place his Sub,"
-      puts "decide who'll go first,"
-      puts "and we'll be ready to play!"
-      # "........".each_char do |char|
-      #   print char
-      #   $stdout.flush
-      #   sleep(1)
-      # end
-      # sleep(2)
-      # puts ""
+       while user_board.valid_placement?(user_sub, user_numbers2_array) == false
+         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+         puts "Oops! Looks like you put in an invalid placement."
+         puts "Try again, except this time make sure the"
+         puts "coordinates are one after the other,"
+         puts "don't, overlap other ships, aren't diagonal,"
+         puts "and don't pass the edge"
+         puts "of the board... "
+         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+         puts "Let's try again: "
+         user_sub = Ship.new("Submarine", 2)
+         user_numbers_second =  gets.chomp!.upcase
+         user_numbers2_array = user_numbers_second.split(", ").to_a
+         if user_board.valid_placement?(user_sub, user_numbers2_array) == true
+           break
+         end
+       end
+       user_board.cells
+       user_board.place(user_sub, user_numbers2_array)
+       self.make_board_with_players(true)
+       puts "How's it look?"
+       puts ""
+       puts "Now we've gotta let George place his Sub,"
+       puts "decide who'll go first,"
+       print "and we'll be ready to play!"
+       # "........".each_char do |char|
+       #    print char
+       #    $stdout.flush
+       #    sleep 1
+       #  end
+       # sleep(2)
+      p ""
       @last_turn = user_name
       # The lines above this and below it go together. I just
       # changed it for now to test things out
@@ -228,16 +230,30 @@ class Game
           puts "Where would you like to fire?"
           puts "Remember, plese give us a coordinate in this"
           puts "in this format: 'A2' OR 'D3'"
-          user_fires = gets.chomp!.upcase
-
+          @user_fires = gets.chomp!.upcase
+            until computer_board.valid_coordinate?([@user_fires]) == true
+              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              puts "Oops! Looks like you put in an invalid coordinate."
+              puts "Try again, except this time make sure the"
+              puts "coordinates are one after the other."
+              puts "Also, make sure you don't fire at"
+              puts "the same cell twice, and don't try"
+              puts "to fire at a cell off the board... "
+              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              puts "Let's try again: "
+              @user_fires = gets.chomp!.upcase
+              # p @user_fires
+              # if computer_board.valid_coordinate?([@user_fires]) == true
+              #   break
+              # end
+            end
           # board1.cells["B4"].fire_upon
-          computer_board.cells[user_fires].fire_upon
+          computer_board.cells[@user_fires].fire_upon
           self.make_board_with_players(true, true)
           @last_turn = user_name
           @turn_number += 1
         elsif last_turn == "George" && turn_number == 0
           puts "Georgy's turn"
-          computer_options = user_board.cells.keys.shuffle
           user_board.cells[computer_options.shift].fire_upon
           self.make_board_with_players(true, true)
           @last_turn = "George"
@@ -245,7 +261,6 @@ class Game
           @turn_number += 1
         elsif last_turn == user_name && turn_number != 0
           puts "Georgy's turn"
-          computer_options = user_board.cells.keys.shuffle
           user_board.cells[computer_options.shift].fire_upon
           self.make_board_with_players(true, true)
           @last_turn = "George"
@@ -256,9 +271,24 @@ class Game
           puts "Where would you like to fire?"
           puts "Remember, plese give us a coordinate in this"
           puts "in this format: 'A2' OR 'D3'"
-          user_fires = gets.chomp!.upcase
+          @user_fires = gets.chomp!.upcase
+            until computer_board.valid_coordinate?([@user_fires]) == true
+              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              puts "Oops! Looks like you put in an invalid coordinate."
+              puts "Try again, except this time make sure the"
+              puts "coordinates are one after the other."
+              puts "Also, make sure you don't fire at"
+              puts "the same cell twice, and don't try"
+              puts "to fire at a cell off the board... "
+              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              puts "Let's try again: "
+              @user_fires = gets.chomp!.upcase
+              if computer_board.valid_coordinate?([@user_fires]) == true
+                break
+              end
+          end
           # board1.cells["B4"].fire_upon
-          computer_board.cells[user_fires].fire_upon
+          computer_board.cells[@user_fires].fire_upon
           self.make_board_with_players
           @last_turn = user_name
           @turn_number += 1
@@ -316,24 +346,10 @@ class Game
 
 # LUKE NOTES
 # When I put in q to quit, I have to do it twice for some reason...
-# still coming up with this error:
+
 # -----------
-# So, where's it gonna go?
-# a3, a4, a1
-# "==================================="
-# Ok, here is where your Cruiser has been placed
-# "------------------------"
-# "  1 2 3 4 |"
-# "A S . S S |"     < this here :/
-# "B . . . . |"
-# "C . . . . |"
-# "D . . . . |"
-# Now we've gotta let George place his Cruiser.
-# George is careful. It may take him a minute"
-# -----------
-# - and afterwards I was able to place the sub on a1, a2.
-# - It also let me do a1, a2, a4
 # - firing on a coord not on the board bre aks the game with this error:
+
 # 1: from /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:351:in `<top (required)>'
 # /Users/lukejames-erickson/turing/battle_ship/battle_ship/battle_ship/lib/game.rb:249:in `start': undefined method `fire_upon' for nil:NilClass (NoMethodError
 # I can't seem to play to the point where computer player_loses
