@@ -163,20 +163,20 @@ class GameWords
     puts "Now we've gotta let George place his Sub,"
     puts "decide who'll go first,"
     print "and we'll be ready to play!"
-    "........".each_char do |char|
+    "....".each_char do |char|
        print char
        $stdout.flush
-       sleep 1
+       sleep 0.8
      end
   end
 
   def slowing_things_down
-    "........".each_char do |char|
+    "....".each_char do |char|
        print char
        $stdout.flush
-       sleep 1
+       sleep 0.8
      end
-    sleep(2)
+    sleep(1)
    puts ""
    p ""
   end

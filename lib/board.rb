@@ -1,16 +1,13 @@
 require './lib/cell'
 require './lib/ship'
+require './lib/game'
 
 
 class Board
 
-  attr_accessor :row_a, :row_b, :row_c,:row_d,
-                :a1, :a2, :a3, :a4,
-                :b1, :b2, :b3, :b4,
-                :c1, :c2, :c3, :c4,
-                :d1, :d2, :d3, :d4, :my_hash,
+  attr_accessor :row_a, :row_b, :row_c,:row_d, :my_hash,
                 :cord_one, :cord_two, :cord_three,
-                :user_width, :user_height, :row_amount
+                :user_width1, :user_height, :row_amount
 
   attr_reader :cells1, :coordinates_list
 
@@ -18,10 +15,10 @@ class Board
     # We can change @coordinates_list (the (1..10).map) to make board any size and it works.
     # I can put ships in those new coordinates.
     # puts "How wide?"
-    @user_width = 4
-    # @user_height = gets.chomp!.to_i
+    @user_width1 = gets.chomp!.to_i
+
     # @row_amount = ('a'..'z').find.with_index{ |letter, index| index == user_height-1}.upcase
-    @coordinates_list = ('a'..'d').flat_map{ |letter| (1..user_width).map{ |number| "#{letter.upcase}#{number}"}}
+    @coordinates_list = ('a'..'d').flat_map{ |letter| (1..user_width1).map{ |number| "#{letter.upcase}#{number}"}}
     @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
     @cells1 = coordinates_list.collect{ |coord| coord = Cell.new(coord)}
     @my_hash = {}
@@ -156,19 +153,19 @@ class Board
 
   def test
     alpha = ('a'..'z').find.with_index{ |letter, index| index == user_height-1}.upcase
-    p alpha
+    row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
   end
 
   def render(show=false, second=false)
-    # row_(user_width) = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "#{user_input}"}
+    # row_(user_width) = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "#{user_width}"}
     row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
     row_b = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "B"}
     row_c = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "C"}
     row_d = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "D"}
-
-    # (1..user_width).each{ |number| print " #{number}"}
-    # puts ""
-    puts "  1 2 3 4 |"
+    print " "
+    (1..user_width1).each{ |number| print " #{number}"}
+    puts ""
+    # puts "  1 2 3 4 |"
     if show == false && second == false
       puts "A #{row_a.map { |cell| cell.render}.join(" ")} |"
       puts "B #{row_b.map { |cell| cell.render}.join(" ")} |"
@@ -215,4 +212,4 @@ end
 #
 #
 #
-# board1.test
+# board1.render
