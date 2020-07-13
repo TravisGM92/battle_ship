@@ -156,52 +156,56 @@ class Game
       user_board.cells
       computer_board.cells
       user_board.place(user_cruiser, user_numbers_array)
-      puts "----------------------------"
-      user_board.render(true, true)
-      sleep(5)
-      puts "Now we've gotta let George place his Cruiser."
-      print "George is careful. It may take him a minute"
-      "........".each_char do |char|
-         print char
-         $stdout.flush
-         sleep 1
-       end
-      puts ""
-      puts "==================================="
-      sleep(2)
-      puts "Here's the board with your cruiser on there"
-      puts "Obviously we won't show you George's ship..."
-      puts "It's not gonna be that easy."
+      @game_words.george_placing_cruiser
+      # puts "----------------------------"
+      # user_board.render(true, true)
+      # sleep(5)
+      # puts "Now we've gotta let George place his Cruiser."
+      # print "George is careful. It may take him a minute"
+      # "........".each_char do |char|
+      #    print char
+      #    $stdout.flush
+      #    sleep 1
+      #  end
+      # puts ""
+      # puts "==================================="
+      # sleep(2)
+      # puts "Here's the board with your cruiser on there"
+      # puts "Obviously we won't show you George's ship..."
+      # puts "It's not gonna be that easy."
       self.make_board_with_players(true)
-      sleep(6)
-      puts "Now let's add your Submarine!"
-      puts "where would you like that to go?"
-      puts "Remember, it only has 2 spaces"
-      puts "So, where's it gonna go? "
+      @game_words.add_submarine_prompt
+      # sleep(6)
+      # puts "Now let's add your Submarine!"
+      # puts "where would you like that to go?"
+      # puts "Remember, it only has 2 spaces"
+      # puts "So, where's it gonna go? "
       user_sub = Ship.new("Submarine", 2)
       user_numbers_second =  gets.chomp!.upcase
       user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       while user_numbers2_array.length != 2
-        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-        puts "Oops! Remember, your coordinates must be"
-        puts "2 spaces long. Please give me coordinates"
-        puts "such as c4, d4. The space is important."
-        puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-        puts "Let's try again: "
+        @game_words.oops_bad_sub_coordinates
+        # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+        # puts "Oops! Remember, your coordinates must be"
+        # puts "2 spaces long. Please give me coordinates"
+        # puts "such as c4, d4. The space is important."
+        # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+        # puts "Let's try again: "
         user_numbers_second =  gets.chomp!.upcase
         user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       end
 
        while user_board.valid_placement?(user_sub, user_numbers2_array) == false
-         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-         puts "Oops! Looks like you put in an invalid placement."
-         puts "Try again, except this time make sure the"
-         puts "coordinates are one after the other,"
-         puts "don't, overlap other ships, aren't diagonal,"
-         puts "and don't pass the edge"
-         puts "of the board... "
-         puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-         puts "Let's try again: "
+         @game_words.oops_bad_sub_overlap
+         # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+         # puts "Oops! Looks like you put in an invalid placement."
+         # puts "Try again, except this time make sure the"
+         # puts "coordinates are one after the other,"
+         # puts "don't, overlap other ships, aren't diagonal,"
+         # puts "and don't pass the edge"
+         # puts "of the board... "
+         # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+         # puts "Let's try again: "
          user_sub = Ship.new("Submarine", 2)
          user_numbers_second =  gets.chomp!.upcase
          user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
@@ -209,27 +213,29 @@ class Game
        user_board.cells
        user_board.place(user_sub, user_numbers2_array)
        self.make_board_with_players(true)
-       puts "How's it look?"
-       sleep(3)
-       puts ""
-       puts "Now we've gotta let George place his Sub,"
-       puts "decide who'll go first,"
-       print "and we'll be ready to play!"
-       "........".each_char do |char|
-          print char
-          $stdout.flush
-          sleep 1
-        end
-       sleep(2)
+       @game_words.lets_take_a_look
+       # puts "How's it look?"
+       # sleep(3)
+       # puts ""
+       # puts "Now we've gotta let George place his Sub,"
+       # puts "decide who'll go first,"
+       # print "and we'll be ready to play!"
+       # "........".each_char do |char|
+       #    print char
+       #    $stdout.flush
+       #    sleep 1
+       #  end
+       # sleep(2)
       @last_turn = user_name
-       "........".each_char do |char|
-          print char
-          $stdout.flush
-          sleep 1
-        end
-       sleep(2)
-      puts ""
-      p ""
+      @game_words.slowing_things_down
+      #  "........".each_char do |char|
+      #     print char
+      #     $stdout.flush
+      #     sleep 1
+      #   end
+      #  sleep(2)
+      # puts ""
+      # p ""
       @last_turn = [user_name, "George"].sample
       puts ""
       puts "Looks like #{@last_turn} will be going first!"
@@ -241,51 +247,58 @@ class Game
 
         if last_turn == "George" && turn_number != 0
           self.make_board_with_players(true, true)
-          puts "Where would you like to fire?"
-          puts "Remember, plese give us a coordinate in this"
-          puts "in this format: 'A2' OR 'D3'"
+          @game_words.first_fire_prompt
+          # puts "Where would you like to fire?"
+          # puts "Remember, plese give us a coordinate in this"
+          # puts "in this format: 'A2' OR 'D3'"
           @user_fires = gets.chomp!.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
-              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-              puts "Oops! Looks like you put in an invalid coordinate."
-              puts "Try again, except this time make sure the"
-              puts "coordinates are one after the other."
-              puts "Also, make sure you don't fire at"
-              puts "the same cell twice, and don't try"
-              puts "to fire at a cell off the board... "
-              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-              puts "Let's try again: "
+              @game_words.invalid_shot_location
+              # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              # puts "Oops! Looks like you put in an invalid coordinate."
+              # puts "Try again, except this time make sure the"
+              # puts "coordinates are one after the other."
+              # puts "Also, make sure you don't fire at"
+              # puts "the same cell twice, and don't try"
+              # puts "to fire at a cell off the board... "
+              # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              # puts "Let's try again: "
               @user_fires = gets.chomp!.upcase
             end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
-            puts "You hit a ship!"
-            puts ""
-            sleep(2)
+            @game_words.you_hit_a_ship
+            # puts "You hit a ship!"
+            # puts ""
+            # sleep(2)
           else
-            puts "Ahh man, you missed."
-            puts ""
-            sleep(2)
+            @game_words.you_missed_the_ship
+            # puts "Ahh man, you missed."
+            # puts ""
+            # sleep(2)
           end
           @last_turn = user_name
           @turn_number += 1
 
         elsif last_turn == "George" && turn_number == 0
-          print "Georgy's turn"
-          "........".each_char do |char|
-             print char
-             $stdout.flush
-             sleep 1
-           end
+          @game_words.georges_turn
+          # print "Georgy's turn"
+          # "........".each_char do |char|
+          #    print char
+          #    $stdout.flush
+          #    sleep 1
+          #  end
           sleep(1)
           if user_board.cells[computer_options.first].empty? == false
-            puts "George hit a ship!"
-            puts ""
-            sleep(1)
+            @game_words.george_hit_you
+            # puts "George hit a ship!"
+            # puts ""
+            # sleep(1)
           else
-            puts "Lucky... George missed"
-            puts ""
-            sleep(1)
+            @game_words.george_missed_you
+            # puts "Lucky... George missed"
+            # puts ""
+            # sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
           @last_turn = "George"
@@ -296,13 +309,15 @@ class Game
           puts ""
           puts "Georgy's turn"
           if user_board.cells[computer_options.first].empty? == false
-            puts "George hit a ship!"
-            puts ""
-            sleep(1)
+            @game_words.george_hit_you
+            # puts "George hit a ship!"
+            # puts ""
+            # sleep(1)
           else
-            puts "Lucky... George missed"
-            puts ""
-            sleep(1)
+            @game_words.george_missed_you
+            # puts "Lucky... George missed"
+            # puts ""
+            # sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
           @last_turn = "George"
@@ -311,20 +326,22 @@ class Game
 
         elsif last_turn == user_name && turn_number == 0
           self.make_board_with_players(true, true)
-          puts "Where would you like to fire?"
-          puts "Remember, plese give us a coordinate in this"
-          puts "in this format: 'A2' OR 'D3'"
+          @game_words.first_fire_prompt
+          # puts "Where would you like to fire?"
+          # puts "Remember, plese give us a coordinate in this"
+          # puts "in this format: 'A2' OR 'D3'"
           @user_fires = gets.chomp!.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
-              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-              puts "Oops! Looks like you put in an invalid coordinate."
-              puts "Try again, except this time make sure the"
-              puts "coordinates are one after the other."
-              puts "Also, make sure you don't fire at"
-              puts "the same cell twice, and don't try"
-              puts "to fire at a cell off the board... "
-              puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-              puts "Let's try again: "
+              @game_words.invalid_shot_location
+              # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              # puts "Oops! Looks like you put in an invalid coordinate."
+              # puts "Try again, except this time make sure the"
+              # puts "coordinates are one after the other."
+              # puts "Also, make sure you don't fire at"
+              # puts "the same cell twice, and don't try"
+              # puts "to fire at a cell off the board... "
+              # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+              # puts "Let's try again: "
               @user_fires = gets.chomp!.upcase
               if computer_board.valid_coordinate?([@user_fires]) == true
                 break
@@ -332,11 +349,13 @@ class Game
             end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
-            puts "You hit a ship!"
-            sleep(2)
+            @game_words.you_hit_a_ship
+            # puts "You hit a ship!"
+            # sleep(2)
           else
-            puts "Dang, you missed."
-            sleep(2)
+            @game_words.you_missed_the_ship
+            # puts "Dang, you missed."
+            # sleep(2)
           end
           @last_turn = user_name
           @turn_number += 1
@@ -358,13 +377,13 @@ class Game
       @rules.start_tutorial
       self.start
     else
-      puts ""
-      puts ""
-      puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-      puts "|Invalid entry.   Please try again!|"
-      puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-      puts ""
-      puts ""
+      # puts ""
+      # puts ""
+      # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+      # puts "|Invalid entry.   Please try again!|"
+      # puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+      # puts ""
+      # puts ""
       self.start
     end
 

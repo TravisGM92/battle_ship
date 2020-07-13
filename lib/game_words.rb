@@ -102,6 +102,143 @@ class GameWords
   end
 
 
+  def george_placing_cruiser
+    puts "----------------------------"
+    user_board.render(true, true)
+    sleep(5)
+    puts "Now we've gotta let George place his Cruiser."
+    print "George is careful. It may take him a minute"
+    "........".each_char do |char|
+       print char
+       $stdout.flush
+       sleep 1
+     end
+    puts ""
+    puts "==================================="
+    sleep(2)
+    puts "Here's the board with your cruiser on there"
+    puts "Obviously we won't show you George's ship..."
+    puts "It's not gonna be that easy."
+  end
 
+  def add_submarine_prompt
+    sleep(6)
+    puts "Now let's add your Submarine!"
+    puts "where would you like that to go?"
+    puts "Remember, it only has 2 spaces"
+    puts "So, where's it gonna go? "
+  end
+
+  def oops_bad_sub_coordinates
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Oops! Remember, your coordinates must be"
+    puts "2 spaces long. Please give me coordinates"
+    puts "such as c4, d4. The space is important."
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Let's try again: "
+  end
+
+  def oops_bad_sub_overlap
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Oops! Looks like you put in an invalid placement."
+    puts "Try again, except this time make sure the"
+    puts "coordinates are one after the other,"
+    puts "don't, overlap other ships, aren't diagonal,"
+    puts "and don't pass the edge"
+    puts "of the board... "
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Let's try again: "
+  end
+
+  def lets_take_a_look
+    puts "How's it look?"
+    sleep(3)
+    puts ""
+    puts "Now we've gotta let George place his Sub,"
+    puts "decide who'll go first,"
+    print "and we'll be ready to play!"
+    "........".each_char do |char|
+       print char
+       $stdout.flush
+       sleep 1
+     end
+    sleep(2)
+  end
+
+  def slowing_things_down
+    "........".each_char do |char|
+       print char
+       $stdout.flush
+       sleep 1
+     end
+    sleep(2)
+   puts ""
+   p ""
+  end
+
+
+  def first_fire_prompt
+    puts "Where would you like to fire?"
+    puts "Remember, plese give us a coordinate in this"
+    puts "in this format: 'A2' OR 'D3'"
+
+  end
+
+
+  def invalid_shot_location
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Oops! Looks like you put in an invalid coordinate."
+    puts "Try again, except this time make sure the"
+    puts "coordinates are one after the other."
+    puts "Also, make sure you don't fire at"
+    puts "the same cell twice, and don't try"
+    puts "to fire at a cell off the board... "
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Let's try again: "
+  end
+
+  def you_hit_a_ship
+    puts "You hit a ship!"
+    puts ""
+    sleep(2)
+  end
+
+  def you_missed_the_ship
+    puts "Ahh man, you missed."
+    puts ""
+    sleep(2)
+  end
+
+  def georges_turn
+    print "Georgy's turn"
+    "........".each_char do |char|
+       print char
+       $stdout.flush
+       sleep 1
+     end
+    sleep(1)
+  end
+
+  def george_hit_you
+    puts "George hit a ship!"
+    puts ""
+    sleep(1)
+  end
+
+  def george_missed_you
+    puts "Lucky... George missed"
+    puts ""
+    sleep(1)
+  end
+
+  def invalid_entry
+    puts ""
+    puts ""
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "|Invalid entry.   Please try again!|"
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts ""
+    puts ""
+  end
 
 end
