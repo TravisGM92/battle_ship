@@ -56,6 +56,8 @@ class Game
       @game_words.comp_intro
       @user_name = gets.chomp!
       puts ""
+
+
       puts "And how wide would you like your board to be?"
       puts "Pick a number between 4 and 50: "
       @user_board = Board.new
