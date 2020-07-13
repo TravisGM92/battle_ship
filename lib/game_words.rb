@@ -168,7 +168,6 @@ class GameWords
        $stdout.flush
        sleep 1
      end
-    sleep(2)
   end
 
   def slowing_things_down
