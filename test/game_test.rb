@@ -16,7 +16,7 @@ class GameTest < Minitest::Test
   def test_can_it_start
     game = Game.new
 
-    assert_equal "Enter p to play. Enter q to quit.", game.start
+    assert_equal "Goodbye!", game.start
   end
 
   # def test_choose_random_player

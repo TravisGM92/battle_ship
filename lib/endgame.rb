@@ -92,11 +92,12 @@ class Endgame
     puts "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     puts "AWwww dang it. You lost :("
     puts "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Well I have to say you actually did"
-    puts "get pretty close. If I hadn't lucked"
+    puts "Well I have to say you actually did get"
+    puts "pretty close. If George hadn't lucked"
     puts "out on that last one, you would have"
     puts "had me for sure. What do you say?"
     puts "One more game?"
+    sleep(5)
   end
 end
 

@@ -54,6 +54,12 @@ class Board
 
   end
 
+
+  # It's not that the hash of cells need to have something iterated on the inside of it, it's that an iteration outside of it will put things inside of the hash  with <<
+  # the idea would be to ask the user how many rows, and turn that into how many iterations of the first character of the key and value, and then ask for how many columns, and that would turn into the second character of the key and value.
+  # The number given would have to be an integer, and would have to give an "invalid entry" if anything except an interger is given.
+  #
+
   def cells
     # ----------------------As long as code keeps working, delete this eventually-------------
     # {"A1" => a1,
@@ -262,7 +268,7 @@ end
 # board1.cells["D1"].fire_upon
 # board1.cells["D2"].fire_upon
 # board1.cells["B4"].fire_upon
-#
+# 
 #
 #
 # board1.test
