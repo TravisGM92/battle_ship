@@ -178,10 +178,10 @@ class Game
 
         if (comp_sub.health == 0 && comp_cruiser.health == 0)
           @endgame.player_wins
-          load './lib/game.rb'
+          load './runner.rb'
         elsif (user_sub.health == 0 && user_cruiser.health == 0)
           @endgame.player_loses
-          load './lib/game.rb'
+          load './runner.rb'
         end
       end
 
