@@ -5,6 +5,14 @@ class GameWords
     @game_words = game_words
   end
 
+  def making_board_for_you
+    puts "--------------------"
+    puts "Here's the board..."
+    sleep(1.5)
+    puts ""
+    puts "*** George ***"
+  end
+
   def game_opening
     puts "*****************  Welcome to BATTLESHIP  *****************"
     puts ""
@@ -103,8 +111,6 @@ class GameWords
 
 
   def george_placing_cruiser
-    puts "----------------------------"
-    user_board.render(true, true)
     sleep(5)
     puts "Now we've gotta let George place his Cruiser."
     print "George is careful. It may take him a minute"
