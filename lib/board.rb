@@ -264,4 +264,4 @@ end
 # Currently trying to iterate to make a hash so the code is a little cleaner.
 # Struggling with having the values of the hash printed as an array, rather
 # than just the Cell.new
-p 10.between?(5, 15)
+# p 10.max_by(5, 15)
