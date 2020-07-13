@@ -258,10 +258,3 @@ end
 #
 # board1.test
 # p board1.valid_placement?(ship2, ["B", "c"])
-
-#[#<Cell:0x00007fe39204f6c8 @coordinate="A1", @cell=[], @fired=0>]
-
-# Currently trying to iterate to make a hash so the code is a little cleaner.
-# Struggling with having the values of the hash printed as an array, rather
-# than just the Cell.new
-# p 10.max_by(5, 15)

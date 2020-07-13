@@ -66,6 +66,7 @@ class Game
          sleep 0.8
         end
       puts ""
+      puts ""
       puts "------------------------------------"
       puts "You will go head-to-head in a vicious"
       puts "game of battleship against the world's"
@@ -75,6 +76,7 @@ class Game
       puts ""
       puts "-------->        GEORGE!!!        <--------"
       sleep(4)
+      puts ""
       puts "====================================="
       puts "Let's start with your name."
       puts "What do your homies call you?"
@@ -140,9 +142,6 @@ class Game
         puts "Let's try again: "
         user_numbers_first =  gets.chomp!.upcase
         user_numbers_array = user_numbers_first.split(", ").to_a.sort!
-        if user_board.valid_placement?(user_cruiser, user_numbers_array) == true
-          break
-        end
       end
 
       puts "==================================="
@@ -199,9 +198,6 @@ class Game
          user_sub = Ship.new("Submarine", 2)
          user_numbers_second =  gets.chomp!.upcase
          user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
-         if user_board.valid_placement?(user_sub, user_numbers2_array) == true
-           break
-         end
        end
        user_board.cells
        user_board.place(user_sub, user_numbers2_array)
@@ -212,12 +208,12 @@ class Game
        puts "Now we've gotta let George place his Sub,"
        puts "decide who'll go first,"
        print "and we'll be ready to play!"
-       # "........".each_char do |char|
-       #    print char
-       #    $stdout.flush
-       #    sleep 1
-       #  end
-       # sleep(2)
+       "........".each_char do |char|
+          print char
+          $stdout.flush
+          sleep 1
+        end
+       sleep(2)
       @last_turn = user_name
        "........".each_char do |char|
           print char
@@ -228,8 +224,6 @@ class Game
       puts ""
       p ""
       @last_turn = [user_name, "George"].sample
-      # The lines above this and below it go together. I just
-      # changed it for now to test things out
       puts ""
       puts "Looks like #{@last_turn} will be going first!"
       puts ""
