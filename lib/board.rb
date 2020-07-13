@@ -10,15 +10,18 @@ class Board
                 :c1, :c2, :c3, :c4,
                 :d1, :d2, :d3, :d4, :my_hash,
                 :cord_one, :cord_two, :cord_three,
-                :user_input
+                :user_width, :user_height, :row_amount
 
   attr_reader :cells1, :coordinates_list
 
   def initialize
     # We can change @coordinates_list (the (1..10).map) to make board any size and it works.
     # I can put ships in those new coordinates.
-    @user_input = 4
-    @coordinates_list = ('a'..'d').flat_map{ |letter| (1..user_input).map{ |number| "#{letter.upcase}#{number}"}}
+    # puts "How wide?"
+    @user_width = 4
+    # @user_height = gets.chomp!.to_i
+    # @row_amount = ('a'..'z').find.with_index{ |letter, index| index == user_height-1}.upcase
+    @coordinates_list = ('a'..'d').flat_map{ |letter| (1..user_width).map{ |number| "#{letter.upcase}#{number}"}}
     @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
     @cells1 = coordinates_list.collect{ |coord| coord = Cell.new(coord)}
     @my_hash = {}
@@ -197,13 +200,19 @@ class Board
     coordaintes3
   end
 
+  def test
+    alpha = ('a'..'z').find.with_index{ |letter, index| index == user_height-1}.upcase
+    p alpha
+  end
+
   def render(show=false, second=false)
+    # row_(user_width) = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "#{user_input}"}
     row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
     row_b = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "B"}
     row_c = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "C"}
     row_d = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "D"}
 
-    # (1..@user_input).each{ |number| print " #{number}"}
+    # (1..user_width).each{ |number| print " #{number}"}
     # puts ""
     puts "  1 2 3 4 |"
     if show == false && second == false

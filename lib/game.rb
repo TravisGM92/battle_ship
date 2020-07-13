@@ -231,7 +231,6 @@ class Game
       computer_options = user_board.cells.keys.shuffle
 
       until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
-
         if last_turn == "George" && turn_number != 0
           self.make_board_with_players(true, true)
           puts "Where would you like to fire?"
@@ -360,10 +359,7 @@ class Game
       puts ""
       self.start
     end
-
-
   end
-
 end
 
 #
