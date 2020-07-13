@@ -259,7 +259,7 @@ end
 # board1.cells["D1"].fire_upon
 # board1.cells["D2"].fire_upon
 # board1.cells["B4"].fire_upon
-#
+# 
 #
 #
 # board1.test
