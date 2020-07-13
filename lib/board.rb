@@ -26,8 +26,7 @@ class Board
     @cord_two = cord_two
     @cord_three = cord_three
 
-
-      coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.find{ |numb| numb.coordinate == numbs}}
+    coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.find{ |numb| numb.coordinate == numbs}}
 
   end
 
