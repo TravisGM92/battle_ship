@@ -10,7 +10,7 @@ class GameWords
     puts "Here's the board..."
     sleep(1.5)
     puts ""
-    puts "*** George ***"
+    p "*** George ***"
   end
 
   def game_opening
