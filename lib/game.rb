@@ -18,14 +18,15 @@ class Game
                 :turn_number,
                 :second,
                 :show,
-                :user_fires
+                :user_fires,
+                :user_width
 
   def initialize
     @user_name = user_name
-    @computer_board = Board.new
-    @user_board = Board.new
-    @comp_cruiser = Ship.new("Cruiser", 3)
-    @comp_sub = Ship.new("Submarine", 2)
+    # @computer_board = Board.new
+    # @user_board = Board.new
+    # @comp_cruiser = Ship.new("Cruiser", 3)
+    # @comp_sub = Ship.new("Submarine", 2)
     @rules = Tutorial.new("The Rules")
     @endgame = Endgame.new("The End")
     @game_words = GameWords.new("Words") #I named it GameWords because GameText was too close to GameTest
@@ -45,15 +46,40 @@ class Game
   end
 
   def start()
-    sub_cord = computer_board.valid_placement_for_sub(comp_sub)
-    computer_board.place(comp_sub, sub_cord)
-    cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
-    computer_board.place(comp_cruiser, cruise_cord)
+    # sub_cord = computer_board.valid_placement_for_sub(comp_sub)
+    # computer_board.place(comp_sub, sub_cord)
+    # cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
+    # computer_board.place(comp_cruiser, cruise_cord)
     @game_words.game_opening
     user_index = gets.chomp!.downcase
     if user_index == "p"
       @game_words.comp_intro
       @user_name = gets.chomp!
+      puts ""
+      puts "And how wide would you like your board to be?"
+      puts "Pick a number between 4 and 50: "
+      @user_board = Board.new
+      until user_board.user_width1 > 4 && user_board.user_width1 < 50
+        puts "Oops! Please pick a number"
+        puts "between 4 and 50: "
+        user_board.user_width1 = gets.chomp!.to_i
+      end
+      puts "And what about George's board?"
+      puts "We reccomend putting the same number"
+      puts "otherwise you're getting off easy..."
+      @computer_board = Board.new
+      computer_board.user_width1 = user_board.user_width1
+
+      # @user_board = Board.new
+      @comp_cruiser = Ship.new("Cruiser", 3)
+      @comp_sub = Ship.new("Submarine", 2)
+      sub_cord = computer_board.valid_placement_for_sub(comp_sub)
+      computer_board.place(comp_sub, sub_cord)
+      cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
+      computer_board.place(comp_cruiser, cruise_cord)
+
+
+
       self.make_board_with_players
       @game_words.ship_intro
       user_board.cells
