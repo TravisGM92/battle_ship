@@ -9,38 +9,46 @@ class Board
                 :b1, :b2, :b3, :b4,
                 :c1, :c2, :c3, :c4,
                 :d1, :d2, :d3, :d4, :my_hash,
-                :cord_one, :cord_two, :cord_three
+                :cord_one, :cord_two, :cord_three,
+                :user_input
 
   attr_reader :cells1, :coordinates_list
 
   def initialize
-    @coordinates_list = ('a'..'d').collect{ |letter| (1..6).map{ |number| "#{letter.upcase}#{number}"}}.flatten
+    # We can change @coordinates_list (the (1..10).map) to make board any size and it works.
+    # I can put ships in those new coordinates.
+    @user_input = 4
+    @coordinates_list = ('a'..'d').collect{ |letter| (1..user_input).map{ |number| "#{letter.upcase}#{number}"}}.flatten
     @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
-    @cells1 = coordinates_list.map{ |coord| coord = Cell.new(coord)}
+    @cells1 = coordinates_list.collect{ |coord| coord = Cell.new(coord)}
     @my_hash = {}
-    p cells1
+    # --------------------------As long as code keeps working, delete this eventually---------------------------
+    # p cells1
 
-    @a1 = Cell.new("A1")
-    @a2 = Cell.new("A2")
-    @a3 = Cell.new("A3")
-    @a4 = Cell.new("A4")
-    @b1 = Cell.new("B1")
-    @b2 = Cell.new("B2")
-    @b3 = Cell.new("B3")
-    @b4 = Cell.new("B4")  #could be more dry
-    @c1 = Cell.new("C1")   # we don't need all of them however
-    @c2 = Cell.new("C2")  # some kind of collection that can be itterated upon
-    @c3 = Cell.new("C3")  # a-d, 1-4.  Pass some arguements
-    @c4 = Cell.new("C4")  # if board grows, the arguements can help with that
-    @d1 = Cell.new("D1")  #this is more static
-    @d2 = Cell.new("D2")
-    @d3 = Cell.new("D3")
-    @d4 = Cell.new("D4")
+    # @a1 = Cell.new("A1")
+    # @a2 = Cell.new("A2")
+    # @a3 = Cell.new("A3")
+    # @a4 = Cell.new("A4")
+    # @b1 = Cell.new("B1")
+    # @b2 = Cell.new("B2")
+    # @b3 = Cell.new("B3")
+    # @b4 = Cell.new("B4")  #could be more dry
+    # @c1 = Cell.new("C1")   # we don't need all of them however
+    # @c2 = Cell.new("C2")  # some kind of collection that can be itterated upon
+    # @c3 = Cell.new("C3")  # a-d, 1-4.  Pass some arguements
+    # @c4 = Cell.new("C4")  # if board grows, the arguements can help with that
+    # @d1 = Cell.new("D1")  #this is more static
+    # @d2 = Cell.new("D2")
+    # @d3 = Cell.new("D3")
+    # @d4 = Cell.new("D4")
+    # ---------------------------------------------------------------------------------
     @cord_one = cord_one
     @cord_two = cord_two
     @cord_three = cord_three
 
-      # coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.select{ |numb| numb.coordinate == numbs}}
+
+      coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.find{ |numb| numb.coordinate == numbs}}
+
   end
 
 
@@ -50,24 +58,27 @@ class Board
   #
 
   def cells
-    {"A1" => a1,
-      "A2" => a2,
-      "A3" => a3,
-      "A4" => a4,
-      "B1" => b1,
-      "B2" => b2,
-      "B3" => b3,
-      "B4" => b4,
-      "C1" => c1,
-      "C2" => c2,
-      "C3" => c3,
-      "C4" => c4,
-      "D1" => d1,
-      "D2" => d2,
-      "D3" => d3,
-      "D4" => d4
-    }
-    # my_hash
+    # ----------------------As long as code keeps working, delete this eventually-------------
+    # {"A1" => a1,
+    #   "A2" => a2,
+    #   "A3" => a3,
+    #   "A4" => a4,
+    #   "B1" => b1,
+    #   "B2" => b2,
+    #   "B3" => b3,
+    #   "B4" => b4,
+    #   "C1" => c1,
+    #   "C2" => c2,
+    #   "C3" => c3,
+    #   "C4" => c4,
+    #   "D1" => d1,
+    #   "D2" => d2,
+    #   "D3" => d3,
+    #   "D4" => d4
+    # }
+    # -------------------------------------------------------------------
+    my_hash
+
   end
 
 
@@ -198,6 +209,8 @@ class Board
     row_c = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "C"}
     row_d = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "D"}
 
+    # (1..@user_input).each{ |number| print " #{number}"}
+    # puts ""
     puts "  1 2 3 4 |"
     if show == false && second == false
       puts "A #{row_a.map { |cell| cell.render}.join(" ")} |"
@@ -232,8 +245,8 @@ end
 # board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
 # ship2 = Ship.new("Cruiser", 3)
-# board1.valid_placement_for_cruiser(ship2)
-# p board1.valid_coordinate?(["A3"])
+# p board1.cells["A1"]
+# board1.render
 
 #
 # board1.place(ship1, ["B4", "C4"])
@@ -257,3 +270,4 @@ end
 # Currently trying to iterate to make a hash so the code is a little cleaner.
 # Struggling with having the values of the hash printed as an array, rather
 # than just the Cell.new
+# p (1..10).rindex({ |x| x % 2 == 0})
