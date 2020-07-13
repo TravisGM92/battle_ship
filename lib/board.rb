@@ -25,26 +25,6 @@ class Board
     @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
     @cells1 = coordinates_list.collect{ |coord| coord = Cell.new(coord)}
     @my_hash = {}
-    # --------------------------As long as code keeps working, delete this eventually---------------------------
-    # p cells1
-
-    # @a1 = Cell.new("A1")
-    # @a2 = Cell.new("A2")
-    # @a3 = Cell.new("A3")
-    # @a4 = Cell.new("A4")
-    # @b1 = Cell.new("B1")
-    # @b2 = Cell.new("B2")
-    # @b3 = Cell.new("B3")
-    # @b4 = Cell.new("B4")  #could be more dry
-    # @c1 = Cell.new("C1")   # we don't need all of them however
-    # @c2 = Cell.new("C2")  # some kind of collection that can be itterated upon
-    # @c3 = Cell.new("C3")  # a-d, 1-4.  Pass some arguements
-    # @c4 = Cell.new("C4")  # if board grows, the arguements can help with that
-    # @d1 = Cell.new("D1")  #this is more static
-    # @d2 = Cell.new("D2")
-    # @d3 = Cell.new("D3")
-    # @d4 = Cell.new("D4")
-    # ---------------------------------------------------------------------------------
     @cord_one = cord_one
     @cord_two = cord_two
     @cord_three = cord_three
@@ -54,34 +34,8 @@ class Board
 
   end
 
-
-  # It's not that the hash of cells need to have something iterated on the inside of it, it's that an iteration outside of it will put things inside of the hash  with <<
-  # the idea would be to ask the user how many rows, and turn that into how many iterations of the first character of the key and value, and then ask for how many columns, and that would turn into the second character of the key and value.
-  # The number given would have to be an integer, and would have to give an "invalid entry" if anything except an interger is given.
-  #
-
   def cells
-    # ----------------------As long as code keeps working, delete this eventually-------------
-    # {"A1" => a1,
-    #   "A2" => a2,
-    #   "A3" => a3,
-    #   "A4" => a4,
-    #   "B1" => b1,
-    #   "B2" => b2,
-    #   "B3" => b3,
-    #   "B4" => b4,
-    #   "C1" => c1,
-    #   "C2" => c2,
-    #   "C3" => c3,
-    #   "C4" => c4,
-    #   "D1" => d1,
-    #   "D2" => d2,
-    #   "D3" => d3,
-    #   "D4" => d4
-    # }
-    # -------------------------------------------------------------------
     my_hash
-
   end
 
 
@@ -138,12 +92,6 @@ class Board
     index_of_letters_of_coordinates = rows_index.collect{ |letters| alpha.index(letters)}
     index_of_colum_cooordinates = colum_index.collect{ |number| colum_index[0] == number}   # This one is saying "assigned but unused variable"
 
-
-    # Checks if ship length is equal to coordinate length, then checks if numbers in coordinates are consecutive. After, it checks if all letters are identical.
-    # This method underneath was throwing things off, so I commented it out and got it to work
-
-    # if ship.length == coordinate.length && colum_numbers.collect{ |numbs| colum_numbers[0] == numbs} && index_of_letters_of_coordinates.all?{ |numb| numb == index_of_letters_of_coordinates[0]} && coordinate.all?{ |pair| cells[pair].empty?}
-    #   "true1"
     if self.valid_coordinate?(coordinate) == false
       false
     elsif coordinate.length == 0
@@ -243,10 +191,6 @@ class Board
       puts "D #{row_d.map { |cell| cell.render(false, true)}.join(" ")} |"
     end
   end
-  # def test
-  #   my_hash = {}
-  #   coordinates_list.collect{ |numbs| my_hash[numbs] = cells1.select{ |numb| numb.coordinate == numbs}}
-  # end
 
 
 end
@@ -268,8 +212,7 @@ end
 # board1.cells["D1"].fire_upon
 # board1.cells["D2"].fire_upon
 # board1.cells["B4"].fire_upon
-# 
+#
 #
 #
 # board1.test
-# p board1.valid_placement?(ship2, ["B", "c"])
