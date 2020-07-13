@@ -260,7 +260,6 @@ class Game
             puts ""
             sleep(2)
           end
-          # self.make_board_with_players(true, true)
           @last_turn = user_name
           @turn_number += 1
 
@@ -282,7 +281,6 @@ class Game
             sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
-          # self.make_board_with_players(true, true)
           @last_turn = "George"
           sleep(2)
           @turn_number += 1
@@ -300,7 +298,6 @@ class Game
             sleep(1)
           end
           user_board.cells[computer_options.shift].fire_upon
-          # self.make_board_with_players(true, true)
           @last_turn = "George"
           sleep(2)
           @turn_number += 1
@@ -325,7 +322,6 @@ class Game
               if computer_board.valid_coordinate?([@user_fires]) == true
                 break
               end
-
             end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
@@ -346,16 +342,9 @@ class Game
           @endgame.player_loses
           load './lib/game.rb'
         end
-
       end
 
-
-
-
-
-
-
-      # Ended here!!!!
+      # *************    Gameplay ends here!!!    ****************
     elsif user_index == "q"
       p "Goodbye!"
     elsif user_index == "r"
