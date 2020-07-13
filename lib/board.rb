@@ -18,7 +18,7 @@ class Board
     # We can change @coordinates_list (the (1..10).map) to make board any size and it works.
     # I can put ships in those new coordinates.
     @user_input = 4
-    @coordinates_list = ('a'..'d').collect{ |letter| (1..user_input).map{ |number| "#{letter.upcase}#{number}"}}.flatten
+    @coordinates_list = ('a'..'d').flat_map{ |letter| (1..user_input).map{ |number| "#{letter.upcase}#{number}"}}
     @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
     @cells1 = coordinates_list.collect{ |coord| coord = Cell.new(coord)}
     @my_hash = {}
@@ -258,10 +258,3 @@ end
 #
 # board1.test
 # p board1.valid_placement?(ship2, ["B", "c"])
-
-#[#<Cell:0x00007fe39204f6c8 @coordinate="A1", @cell=[], @fired=0>]
-
-# Currently trying to iterate to make a hash so the code is a little cleaner.
-# Struggling with having the values of the hash printed as an array, rather
-# than just the Cell.new
-# p (1..10).rindex({ |x| x % 2 == 0})
