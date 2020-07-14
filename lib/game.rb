@@ -5,6 +5,7 @@ require './lib/tutorial'
 require './lib/endgame'
 require './lib/game_words'
 require './lib/turn'
+require './lib/smart_computer'
 
 
 class Game
@@ -35,6 +36,7 @@ class Game
     @show = show
     @second = second
     @user_fires = user_fires
+    @smarts = Smart.new
   end
 
   def make_board_with_players(show=false, second=false)
