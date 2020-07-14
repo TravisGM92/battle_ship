@@ -10,7 +10,7 @@ class GameWords
     puts "Here's the board..."
     sleep(1.5)
     puts ""
-    puts "*** George ***"
+    p "*** George ***"
   end
 
   def game_opening
@@ -18,7 +18,7 @@ class GameWords
     puts ""
     puts "                   Enter p to Play."
     puts "                   Enter r to Read The Rules."
-    puts "                   Enter q to Quit."
+    p "                  Enter q to Quit."
   end
 
   def comp_intro
@@ -42,7 +42,7 @@ class GameWords
     puts ""
     puts "====================================="
     puts "Let's start with your name."
-    puts "What do your homies call you?"
+    p "What do your homies call you?"
   end
 
   def ship_intro
@@ -80,7 +80,7 @@ class GameWords
     puts "   length of the ship, no more, no less."
     puts "Example: a1, a2, a3"
     puts "------------------------------------"
-    puts "So, where's it gonna go? "
+    p "So, where's it gonna go?"
   end
 
   def oops_bad_cruiser_coordinates
@@ -89,7 +89,7 @@ class GameWords
     puts "3 spaces long. Please give me coordinates"
     puts "such as a1, a2, a3."
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Let's try again: "
+    p "Let's try again:"
   end
 
   def oops_bad_cruiser_overlap
@@ -101,12 +101,12 @@ class GameWords
     puts "and don't pass the edge"
     puts "of the board... "
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Let's try again: "
+    p "Let's try again: "
   end
 
   def cruiser_has_been_placed
     puts "==================================="
-    puts "Ok, here is where your Cruiser has been placed"
+    p "Ok, here is where your Cruiser has been placed"
   end
 
 
@@ -124,7 +124,7 @@ class GameWords
     sleep(2)
     puts "Here's the board with your cruiser on there"
     puts "Obviously we won't show you George's ship..."
-    puts "It's not gonna be that easy."
+    p "It's not gonna be that easy."
   end
 
   def add_submarine_prompt
@@ -132,7 +132,7 @@ class GameWords
     puts "Now let's add your Submarine!"
     puts "where would you like that to go?"
     puts "Remember, it only has 2 spaces"
-    puts "So, where's it gonna go? "
+    p "So, where's it gonna go? "
   end
 
   def oops_bad_sub_coordinates
@@ -141,7 +141,7 @@ class GameWords
     puts "2 spaces long. Please give me coordinates"
     puts "such as c4, d4. The space is important."
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Let's try again: "
+    p "Let's try again: "
   end
 
   def oops_bad_sub_overlap
@@ -153,7 +153,7 @@ class GameWords
     puts "and don't pass the edge"
     puts "of the board... "
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Let's try again: "
+    p "Let's try again: "
   end
 
   def lets_take_a_look
@@ -185,7 +185,7 @@ class GameWords
   def first_fire_prompt
     puts "Where would you like to fire?"
     puts "Remember, plese give us a coordinate in this"
-    puts "in this format: 'A2' OR 'D3'"
+    p "in this format: 'A2' OR 'D3'"
 
   end
 
@@ -199,18 +199,18 @@ class GameWords
     puts "the same cell twice, and don't try"
     puts "to fire at a cell off the board... "
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Let's try again: "
+    p "Let's try again: "
   end
 
   def you_hit_a_ship
     puts "You hit a ship!"
-    puts ""
+    p ""
     sleep(2)
   end
 
   def you_missed_the_ship
     puts "Ahh man, you missed."
-    puts ""
+    p ""
     sleep(2)
   end
 
@@ -226,13 +226,13 @@ class GameWords
 
   def george_hit_you
     puts "George hit a ship!"
-    puts ""
+    p ""
     sleep(1)
   end
 
   def george_missed_you
     puts "Lucky... George missed"
-    puts ""
+    p ""
     sleep(1)
   end
 
@@ -243,7 +243,7 @@ class GameWords
     puts "|Invalid entry.   Please try again!|"
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     puts ""
-    puts ""
+    p ""
   end
 
 end
