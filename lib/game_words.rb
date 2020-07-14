@@ -94,7 +94,7 @@ class GameWords
 
   def oops_bad_cruiser_overlap
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "overlap Oops! Looks like you put in an invalid placement."
+    puts "Oops! Looks like you put in an invalid placement."
     puts "Try again, except this time make sure the"
     puts "coordinates are one after the other,"
     puts "don't overlap other ships, aren't diagonal,"
