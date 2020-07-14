@@ -2,7 +2,6 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/tutorial'
-require './lib/endgame'
 require './lib/game'
 
 class Turn

@@ -457,7 +457,7 @@ class Tutorial
     puts " "
     puts " "
     puts " "
-    puts " "
+    p " "
     continue_rules
   end
 end
