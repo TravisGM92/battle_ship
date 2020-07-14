@@ -21,7 +21,7 @@ class GameWordsTest < Minitest::Test
     # skip
     words = GameWords.new("Game Words")
     # require 'pry'; pry.binding
-    assert_equal "                   Enter q to Quit.", words.game_opening
+    assert_equal "                  Enter q to Quit.", words.game_opening
   end
   #
   def test_can_print_comp_intro
@@ -34,7 +34,7 @@ class GameWordsTest < Minitest::Test
   def test_can_ship_intro
     words = GameWords.new("Game Words")
 
-    assert_equal "........", words.ship_intro
+    assert_equal "......", words.ship_intro
   end
 
   def test_can_cruiser_placement_prompt
@@ -69,7 +69,7 @@ class GameWordsTest < Minitest::Test
     # skip
     words = GameWords.new("Game Words")
     # require 'pry'; pry.binding
-    assert_equal "What do your homies call you?", words.cruiser_has_been_placed
+    assert_equal "Ok, here is where your Cruiser has been placed", words.cruiser_has_been_placed
   end
 
   def test_can_print_george_placing_cruiser
@@ -110,7 +110,7 @@ class GameWordsTest < Minitest::Test
   def test_can_print_lets_take_a_look
     words = GameWords.new("Game Words")
 
-    assert_equal "........", words.lets_take_a_look
+    assert_equal 2, words.lets_take_a_look
   end
 
   def test_can_print_slowing_things_down
@@ -126,25 +126,54 @@ class GameWordsTest < Minitest::Test
     assert_equal "in this format: 'A2' OR 'D3'", words.first_fire_prompt
   end
 
-  def test_can_print_first_fire_prompt
+  def test_can_print_invalid_shot_location
     # skip
     words = GameWords.new("Game Words")
     # require 'pry'; pry.binding
-    assert_equal "in this format: 'A2' OR 'D3'", words.first_fire_prompt
+    assert_equal "Let's try again: ", words.invalid_shot_location
   end
 
+  def test_can_print_you_hit_a_ship
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal 2, words.you_hit_a_ship
+  end
 
+  def test_can_print_you_missed_the_ship
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal 2, words.you_missed_the_ship
+  end
 
+  def test_can_print_georges_turn
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal 1, words.georges_turn
+  end
 
+  def test_can_print_george_hit_you
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal 1, words.george_hit_you
+  end
 
+  def test_can_print_george_missed_you
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal 1, words.george_missed_you
+  end
 
-
-
-
-
-
-
-
+  def test_can_print_invalid_entry
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal "", words.invalid_entry
+  end
 
 
 

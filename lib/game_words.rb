@@ -200,18 +200,18 @@ class GameWords
     puts "the same cell twice, and don't try"
     puts "to fire at a cell off the board... "
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Let's try again: "
+    p "Let's try again: "
   end
 
   def you_hit_a_ship
     puts "You hit a ship!"
-    puts ""
+    p ""
     sleep(2)
   end
 
   def you_missed_the_ship
     puts "Ahh man, you missed."
-    puts ""
+    p ""
     sleep(2)
   end
 
@@ -227,13 +227,13 @@ class GameWords
 
   def george_hit_you
     puts "George hit a ship!"
-    puts ""
+    p ""
     sleep(1)
   end
 
   def george_missed_you
     puts "Lucky... George missed"
-    puts ""
+    p ""
     sleep(1)
   end
 
@@ -244,7 +244,7 @@ class GameWords
     puts "|Invalid entry.   Please try again!|"
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     puts ""
-    puts ""
+    p ""
   end
 
 end
