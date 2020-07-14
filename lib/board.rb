@@ -184,9 +184,7 @@ end
 # # p board1.cells["A1"]
 # # board1.render
 #
-<<<<<<< HEAD
 p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
-=======
 # #
 # # board1.place(ship1, ["B4", "C4"])
 # # cell_1 = board1.cells["A10"].empty?
@@ -198,4 +196,3 @@ p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
 # #
 # #
 # p board1.valid_placement?(ship2, ["A9", "A10", "A11"])
->>>>>>> 780a72022a3449358535688ec263f204e9f24730
