@@ -34,6 +34,17 @@ class GameTest < Minitest::Test
     assert_equal "What do your homies call you?", game.start
   end
 
+  def test_choose_rules
+    game = Game.new
+
+    # game1 = mock("Game")
+    game.stubs(:user_input).returns("r")
+
+    game.stubs(:user_input).returns(enter)
+
+    assert_equal " ", game.start
+  end
+
 
   # def test_invalid_entry_on_main_menu
   #   # game = Game.new
