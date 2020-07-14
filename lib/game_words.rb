@@ -85,7 +85,7 @@ class GameWords
 
   def oops_bad_cruiser_coordinates
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Oops! Remember, your coordaintes must be"
+    puts "Coordinates Oops! Remember, your coordaintes must be"
     puts "3 spaces long. Please give me coordinates"
     puts "such as a1, a2, a3."
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
@@ -94,7 +94,7 @@ class GameWords
 
   def oops_bad_cruiser_overlap
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Oops! Looks like you put in an invalid placement."
+    puts "overlap Oops! Looks like you put in an invalid placement."
     puts "Try again, except this time make sure the"
     puts "coordinates are one after the other,"
     puts "don't overlap other ships, aren't diagonal,"
