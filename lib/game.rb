@@ -5,7 +5,7 @@ require './lib/tutorial'
 require './lib/endgame'
 require './lib/game_words'
 require './lib/turn'
-require './lib/smart_computer'
+# require './lib/smart_computer'
 
 
 class Game
@@ -80,17 +80,18 @@ class Game
       user_cruiser = Ship.new("Cruiser", 3)
 
       user_numbers_first =  gets.chomp!.upcase
-      user_numbers_array = user_numbers_first.split(", ").to_a.sort!
+      user_numbers_array = user_numbers_first.split(", ").to_a
       while user_numbers_array.length != 3
         @game_words.oops_bad_cruiser_coordinates
         user_numbers_first =  gets.chomp!.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a.sort!
+        user_numbers_array = user_numbers_first.split(", ").to_a
       end
 
       while user_board.valid_placement?(user_cruiser, user_numbers_array) == false
         @game_words.oops_bad_cruiser_overlap
         user_numbers_first =  gets.chomp!.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a.sort!
+        user_numbers_array = user_numbers_first.split(", ").to_a
+        # p user_numbers_array
       end
       @game_words.cruiser_has_been_placed
       user_board.cells

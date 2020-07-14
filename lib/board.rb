@@ -71,11 +71,12 @@ class Board
     col_4 << cells.keys.to_a[15]
 
     split_numbs = coordinate.collect{ |coordinates| coordinates.chars}.flatten
+    numbers_only = coordinate.map {|x| x[/\d+/]}
     rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
     colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
 
     # Below is the column numbers converted to actual numbers instead of strings
-    colum_numbers = colum_index.collect{ |number| number.to_i}
+    colum_numbers = numbers_only.collect{ |number| number.to_i}
 
     # alpha is an array of alphabet, rows_index is only the letters of the
     # coordinates, where colum_index is the numbers of each coordinate
@@ -184,20 +185,20 @@ class Board
 
 end
 
-# board1 = Board.new
+board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
-# ship2 = Ship.new("Cruiser", 3)
+ship2 = Ship.new("Cruiser", 3)
 # p board1.cells["A1"]
 # board1.render
 
 #
 # board1.place(ship1, ["B4", "C4"])
-# cell_1 = board1.cells["A1"]
+# cell_1 = board1.cells["A10"].empty?
 # cell_2 = board1.cells["A2"]
 # cell_3 = board1.cells["A3"]
 # cell_4 = board1.cells["A4"]
-
+# p cell_1
 #
 #
 #
-# board1.render
+p board1.valid_placement?(ship2, ["A9", "A10", "A11"])
