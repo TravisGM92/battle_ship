@@ -26,7 +26,7 @@ class Game
     @user_name = user_name
     @rules = Tutorial.new("The Rules")
     @endgame = Endgame.new("The End")
-    @game_words = GameWords.new("Words") #I named it GameWords because GameText was too close to GameTest
+    @game_words = GameWords.new("Words")
     @last_turn = last_turn
     @turn_number = 0
     @show = show
@@ -42,25 +42,27 @@ class Game
     user_board.render(show=true, second=true)
   end
 
+  def user_input
+    gets.chomp!
+  end
+
   def start()
     @game_words.game_opening
-    user_index = gets.chomp!.downcase
+    user_index = user_input.downcase
     if user_index == "p"
       @game_words.comp_intro
-      @user_name = gets.chomp!
+      @user_name = user_input
       puts ""
-
-
       puts "And how wide would you like your board to be?"
       puts "Pick a number between 4 and 50: "
       @user_board = Board.new
-      until user_board.user_width1 > 4 && user_board.user_width1 < 50
+      until user_board.user_width1 >= 4 && user_board.user_width1 < 50
         puts "Oops! Please pick a number"
         puts "between 4 and 50: "
-        user_board.user_width1 = gets.chomp!.to_i
+        user_board.user_width1 = user_input.to_i
       end
       puts "And what about George's board?"
-      puts "We reccomend putting the same number"
+      puts "We recomend putting the same number"
       puts "otherwise you're getting off easy..."
       @computer_board = Board.new
 
@@ -79,17 +81,17 @@ class Game
       @game_words.cruiser_placement_prompt
       user_cruiser = Ship.new("Cruiser", 3)
 
-      user_numbers_first =  gets.chomp!.upcase
+      user_numbers_first =  user_input.upcase
       user_numbers_array = user_numbers_first.split(", ").to_a
       while user_numbers_array.length != 3
         @game_words.oops_bad_cruiser_coordinates
-        user_numbers_first =  gets.chomp!.upcase
+        user_numbers_first =  user_input.upcase
         user_numbers_array = user_numbers_first.split(", ").to_a
       end
 
       while user_board.valid_placement?(user_cruiser, user_numbers_array) == false
         @game_words.oops_bad_cruiser_overlap
-        user_numbers_first =  gets.chomp!.upcase
+        user_numbers_first =  user_input.upcase
         user_numbers_array = user_numbers_first.split(", ").to_a
         # p user_numbers_array
       end
@@ -103,18 +105,18 @@ class Game
       self.make_board_with_players(true)
       @game_words.add_submarine_prompt
       user_sub = Ship.new("Submarine", 2)
-      user_numbers_second =  gets.chomp!.upcase
+      user_numbers_second =  user_input.upcase
       user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       while user_numbers2_array.length != 2
         @game_words.oops_bad_sub_coordinates
-        user_numbers_second =  gets.chomp!.upcase
+        user_numbers_second =  user_input.upcase
         user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
       end
 
        while user_board.valid_placement?(user_sub, user_numbers2_array) == false
          @game_words.oops_bad_sub_overlap
          user_sub = Ship.new("Submarine", 2)
-         user_numbers_second =  gets.chomp!.upcase
+         user_numbers_second =  user_input.upcase
          user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
        end
        user_board.cells
@@ -134,10 +136,10 @@ class Game
         if last_turn == "George" && turn_number != 0
           self.make_board_with_players(true, true)
           @game_words.first_fire_prompt
-          @user_fires = gets.chomp!.upcase
+          @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
               @game_words.invalid_shot_location
-              @user_fires = gets.chomp!.upcase
+              @user_fires = user_input.upcase
             end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
@@ -176,10 +178,10 @@ class Game
         elsif last_turn == user_name && turn_number == 0
           self.make_board_with_players(true, true)
           @game_words.first_fire_prompt
-          @user_fires = gets.chomp!.upcase
+          @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
               @game_words.invalid_shot_location
-              @user_fires = gets.chomp!.upcase
+              @user_fires = user_input.upcase
               if computer_board.valid_coordinate?([@user_fires]) == true
                 break
               end
@@ -210,6 +212,7 @@ class Game
       @rules.start_tutorial
       self.start
     else
+      @game_words.invalid_entry
       self.start
     end
   end

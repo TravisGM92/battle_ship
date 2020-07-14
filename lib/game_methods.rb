@@ -37,42 +37,44 @@ class GameMethods
     @user_fires = user_fires
   end
 
+  def user_input
+    gets.chomp!
+  end
 
-
-  def user_placed_cruiser_poorly  #lines 65-69
+  def user_placed_cruiser_poorly  #lines 86-90
     while user_numbers_array.length != 3
       @game_words.oops_bad_cruiser_coordinates
-      user_numbers_first =  gets.chomp!.upcase
+      user_numbers_first =  user_input.upcase
       user_numbers_array = user_numbers_first.split(", ").to_a.sort! #this line isn't gonna work I think
     end
   end
 
-  def user_overlapped_the_cruiser #lines 71-75
+  def user_overlapped_the_cruiser #lines 92-96
     while user_board.valid_placement?(user_cruiser, user_numbers_array) == false
       @game_words.oops_bad_cruiser_overlap
-      user_numbers_first =  gets.chomp!.upcase
+      user_numbers_first =  user_input.upcase
       user_numbers_array = user_numbers_first.split(", ").to_a.sort! #this line isn't gonna work I think
     end
   end
 
-  def user_placed_sub_poorly # lines 88-92
+  def user_placed_sub_poorly # lines 109-113
     while user_numbers2_array.length != 2
       @game_words.oops_bad_sub_coordinates
-      user_numbers_second =  gets.chomp!.upcase
+      user_numbers_second =  user_input.upcase
       user_numbers2_array = user_numbers_second.split(", ").to_a.sort! #this line isn't gonna work I think
     end
   end
 
-  def user_overlapped_the_sub  #lines 94-99
+  def user_overlapped_the_sub  #lines 115-120
     while user_board.valid_placement?(user_sub, user_numbers2_array) == false
       @game_words.oops_bad_sub_overlap
       user_sub = Ship.new("Submarine", 2)  #this line isn't gonna work I think
-      user_numbers_second =  gets.chomp!.upcase
+      user_numbers_second =  user_input.upcase
       user_numbers2_array = user_numbers_second.split(", ").to_a.sort!  # this one either
     end
   end
 
-  def hitting_the_ship #lines 124-128, and 170-174
+  def hitting_the_ship #lines 145-149, and 191-195
     if computer_board.cells[@user_fires].empty? == false
       @game_words.you_hit_a_ship
     else
@@ -80,7 +82,7 @@ class GameMethods
     end
   end
 
-  def george_hitting_you  #lines 135-139, and lines 148-152
+  def george_hitting_you  #lines 156-160, and lines 169-173
     if user_board.cells[computer_options.first].empty? == false
       @game_words.george_hit_you
     else
@@ -88,10 +90,10 @@ class GameMethods
     end
   end
 
-  def invalid_user_shot_location #lines 162-168
+  def invalid_user_shot_location #lines 183-189
     until computer_board.valid_coordinate?([@user_fires]) == true
       @game_words.invalid_shot_location
-      @user_fires = gets.chomp!.upcase #these next few lines actually show up similarly on line 119-122, but without the if statement below
+      @user_fires = user_input.upcase #these next few lines actually show up similarly on line 119-122, but without the if statement below
       if computer_board.valid_coordinate?([@user_fires]) == true
         break
       end
@@ -99,7 +101,7 @@ class GameMethods
 
   end
 
-  def this_is_the_end  #lines 179-185
+  def this_is_the_end  #lines 200-206
     if (comp_sub.health == 0 && comp_cruiser.health == 0)
       @endgame.player_wins
       load './runner.rb'

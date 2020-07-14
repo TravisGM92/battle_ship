@@ -185,20 +185,20 @@ class Board
 
 end
 
-board1 = Board.new
-# ship1 = Ship.new("Submarine", 2)
-ship2 = Ship.new("Cruiser", 3)
-# p board1.cells["A1"]
-# board1.render
-
+# board1 = Board.new
+# # ship1 = Ship.new("Submarine", 2)
+# ship2 = Ship.new("Cruiser", 3)
+# # p board1.cells["A1"]
+# # board1.render
 #
-# board1.place(ship1, ["B4", "C4"])
-# cell_1 = board1.cells["A10"].empty?
-# cell_2 = board1.cells["A2"]
-# cell_3 = board1.cells["A3"]
-# cell_4 = board1.cells["A4"]
-# p cell_1
-#
-#
-#
-p board1.valid_placement?(ship2, ["A9", "A10", "A11"])
+# #
+# # board1.place(ship1, ["B4", "C4"])
+# # cell_1 = board1.cells["A10"].empty?
+# # cell_2 = board1.cells["A2"]
+# # cell_3 = board1.cells["A3"]
+# # cell_4 = board1.cells["A4"]
+# # p cell_1
+# #
+# #
+# #
+# p board1.valid_placement?(ship2, ["A9", "A10", "A11"])
