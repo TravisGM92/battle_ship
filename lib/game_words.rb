@@ -45,6 +45,23 @@ class GameWords
     p "What do your homies call you?"
   end
 
+  def user_board_size_prompt
+    puts ""
+    puts "And how wide would you like your board to be?"
+    p "Pick a number between 4 and 50: "
+  end
+
+  def invalid_user_board_size
+    puts "Oops! Please pick a number"
+    p "between 4 and 50: "
+  end
+
+  def computer_board_size_prompt
+    puts "And what about George's board?"
+    puts "We recomend putting the same number"
+    p "otherwise you're getting off easy..."
+  end
+
   def ship_intro
     sleep(6)
     puts ""
