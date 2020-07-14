@@ -57,7 +57,7 @@ class Game
       until user_board.user_width1 > 4 && user_board.user_width1 < 50
         puts "Oops! Please pick a number"
         puts "between 4 and 50: "
-        user_board.user_width1 = gets.chomp!.to_i
+        @user_board.user_width1 = gets.chomp!.to_i
       end
       puts "And what about George's board?"
       puts "We reccomend putting the same number"

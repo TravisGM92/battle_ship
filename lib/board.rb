@@ -40,40 +40,33 @@ class Board
 
 
   def valid_placement?(ship, coordinate)
-    row_a = cells.keys.to_a[0..3]
-    row_b = cells.keys.to_a[4..7]
-    row_c = cells.keys.to_a[8..11]
-    row_d = cells.keys.to_a[12..15]
-    rows = []
-    rows << row_a
-    rows << row_b
-    rows << row_c
-    rows << row_d
-    col_1 = []
-    col_1 << cells.keys.to_a[0]
-    col_1 << cells.keys.to_a[4]
-    col_1 << cells.keys.to_a[8]
-    col_1 << cells.keys.to_a[12]
-    col_2 = []
-    col_2 << cells.keys.to_a[1]
-    col_2 << cells.keys.to_a[5]
-    col_2 << cells.keys.to_a[9]
-    col_2 << cells.keys.to_a[13]
-    col_3 = []
-    col_3 << cells.keys.to_a[2]
-    col_3 << cells.keys.to_a[6]
-    col_3 << cells.keys.to_a[10]
-    col_3 << cells.keys.to_a[14]
-    col_4 = []
-    col_4 << cells.keys.to_a[3]
-    col_4 << cells.keys.to_a[7]
-    col_4 << cells.keys.to_a[11]
-    col_4 << cells.keys.to_a[15]
+    row_a = cells.keys.to_a.select{ |cell| cell[0] == "A"}
+    # row_a = cells.keys.to_a[0..3]
+    row_b = cells.keys.to_a.select{ |cell| cell[0] == "B"}
+    # row_b = cells.keys.to_a[4..7]
+    # row_c = cells.keys.to_a[8..11]
+    row_c = cells.keys.to_a.select{ |cell| cell[0] == "C"}
+    # row_d = cells.keys.to_a[12..15]
+    row_d = cells.keys.to_a.select{ |cell| cell[0] == "D"}
+
+    # rows = []
+    # rows << row_a
+    # rows << row_b
+    # rows << row_c
+    # rows << row_d
+    # col_1 = []
+
+    col_1 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 1}
+    col_2 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 2}
+    col_3 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 3}
+    col_4 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 4}
+    col_5 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 5}
+
 
     split_numbs = coordinate.collect{ |coordinates| coordinates.chars}.flatten
     numbers_only = coordinate.map {|x| x[/\d+/]}
-    rows_index = split_numbs.select.with_index{ |chars, index| index.even? }
-    colum_index = split_numbs.select.with_index{ |chars, index| index.odd? }
+    rows_index = split_numbs.select{ |chars| not chars[/\d+/] }
+    colum_index = coordinate.collect{ |chars| chars[/\d+/].to_i}
 
     # Below is the column numbers converted to actual numbers instead of strings
     colum_numbers = numbers_only.collect{ |number| number.to_i}
@@ -185,9 +178,9 @@ class Board
 
 end
 
-board1 = Board.new
+# board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
-ship2 = Ship.new("Cruiser", 3)
+# ship2 = Ship.new("Cruiser", 3)
 # p board1.cells["A1"]
 # board1.render
 
@@ -201,4 +194,4 @@ ship2 = Ship.new("Cruiser", 3)
 #
 #
 #
-p board1.valid_placement?(ship2, ["A9", "A10", "A11"])
+# p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
