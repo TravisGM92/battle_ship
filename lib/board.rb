@@ -30,7 +30,6 @@ class Board
     my_hash
   end
 
-
   def valid_coordinate?(coordinate)
     if coordinate.all?{ |numbers| cells.include? numbers} && coordinate.all?{ |numbers| cells[numbers].fired == 0}
       true

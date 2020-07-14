@@ -24,10 +24,6 @@ class Game
 
   def initialize
     @user_name = user_name
-    # @computer_board = Board.new
-    # @user_board = Board.new
-    # @comp_cruiser = Ship.new("Cruiser", 3)
-    # @comp_sub = Ship.new("Submarine", 2)
     @rules = Tutorial.new("The Rules")
     @endgame = Endgame.new("The End")
     @game_words = GameWords.new("Words") #I named it GameWords because GameText was too close to GameTest
@@ -36,7 +32,6 @@ class Game
     @show = show
     @second = second
     @user_fires = user_fires
-    @smarts = Smart.new
   end
 
   def make_board_with_players(show=false, second=false)
@@ -48,10 +43,6 @@ class Game
   end
 
   def start()
-    # sub_cord = computer_board.valid_placement_for_sub(comp_sub)
-    # computer_board.place(comp_sub, sub_cord)
-    # cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
-    # computer_board.place(comp_cruiser, cruise_cord)
     @game_words.game_opening
     user_index = gets.chomp!.downcase
     if user_index == "p"
@@ -72,9 +63,7 @@ class Game
       puts "We reccomend putting the same number"
       puts "otherwise you're getting off easy..."
       @computer_board = Board.new
-      computer_board.user_width1 = user_board.user_width1
 
-      # @user_board = Board.new
       @comp_cruiser = Ship.new("Cruiser", 3)
       @comp_sub = Ship.new("Submarine", 2)
       sub_cord = computer_board.valid_placement_for_sub(comp_sub)
@@ -159,9 +148,8 @@ class Game
           @turn_number += 1
 
         elsif last_turn == "George" && turn_number == 0
-          @game_words.georges_turn
-          sleep(1)
           if user_board.cells[computer_options.first].empty? == false
+            puts ""
             @game_words.george_hit_you
           else
             @game_words.george_missed_you

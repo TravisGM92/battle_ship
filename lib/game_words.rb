@@ -63,7 +63,7 @@ class GameWords
     puts "subness, with 2 spaces"
     sleep(9.5)
     puts "------------------------------------"
-    puts "Now, where would you like your cruiser to go? Remember" #or should that be print?
+    print "Now, where would you like your cruiser to go? Remember" #or should that be print?
     "......".each_char do |char|
       print char
       $stdout.flush
