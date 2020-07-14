@@ -55,12 +55,12 @@ class Board
     # rows << row_c
     # rows << row_d
     # col_1 = []
-
-    col_1 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 1}
-    col_2 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 2}
-    col_3 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 3}
-    col_4 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 4}
-    col_5 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 5}
+    #
+    # col_1 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 1}
+    # col_2 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 2}
+    # col_3 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 3}
+    # col_4 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 4}
+    # col_5 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 5}
 
 
     split_numbs = coordinate.collect{ |coordinates| coordinates.chars}.flatten
@@ -178,9 +178,9 @@ class Board
 
 end
 
-# board1 = Board.new
+board1 = Board.new
 # ship1 = Ship.new("Submarine", 2)
-# ship2 = Ship.new("Cruiser", 3)
+ship2 = Ship.new("Cruiser", 3)
 # p board1.cells["A1"]
 # board1.render
 
@@ -194,4 +194,4 @@ end
 #
 #
 #
-# p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
+p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
