@@ -31,6 +31,24 @@ class GameWordsTest < Minitest::Test
     assert_equal "What do your homies call you?", words.comp_intro
   end
 
+  def test_can_user_board_size_prompt
+    words = GameWords.new("Game Words")
+
+    assert_equal "Pick a number between 4 and 50: ", words.user_board_size_prompt
+  end
+
+  def test_can_invalid_user_board_size
+    words = GameWords.new("Game Words")
+
+    assert_equal "between 4 and 50: ", words.invalid_user_board_size
+  end
+
+  def test_can_computer_board_size_prompt
+    words = GameWords.new("Game Words")
+
+    assert_equal "otherwise you're getting off easy...", words.computer_board_size_prompt
+  end
+
   def test_can_ship_intro
     words = GameWords.new("Game Words")
 
@@ -110,7 +128,7 @@ class GameWordsTest < Minitest::Test
   def test_can_print_lets_take_a_look
     words = GameWords.new("Game Words")
 
-    assert_equal 2, words.lets_take_a_look
+    assert_equal "....", words.lets_take_a_look
   end
 
   def test_can_print_slowing_things_down
@@ -175,6 +193,16 @@ class GameWordsTest < Minitest::Test
     assert_equal "", words.invalid_entry
   end
 
+  def test_player_win_message
+    words = GameWords.new("Game Words")
 
+    assert_equal "love to play again. Would you?", words.player_wins
+  end
+
+  def test_player_win_message
+    words = GameWords.new("Game Words")
+
+    assert_equal 5, words.player_loses
+  end
 
 end

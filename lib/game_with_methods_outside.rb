@@ -1,9 +1,10 @@
+
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/tutorial'
-require './lib/endgame'
 require './lib/game_words'
+require './lib/game_methods'
 require './lib/turn'
 # require './lib/smart_computer'
 
@@ -25,8 +26,8 @@ class Game
   def initialize
     @user_name = user_name
     @rules = Tutorial.new("The Rules")
-    @endgame = Endgame.new("The End")
     @game_words = GameWords.new("Words")
+    @game_methods = GameMethods.new
     @last_turn = last_turn
     @turn_number = 0
     @show = show
@@ -54,13 +55,9 @@ class Game
       @user_name = user_input
       @game_words.user_board_size_prompt
       @user_board = Board.new
-      until user_board.user_width1 >= 4 && user_board.user_width1 < 50
-        @game_words.invalid_user_board_size
-        user_board.user_width1 = user_input.to_i
-      end
+      @game_methods.invalid_board_size
       @game_words.computer_board_size_prompt
       @computer_board = Board.new
-
       @comp_cruiser = Ship.new("Cruiser", 3)
       @comp_sub = Ship.new("Submarine", 2)
       sub_cord = computer_board.valid_placement_for_sub(comp_sub)
@@ -68,28 +65,15 @@ class Game
       cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
       computer_board.place(comp_cruiser, cruise_cord)
 
-
-
       self.make_board_with_players
       @game_words.ship_intro
       user_board.cells
       @game_words.cruiser_placement_prompt
       user_cruiser = Ship.new("Cruiser", 3)
-
       user_numbers_first =  user_input.upcase
       user_numbers_array = user_numbers_first.split(", ").to_a
-      while user_numbers_array.length != 3
-        @game_words.oops_bad_cruiser_coordinates
-        user_numbers_first =  user_input.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a
-      end
-
-      while user_board.valid_placement?(user_cruiser, user_numbers_array) == false
-        @game_words.oops_bad_cruiser_overlap
-        user_numbers_first =  user_input.upcase
-        user_numbers_array = user_numbers_first.split(", ").to_a
-        # p user_numbers_array
-      end
+      @game_methods.user_placed_cruiser_poorly
+      @game_methods.user_overlapped_the_cruiser
       @game_words.cruiser_has_been_placed
       user_board.cells
       computer_board.cells
@@ -102,22 +86,12 @@ class Game
       user_sub = Ship.new("Submarine", 2)
       user_numbers_second =  user_input.upcase
       user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
-      while user_numbers2_array.length != 2
-        @game_words.oops_bad_sub_coordinates
-        user_numbers_second =  user_input.upcase
-        user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
-      end
-
-       while user_board.valid_placement?(user_sub, user_numbers2_array) == false
-         @game_words.oops_bad_sub_overlap
-         user_sub = Ship.new("Submarine", 2)
-         user_numbers_second =  user_input.upcase
-         user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
-       end
-       user_board.cells
-       user_board.place(user_sub, user_numbers2_array)
-       self.make_board_with_players(true)
-       @game_words.lets_take_a_look
+      @game_methods.user_placed_sub_poorly
+      @game_methods.user_overlapped_the_sub
+      user_board.cells
+      user_board.place(user_sub, user_numbers2_array)
+      self.make_board_with_players(true)
+      @game_words.lets_take_a_look
       @last_turn = user_name
       @game_words.slowing_things_down
       @last_turn = [user_name, "George"].sample
@@ -132,26 +106,17 @@ class Game
           self.make_board_with_players(true, true)
           @game_words.first_fire_prompt
           @user_fires = user_input.upcase
-            until computer_board.valid_coordinate?([@user_fires]) == true
+            until computer_board.valid_coordinate?([@user_fires]) == true  #similar to the @game_methods.invalid_user_shot_location, but not exactly the same so I'm not replacing it
               @game_words.invalid_shot_location
               @user_fires = user_input.upcase
             end
           computer_board.cells[@user_fires].fire_upon
-          if computer_board.cells[@user_fires].empty? == false
-            @game_words.you_hit_a_ship
-          else
-            @game_words.you_missed_the_ship
-          end
+          @game_methods.hitting_the_ship
           @last_turn = user_name
           @turn_number += 1
 
         elsif last_turn == "George" && turn_number == 0
-          if user_board.cells[computer_options.first].empty? == false
-            puts ""
-            @game_words.george_hit_you
-          else
-            @game_words.george_missed_you
-          end
+          @game_methods.george_hitting_you
           user_board.cells[computer_options.shift].fire_upon
           @last_turn = "George"
           sleep(2)
@@ -160,11 +125,7 @@ class Game
         elsif last_turn == user_name && turn_number != 0
           puts ""
           puts "Georgy's turn"
-          if user_board.cells[computer_options.first].empty? == false
-            @game_words.george_hit_you
-          else
-            @game_words.george_missed_you
-          end
+          @game_methods.george_hitting_you
           user_board.cells[computer_options.shift].fire_upon
           @last_turn = "George"
           sleep(2)
@@ -174,30 +135,14 @@ class Game
           self.make_board_with_players(true, true)
           @game_words.first_fire_prompt
           @user_fires = user_input.upcase
-            until computer_board.valid_coordinate?([@user_fires]) == true
-              @game_words.invalid_shot_location
-              @user_fires = user_input.upcase
-              if computer_board.valid_coordinate?([@user_fires]) == true
-                break
-              end
-            end
+          @game_methods.invalid_user_shot_location
           computer_board.cells[@user_fires].fire_upon
-          if computer_board.cells[@user_fires].empty? == false
-            @game_words.you_hit_a_ship
-          else
-            @game_words.you_missed_the_ship
-          end
+          @game_methods.hitting_the_ship
           @last_turn = user_name
           @turn_number += 1
         end
 
-        if (comp_sub.health == 0 && comp_cruiser.health == 0)
-          @endgame.player_wins
-          load './runner.rb'
-        elsif (user_sub.health == 0 && user_cruiser.health == 0)
-          @endgame.player_loses
-          load './runner.rb'
-        end
+        @game_methods.this_is_the_end
       end
 
       # *************    Gameplay ends here!!!    ****************

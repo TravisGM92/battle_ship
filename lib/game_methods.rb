@@ -2,7 +2,6 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/tutorial'
-require './lib/endgame'
 require './lib/game_words'
 require './lib/turn'
 require './lib/game'
@@ -25,7 +24,6 @@ class GameMethods
   def initialize
     @user_name = user_name
     @rules = Tutorial.new("The Rules")
-    @endgame = Endgame.new("The End")
     @game_words = GameWords.new("Words")
     @comp_cruiser = Ship.new("Cruiser", 3)
     @comp_sub = Ship.new("Submarine", 2)
@@ -76,7 +74,7 @@ class GameMethods
       @game_words.oops_bad_sub_overlap
       user_sub = Ship.new("Submarine", 2)
       user_numbers_second =  user_input.upcase
-      user_numbers2_array = user_numbers_second.split(", ").to_a.sort!  
+      user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
     end
   end
 
@@ -110,10 +108,10 @@ class GameMethods
 
   def this_is_the_end
     if (comp_sub.health == 0 && comp_cruiser.health == 0)
-      @endgame.player_wins
+      @game_words.player_wins
       load './runner.rb'
     elsif (user_sub.health == 0 && user_cruiser.health == 0)
-      @endgame.player_loses
+      @game_words.player_loses
       load './runner.rb'
     end
   end
