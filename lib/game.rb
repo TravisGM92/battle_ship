@@ -177,8 +177,15 @@ class Game
           @game_words.fire_prompt
           @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
-              @game_words.invalid_shot_location
-              @user_fires = user_input.upcase
+              if computer_board.cells.values.select{ |x|
+                x.fired_upon?}.any?{ |x|
+                  x.coordinate.include?(user_fires)} == true
+                @game_words.already_shot_that_cell
+                @user_fires = user_input.upcase
+              else
+                @game_words.invalid_shot_location
+                @user_fires = user_input.upcase
+              end
               if computer_board.valid_coordinate?([@user_fires]) == true
                 break
               end

@@ -46,6 +46,7 @@ class GameWords
   end
 
   def user_board_size_prompt
+    sleep(2)
     puts ""
     puts "And how wide would you like your board to be?"
     p "Pick a number between 4 and 50: "
@@ -57,6 +58,7 @@ class GameWords
   end
 
   def computer_board_size_prompt
+    sleep(2)
     puts "And what about George's board?"
     puts "We recommend putting the same number"
     p "otherwise you're getting off easy..."
@@ -174,7 +176,7 @@ class GameWords
   end
 
   def lets_take_a_look
-    puts "How's it look?"
+    puts "This looks great!"
     sleep(3)
     puts ""
     puts "Now we've gotta let George place his Sub,"
