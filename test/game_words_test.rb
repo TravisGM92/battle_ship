@@ -151,6 +151,13 @@ class GameWordsTest < Minitest::Test
     assert_equal "Let's try again: ", words.invalid_shot_location
   end
 
+  def test_can_print_already_shot_that_cell
+    # skip
+    words = GameWords.new("Game Words")
+    # require 'pry'; pry.binding
+    assert_equal "Let's try again: ", words.already_shot_that_cell
+  end
+
   def test_can_print_you_hit_a_ship
     # skip
     words = GameWords.new("Game Words")

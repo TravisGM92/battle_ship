@@ -183,8 +183,8 @@ end
 # ship2 = Ship.new("Cruiser", 3)
 # # p board1.cells["A1"]
 # # board1.render
-#
-p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
+# #
+# p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
 # #
 # # board1.place(ship1, ["B4", "C4"])
 # # cell_1 = board1.cells["A10"].empty?
