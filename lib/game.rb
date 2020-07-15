@@ -2,7 +2,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/tutorial'
-require './lib/endgame'
+require './lib/game_words'
 require './lib/game_words'
 require './lib/turn'
 # require './lib/smart_computer'
@@ -25,7 +25,6 @@ class Game
   def initialize
     @user_name = user_name
     @rules = Tutorial.new("The Rules")
-    @endgame = Endgame.new("The End")
     @game_words = GameWords.new("Words")
     @last_turn = last_turn
     @turn_number = 0
@@ -130,11 +129,16 @@ class Game
       until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
         if last_turn == "George" && turn_number != 0
           self.make_board_with_players(true, true)
-          @game_words.first_fire_prompt
+          @game_words.fire_prompt
           @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
-              @game_words.invalid_shot_location
-              @user_fires = user_input.upcase
+              if computer_board.cells.each{ |cell| cell.include?(@fired=1)} == true
+                @game_words.already_shot_that_cell
+                @user_fires = user_input.upcase
+              else
+                @game_words.invalid_shot_location
+                @user_fires = user_input.upcase
+              end
             end
           computer_board.cells[@user_fires].fire_upon
           if computer_board.cells[@user_fires].empty? == false
@@ -172,7 +176,7 @@ class Game
 
         elsif last_turn == user_name && turn_number == 0
           self.make_board_with_players(true, true)
-          @game_words.first_fire_prompt
+          @game_words.fire_prompt
           @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
               @game_words.invalid_shot_location
@@ -192,10 +196,10 @@ class Game
         end
 
         if (comp_sub.health == 0 && comp_cruiser.health == 0)
-          @endgame.player_wins
+          @game_words.player_wins
           load './runner.rb'
         elsif (user_sub.health == 0 && user_cruiser.health == 0)
-          @endgame.player_loses
+          @game_words.player_loses
           load './runner.rb'
         end
       end

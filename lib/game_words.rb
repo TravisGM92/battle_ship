@@ -73,10 +73,10 @@ class GameWords
      end
     puts ""
     puts ""
-    puts "1) The Cruiser, known for it's"
+    puts "1) The Cruiser, known for its"
     puts "impeccable speed, with 3 spaces"
     puts "              and   "
-    puts "2) the Submarine, known for it's"
+    puts "2) the Submarine, known for its"
     puts "subness, with 2 spaces"
     sleep(9.5)
     puts "------------------------------------"
@@ -199,22 +199,26 @@ class GameWords
   end
 
 
-  def first_fire_prompt
+  def fire_prompt
     puts "Where would you like to fire?"
     puts "Remember, plese give us a coordinate in this"
     p "in this format: 'A2' OR 'D3'"
-
   end
 
+  def already_shot_that_cell
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Oops! Looks like you have already"
+    puts "shot there. Try again, except this"
+    puts "time fire at a new coordinate."
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    p "Let's try again: "
+  end
 
   def invalid_shot_location
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Oops! Looks like you put in an invalid coordinate."
-    puts "Try again, except this time make sure the"
-    puts "coordinates are one after the other."
-    puts "Also, make sure you don't fire at"
-    puts "the same cell twice, and don't try"
-    puts "to fire at a cell off the board... "
+    puts "Oops! Looks like you put in an invalid"
+    puts "coordinate. Try again, except this time"
+    puts "make sure the coordinates are on the board."
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     p "Let's try again: "
   end
