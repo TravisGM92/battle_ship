@@ -4,7 +4,6 @@ require './lib/board'
 require './lib/tutorial'
 require './lib/game_words'
 require './lib/game_words'
-require './lib/turn'
 # require './lib/smart_computer'
 
 
@@ -59,24 +58,20 @@ class Game
       end
       @game_words.computer_board_size_prompt
       @computer_board = Board.new
-
       @comp_cruiser = Ship.new("Cruiser", 3)
       @comp_sub = Ship.new("Submarine", 2)
       sub_cord = computer_board.valid_placement_for_sub(comp_sub)
       computer_board.place(comp_sub, sub_cord)
       cruise_cord = computer_board.valid_placement_for_cruiser(comp_cruiser)
       computer_board.place(comp_cruiser, cruise_cord)
-
-
-
       self.make_board_with_players
       @game_words.ship_intro
       user_board.cells
       @game_words.cruiser_placement_prompt
       user_cruiser = Ship.new("Cruiser", 3)
-
       user_numbers_first =  user_input.upcase
       user_numbers_array = user_numbers_first.split(", ").to_a
+
       while user_numbers_array.length != 3
         @game_words.oops_bad_cruiser_coordinates
         user_numbers_first =  user_input.upcase
@@ -87,8 +82,8 @@ class Game
         @game_words.oops_bad_cruiser_overlap
         user_numbers_first =  user_input.upcase
         user_numbers_array = user_numbers_first.split(", ").to_a
-        # p user_numbers_array
       end
+
       @game_words.cruiser_has_been_placed
       user_board.cells
       computer_board.cells
@@ -101,6 +96,7 @@ class Game
       user_sub = Ship.new("Submarine", 2)
       user_numbers_second =  user_input.upcase
       user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
+
       while user_numbers2_array.length != 2
         @game_words.oops_bad_sub_coordinates
         user_numbers_second =  user_input.upcase
@@ -113,6 +109,7 @@ class Game
          user_numbers_second =  user_input.upcase
          user_numbers2_array = user_numbers_second.split(", ").to_a.sort!
        end
+
        user_board.cells
        user_board.place(user_sub, user_numbers2_array)
        self.make_board_with_players(true)
@@ -125,14 +122,15 @@ class Game
       puts ""
       sleep(3)
       computer_options = user_board.cells.keys.shuffle
-
       until (user_sub.health == 0 && user_cruiser.health == 0) || (comp_sub.health == 0 && comp_cruiser.health == 0)
         if last_turn == "George" && turn_number != 0
           self.make_board_with_players(true, true)
           @game_words.fire_prompt
           @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
-              if computer_board.cells.values.select{ |x| x.fired_upon?}.any?{ |x| x.coordinate.include?(user_fires)}
+              if computer_board.cells.values.select{ |x|
+                x.fired_upon?}.any?{ |x|
+                  x.coordinate.include?(user_fires)} == true
                 @game_words.already_shot_that_cell
                 @user_fires = user_input.upcase
               else
@@ -203,7 +201,6 @@ class Game
           load './runner.rb'
         end
       end
-
       # *************    Gameplay ends here!!!    ****************
     elsif user_index == "q"
       p "Goodbye!"
@@ -216,7 +213,3 @@ class Game
     end
   end
 end
-
-#
-# game = Game.new
-# game.start

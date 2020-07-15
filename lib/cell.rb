@@ -77,9 +77,3 @@ class Cell
     ship.health == 0
   end
 end
-
-# cell = Cell.new("B4")
-# cruiser = Ship.new("Cruiser", 3)
-# cell.place_ship(cruiser)
-# cell.fire_upon
-# p cell.ship.health

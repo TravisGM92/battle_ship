@@ -18,7 +18,3 @@ class Smart
   end
 
 end
-
-
-smarts = Smart.new
-p smarts.smart_pick
