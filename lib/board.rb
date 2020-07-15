@@ -12,7 +12,6 @@ class Board
   attr_reader :cells1, :coordinates_list
 
   def initialize
-    # puts "How wide?"
     @user_width1 = gets.chomp!.to_i
     @coordinates_list = ('a'..'d').flat_map{ |letter| (1..user_width1).map{ |number| "#{letter.upcase}#{number}"}}
     @coordinate_symbols = coordinates_list.join(" ").split(" ").map{ |coordinate| coordinate.to_sym}
@@ -41,27 +40,9 @@ class Board
 
   def valid_placement?(ship, coordinate)
     row_a = cells.keys.to_a.select{ |cell| cell[0] == "A"}
-    # row_a = cells.keys.to_a[0..3]
     row_b = cells.keys.to_a.select{ |cell| cell[0] == "B"}
-    # row_b = cells.keys.to_a[4..7]
-    # row_c = cells.keys.to_a[8..11]
     row_c = cells.keys.to_a.select{ |cell| cell[0] == "C"}
-    # row_d = cells.keys.to_a[12..15]
     row_d = cells.keys.to_a.select{ |cell| cell[0] == "D"}
-
-    # rows = []
-    # rows << row_a
-    # rows << row_b
-    # rows << row_c
-    # rows << row_d
-    # col_1 = []
-    #
-    # col_1 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 1}
-    # col_2 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 2}
-    # col_3 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 3}
-    # col_4 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 4}
-    # col_5 = cells.keys.to_a.select{ |cell| cell[/\d+/].to_i == 5}
-
 
     split_numbs = coordinate.collect{ |coordinates| coordinates.chars}.flatten
     numbers_only = coordinate.map {|x| x[/\d+/]}
@@ -139,11 +120,6 @@ class Board
     coordaintes3
   end
 
-  def test
-    alpha = ('a'..'z').find.with_index{ |letter, index| index == user_height-1}.upcase
-    row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
-  end
-
   def render(show=false, second=false)
     row_a = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "A"}
     row_b = cells.values.select{ |all_cells| all_cells.coordinate.split("")[0] == "B"}
@@ -174,25 +150,4 @@ class Board
       puts "D #{row_d.map { |cell| cell.render(false, true)}.join(" ")} |"
     end
   end
-
-
 end
-
-# board1 = Board.new
-# # ship1 = Ship.new("Submarine", 2)
-# ship2 = Ship.new("Cruiser", 3)
-# # p board1.cells["A1"]
-# # board1.render
-# #
-# p board1.valid_placement?(ship2, ["A12", "A13", "A14"])
-# #
-# # board1.place(ship1, ["B4", "C4"])
-# # cell_1 = board1.cells["A10"].empty?
-# # cell_2 = board1.cells["A2"]
-# # cell_3 = board1.cells["A3"]
-# # cell_4 = board1.cells["A4"]
-# # p cell_1
-# #
-# #
-# #
-# p board1.valid_placement?(ship2, ["A9", "A10", "A11"])
