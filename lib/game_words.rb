@@ -205,21 +205,20 @@ class GameWords
     p "in this format: 'A2' OR 'D3'"
   end
 
+  def already_shot_that_cell
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    puts "Oops! Looks like you have already"
+    puts "shot there. Try again, except this"
+    puts "time fire at a new coordinate."
+    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+    p "Let's try again: "
+  end
 
   def invalid_shot_location
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     puts "Oops! Looks like you put in an invalid"
     puts "coordinate. Try again, except this time"
     puts "make sure the coordinates are on the board."
-    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    p "Let's try again: "
-  end
-
-  def already_shot_that_cell
-    puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-    puts "Oops! Looks like you have already"
-    puts "shot there. Try again, except this"
-    puts "time fire at a new coordinate."
     puts "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
     p "Let's try again: "
   end

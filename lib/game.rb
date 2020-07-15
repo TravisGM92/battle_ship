@@ -132,22 +132,7 @@ class Game
           @game_words.fire_prompt
           @user_fires = user_input.upcase
             until computer_board.valid_coordinate?([@user_fires]) == true
-              if computer_board.cells[@user_fires] && cells.fired > 0 && cells.cell.empty? && show == false
-                @game_words.already_shot_that_cell
-                @user_fires = user_input.upcase
-              elsif computer_board.cells[@user_fires] && cells.fired > 0 && cells.cell.empty? && show == true && second == true
-                @game_words.already_shot_that_cell
-                @user_fires = user_input.upcase
-              elsif computer_board.cells[@user_fires] && cells.fired > 0 && cells.cell.empty? == false && show == true && cells.ship.health > 0
-                @game_words.already_shot_that_cell
-                @user_fires = user_input.upcase
-              elsif computer_board.cells[@user_fires] && cells.cells.fired > 0 && cells.cell.empty? == false && show == true && second == true && cells.ship.health > 0
-                @game_words.already_shot_that_cell
-                @user_fires = user_input.upcase
-              elsif computer_board.cells[@user_fires] && cells.cell.empty? == false && show == true && second == true && cells.ship.health == 0
-                @game_words.already_shot_that_cell
-                @user_fires = user_input.upcase
-              elsif computer_board.cells[@user_fires] && cells.cell.empty? == false && cells.ship.health == 0
+              if computer_board.cells.each{ |cell| cell.include?(@fired=1)} == true
                 @game_words.already_shot_that_cell
                 @user_fires = user_input.upcase
               else
