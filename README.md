@@ -24,20 +24,11 @@ Luke and I didn't know much about programming, so we decided to focus a lot on u
 
 ### Learning Goals 
 
-The purpose of this project was to get first-time practice and implemenation of API exposure and consumption as well as utilization of Continuous Integration using Travis CI. Although not required for this project, we wanted to learn how to mock external HTTP requests, which we were able to achieve with Webmock. We had a goal to implement mocking with VCR, but were unable to reach this goal within our deadline. Refactoring using Facade Design Patter was strongly encouraged for this project, which we decided as a team would be a goal for us. We achieved implementation of this design pattern and in doing so it allowed for better abstraction, encapsulation, single-responsibility. 
-
-We also used knowledge built on previous projects, such as; flash messages, CRUD functionality, MVP design patterns, and more. 
+The purpose of this project was to learn how to separate responsibilities inside a Ruby file. We had to create a runner file where the only code that was allowed was 'StartGame.new', or something similar. Inside the StartGame class we have various methods for the game, including the dialogue for the computer. 
 
 ## Features
-  - A new user can register with a username, email, and password. We used 'bcrypt' for password security and encryption
-  - Once logged in, a user can discover the top 40 movies, as well as search for movies based on a keyword
-  - On the movies index page, each movie title is a link, where a user can click to find more information about that particular movie
-  - If a user navigates back to their dashboard, they can 'Add Friends'! Search for friends by typing in their email, and if that      email is associated with a registered user, then they will be added as a friend! Friendships are reciprocal, so once added by the user, that two-way friendship is created
-  - If a user has added friends, they have the ability to create a viewing party! They can select which friends they would like to invite, and select a movie to show!
-  - 'Recommended movies', and 'top rated movies' are both extra pieces of functionality that required additional API calls
+  - There is a loading screen where one can review the rules of the game, play the game, or quit the runner file.
   
   ## Wishlist
-  - Going forward we would love to incorporate sending an email once a user has either created a viewing party, or been invited to one. This email would serve as a notification, because currently, a user needs to sign into our app to see whether or not they have any viewing parties. This email could also include an option to 'accept' or 'decline' an invitiation
-  
-  - Incorporaing more JavaScript, especially for the index page to see all the movies. Currently, the styling is basic CSS/HTML cards. Eventually we'd like to be able to have nice styling effects for each movie (hover and the movie info appears, etc.).
+  - Since this project is over, I (Travis) would like to create a second iteration of the game incorporating the new things I've learned, making a much more organized and better playing game.
   
