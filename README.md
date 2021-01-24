@@ -14,7 +14,7 @@ Because this program is so simple, you can just put in the following command int
 
 This was one of the first projects Luke and I did while attending the Turing School of Software & Design backend program. The goal was to create a program using Ruby, that could simulate the popular board game 'Battle Ship'.
 <br><br>
-Luke and I didn't know much about programming, so we decided to focus a lot on user experience. When you run the program, it feels a lot like a simple CLI game; there's a start screen, there's playful dialogue, etc. Luke and I put a lot of good work into it and have definitely improved a lot since then. 
+Luke and I didn't know much about programming, so we decided to focus a lot on user experience. When you run the program, it feels a lot like a simple CLI game; there's a start screen, playful dialogue, etc. Luke and I put a lot of good work into it and have definitely improved a lot since then. 
 <br>
 <br>
 
